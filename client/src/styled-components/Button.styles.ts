@@ -63,7 +63,6 @@ export const AddCartButton = styled(IconButton)`
     outline: 3px solid ${colors.purple};
 
   }
-}
 `;
 
 export const InlineButton = styled(DefaultButton)`
@@ -136,6 +135,16 @@ export const SendBtn = styled(StyledButton)`
   justify-content: center;
   margin-block: 0;
   margin-top: 30px;
+
+  &:disabled {
+    background-color: ${colors.grey20};
+    cursor: wait;
+
+    &:hover {
+      background-color: ${colors.grey30};
+      outline: none;
+    }
+  }
 `;
 
 export const ModalBottonButton = styled(SendBtn)`
