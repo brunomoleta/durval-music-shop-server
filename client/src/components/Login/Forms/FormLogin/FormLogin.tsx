@@ -12,9 +12,10 @@ import Input from "../Input";
 import {IUserContext} from "../../../../types/user";
 import {ILogin} from "../../../../types/login";
 import {SendBtn} from "../../../../styled-components/Button.styles.ts";
+import Loader from "../../../Loader/Loader.tsx";
 
 function FormLogin() {
-  const { loginRequest, isPasswordVisible } = useUserContext() as IUserContext;
+  const { loginRequest, isPasswordVisible, isLoading } = useUserContext() as IUserContext;
   const id = React.useId();
   const emailId = `${id}-email`;
   const passwordId = `${id}-password`;
@@ -47,7 +48,9 @@ function FormLogin() {
         id={passwordId}
       />
 
-      <SendBtn>LOGIN</SendBtn>
+      <SendBtn disabled={isLoading}>
+        {isLoading ? <Loader/> : "LOGIN"}
+      </SendBtn>
     </Form>
   );
 }

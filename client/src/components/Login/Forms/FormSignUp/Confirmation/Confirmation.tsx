@@ -7,6 +7,7 @@ import {InlineButton, SendBtn} from "../../../../../styled-components/Button.sty
 import React from "react";
 import { H3 } from "../../../../../styled-components/Typography.styles.ts";
 import {colors} from "../../../../../styled-components/root.ts";
+import Loader from "../../../../Loader/Loader.tsx";
 
 const Title = styled.span`
   font-weight: 500;
@@ -35,6 +36,7 @@ function Confirmation() {
     signUpInfo,
     setSignUpInfo,
     setStep,
+    isLoading
   } = useUserContext() as IUserContext;
 
   async function submit() {
@@ -79,7 +81,9 @@ function Confirmation() {
           </div>
         </div>
         <div style={{ display: "flex",flexFlow:"column",alignItems:"center" }}>
-          <SendBtn onClick={submit}>ENVIAR</SendBtn>
+          <SendBtn onClick={submit} disabled={isLoading}>
+            {isLoading ? <Loader/> : "ENVIAR"}
+          </SendBtn>
           <InlineButton
             style={{
               width: "fit-content",

@@ -16,7 +16,7 @@ function UserProvider(props: { children: React.ReactNode }) {
   const navigate = useNavigate();
 
   const [signUpInfo, setSignUpInfo] = React.useState({});
-
+  
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isLogOpen, setIsLogOpen] = React.useState(false);
   const [isSignUp, setIsSignUp] = React.useState(false);
@@ -46,17 +46,24 @@ function UserProvider(props: { children: React.ReactNode }) {
     const fullName = `${updatedFirstName} ${updatedLastName}`;
     const updatedFormData = { ...newFormData, name: fullName };
     try {
+      setIsLoading(true);
       await api.post("/users", updatedFormData);
       toast.success(
         `${updatedFirstName} seu cadastro foi efetuado com sucesso :)`,
       );
       setIsLogOpen(!isLogOpen);
       setIsSignUp(!isSignUp);
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
-      toast.error(
-        `Por favor verifique a sua conexão com a internet, ${updatedFirstName} ;)`,
-      );
+      if(error.response.status === 409) {
+        toast.error("Email já cadastrado.");
+      } else {
+        toast.error(
+          `Por favor verifique a sua conexão com a internet, ${updatedFirstName} ;)`,
+        );
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -71,6 +78,7 @@ function UserProvider(props: { children: React.ReactNode }) {
 
   const loginRequest = async (formData: ILogin) => {
     try {
+      setIsLoading(true);
       const { data } = await api.post("/login", formData);
       localStorage.setItem("@TOKEN", JSON.stringify(data.token));
 
@@ -84,6 +92,8 @@ function UserProvider(props: { children: React.ReactNode }) {
         setIsLogOpen(!isLogOpen);
       }
       console.log(error);
+    } finally {
+      setIsLoading(false)
     }
   };
 
