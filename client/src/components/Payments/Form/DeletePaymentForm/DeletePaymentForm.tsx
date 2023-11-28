@@ -49,6 +49,11 @@ const Card = styled.div`
         &:disabled {
             background-color: ${colors.grey20};
             cursor: wait;
+
+            &:hover {
+            background-color: ${colors.grey30};
+            outline: none;
+            }  
         }
     `;
 
