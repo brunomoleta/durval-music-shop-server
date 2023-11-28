@@ -12,9 +12,10 @@ import { SendBtn } from "../../../../styled-components/Button.styles.ts";
 import {AnuncioFormContainer} from "../../Anuncios.tsx";
 import { IAnuncioContext, IProductForm } from "../../../../types/anuncios";
 import Select from "../../../Select/Select.tsx";
+import Loader from "../../../Loader/Loader.tsx";
 
 function EditAnuncioForm() {
-  const { editAnuncio, editingAnuncio } = useAnuncioContext() as IAnuncioContext;
+  const { editAnuncio, editingAnuncio, isLoading } = useAnuncioContext() as IAnuncioContext;
 
   const {
     register,
@@ -105,6 +106,7 @@ function EditAnuncioForm() {
       />
       </AnuncioFormContainer>
       <SendBtn type="submit">SALVAR EDIÇÃO</SendBtn>
+      <SendBtn type="submit" disabled={isLoading}>{isLoading ? <Loader/> : "SALVAR EDIÇÃO"}</SendBtn>
     </FormUser>
   );
 }

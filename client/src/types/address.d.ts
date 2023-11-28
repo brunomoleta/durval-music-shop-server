@@ -25,6 +25,8 @@ export interface IAddress {
   export interface IAddressContext {
     addresses: IAddress[]
 
+    isLoading: boolean
+
     isCreateAddressModalOpen: boolean
     setIsCreateAddressModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 

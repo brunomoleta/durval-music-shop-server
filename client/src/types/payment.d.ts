@@ -13,6 +13,8 @@ export interface IPayment {
   export interface IPaymentContext {
     payments: IPayment[]
 
+    isLoading: boolean
+    
     isCreatePaymentModalOpen: boolean
     setIsCreatePaymentModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 

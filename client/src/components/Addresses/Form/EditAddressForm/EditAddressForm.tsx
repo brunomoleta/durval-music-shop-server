@@ -13,9 +13,10 @@ import { toast } from "react-toastify";
 import { H2 } from "../../../../styled-components/Typography.styles.ts";
 import { SendBtn } from "../../../../styled-components/Button.styles.ts";
 import {AddressFormContainer} from "../../Addresses.tsx";
+import Loader from "../../../Loader/Loader.tsx";
 
 function EditAddressForm() {
-  const { editAddress, editingAddress } =
+  const { editAddress, editingAddress, isLoading } =
     useAddressContext() as IAddressContext;
 
   const {
@@ -113,7 +114,7 @@ function EditAddressForm() {
         />
       </AddressFormContainer>
 
-      <SendBtn type="submit">EDITAR ENDEREÇO</SendBtn>
+      <SendBtn type="submit" disabled={isLoading}>{isLoading ? <Loader/> : "EDITAR ENDEREÇO"}</SendBtn>
     </FormUser>
   );
 }

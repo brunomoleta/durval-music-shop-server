@@ -8,9 +8,11 @@ export const AddressContext = createContext({});
 const useAddressContext = () => React.useContext(AddressContext);
 
 const AddressProvider = (props: { children: ReactNode }) => {
+
     
     const [ addresses, setAddresses ] = useState<IAddress[]>([]);
-
+    
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [ isCreateAddressModalOpen, setIsCreateAddressModalOpen ] = useState<boolean>(false);
     const [ isEditAddressModalOpen, setIsEditAddressModalOpen ] = useState<boolean>(false);
     const [ editingAddress, setEditingAddress ] = useState<IAddress | null>(null);
@@ -21,6 +23,7 @@ const AddressProvider = (props: { children: ReactNode }) => {
         const token = JSON.parse(localStorage.getItem("@TOKEN")!);
 
         try {
+            setIsLoading(true);
             await api.post("/addresses", formData, {
                 headers: {Authorization: `Bearer ${token}`}
             });
@@ -30,11 +33,13 @@ const AddressProvider = (props: { children: ReactNode }) => {
         } catch (error) {
             console.log(error);
         } finally {
+            setIsLoading(false);
             setIsCreateAddressModalOpen(false);
         }
     };
     
     async function getAllAddresses() {
+        setIsLoading(true);
         const token = JSON.parse(localStorage.getItem("@TOKEN")!);
         try {
             const {data} = await api.get("/addresses", {
@@ -46,15 +51,16 @@ const AddressProvider = (props: { children: ReactNode }) => {
             if(error.response.status === 401) {
                 toast.error("Ops, faça login novamente e tente outra vez.")
             }
-        }
-
-    
+        } finally {
+            setIsLoading(false);
+        }    
     };
 
     async function editAddress(formData: IAddressForm, addressId: number) {
         const token = JSON.parse(localStorage.getItem("@TOKEN")!);
 
         try {
+            setIsLoading(true);
             await api.patch(`/addresses/${addressId}`, formData, {
                 headers: {Authorization: `Bearer ${token}`}
             });
@@ -69,6 +75,7 @@ const AddressProvider = (props: { children: ReactNode }) => {
         } finally {
             setIsEditAddressModalOpen(false);
             setEditingAddress(null);
+            setIsLoading(false);
         }
     };
 
@@ -76,6 +83,7 @@ const AddressProvider = (props: { children: ReactNode }) => {
         const token = JSON.parse(localStorage.getItem("@TOKEN")!);
 
         try {
+            setIsLoading(true);
             await api.delete(`/addresses/${address.id}`, {
                 headers: {Authorization: `Bearer ${token}`}
             });
@@ -90,10 +98,12 @@ const AddressProvider = (props: { children: ReactNode }) => {
         } finally {
             setIsDeleteAddressModalOpen(false);
             setDeletingAddress(null);
+            setIsLoading(false);
         }
     };
 
     const values: IAddressContext = {
+        isLoading,
         addresses,
         isCreateAddressModalOpen,
         setIsCreateAddressModalOpen,

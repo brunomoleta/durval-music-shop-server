@@ -4,6 +4,7 @@ import { H2 } from "../../../../styled-components/Typography.styles";
 import { colors } from "../../../../styled-components/root";
 import Trash from "../../../../assets/Remove-Confirmation.svg"
 import { IAnuncioContext } from "../../../../types/anuncios";
+import Loader from "../../../Loader";
 
 const Card = styled.div`
         width: 100%;
@@ -44,11 +45,16 @@ const Card = styled.div`
         &:hover{
             background-color: ${colors.red80};
         }
+
+        &:disabled {
+            background-color: ${colors.grey20};
+            cursor: wait;
+        }
     `;
 
 function DeleteAnuncioForm() {
 
-    const { deletingAnuncio, deleteAnuncio, setIsDeleteAnuncioModalOpen } = useAnuncioContext() as IAnuncioContext;
+    const { deletingAnuncio, deleteAnuncio, setIsDeleteAnuncioModalOpen, isLoading } = useAnuncioContext() as IAnuncioContext;
 
     return (
         <div>
@@ -59,7 +65,8 @@ function DeleteAnuncioForm() {
 
                 <CartButtons>
                     <Button onClick={() => setIsDeleteAnuncioModalOpen(false)}>Cancelar</Button>
-                    <RemoveButton onClick={() => deleteAnuncio(deletingAnuncio!)}>Excluir</RemoveButton>
+                    <RemoveButton onClick={() => deleteAnuncio(deletingAnuncio!)} disabled={isLoading}>{isLoading ? <Loader/> : "Excluir"}</RemoveButton>
+
                 </CartButtons>
             </Card>
         </div>

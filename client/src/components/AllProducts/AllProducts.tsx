@@ -11,6 +11,7 @@ import {
 import { ProductCards } from "../../styled-components/Cards.styles.ts";
 import CardProduct from "../CardProduct";
 import React, { useState } from "react";
+import Loader from "../Loader/Loader.tsx";
 
 const Heading = styled.h2`
   font-size: ${fontSize.h3};
@@ -55,7 +56,7 @@ type IAllProducts = {
 
 function AllProducts(props: IAllProducts) {
   const [page, setPage] = useState(1);
-  const { getAllProducts, allProducts, productsPage } =
+  const { getAllProducts, allProducts, productsPage, isLoading } =
     useProductContext() as IFullProductContext;
 
   React.useEffect((): void => {
@@ -63,28 +64,31 @@ function AllProducts(props: IAllProducts) {
   }, [page]);
 
   return (
-    <Wrapper>
-      <Heading>{props.heading}</Heading>
-      <ProductCards>
-        {allProducts &&
-          allProducts.map((item: IProductContext) => (
-            <CardProduct key={item.id} item={item} />
-          ))}
-      </ProductCards>
-      {page > 1 && (
-        <RoundButton
+    <>
+      <Wrapper>
+        <Heading>{props.heading}</Heading>
+        <ProductCards>
+          {allProducts &&
+            allProducts.map((item: IProductContext) => (
+              <CardProduct key={item.id} item={item} />
+              ))}
+        </ProductCards>
+        {page > 1 && (
+          <RoundButton
           $positionLeft={true}
           onClick={() => setPage((page) => page - 1)}
-        >
-          <img src={ArrowLeft} alt="productos anteriores" />
-        </RoundButton>
-      )}
-      {productsPage.nextPage && (
-        <RoundButton onClick={() => setPage((page) => page + 1)}>
-          <img src={ArrowRight} alt="próximos productos" />
-        </RoundButton>
-      )}
-    </Wrapper>
+          >
+            <img src={ArrowLeft} alt="productos anteriores" />
+          </RoundButton>
+        )}
+        {productsPage.nextPage && (
+          <RoundButton onClick={() => setPage((page) => page + 1)}>
+            <img src={ArrowRight} alt="próximos productos" />
+          </RoundButton>
+        )}
+      </Wrapper>
+      {isLoading ? <Loader/> : null}
+    </>
   );
 }
 

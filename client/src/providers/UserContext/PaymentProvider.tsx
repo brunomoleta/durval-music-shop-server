@@ -11,6 +11,7 @@ const PaymentProvider = (props: { children: ReactNode }) => {
     
     const [ payments, setPayments ] = useState<IPayment[]>([]);
 
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
     const [ isCreatePaymentModalOpen, setIsCreatePaymentModalOpen ] = useState<boolean>(false);
     const [ isEditPaymentModalOpen, setIsEditPaymentModalOpen ] = useState<boolean>(false);
     const [ editingPayment, setEditingPayment ] = useState<IPayment | null>(null);
@@ -21,6 +22,7 @@ const PaymentProvider = (props: { children: ReactNode }) => {
         const token = JSON.parse(localStorage.getItem("@TOKEN")!);
 
         try {
+            setIsLoading(true);
             await api.post("/payments", formData, {
                 headers: {Authorization: `Bearer ${token}`}
             });
@@ -31,12 +33,14 @@ const PaymentProvider = (props: { children: ReactNode }) => {
             console.log(error);
         } finally {
             setIsCreatePaymentModalOpen(false);
+            setIsLoading(false);
         }
     };
     
     async function getAllPayments() {
         const token = JSON.parse(localStorage.getItem("@TOKEN")!);
         try {
+            setIsLoading(true);
             const {data} = await api.get("/payments", {
                 headers: {Authorization: `Bearer ${token}`}
             });
@@ -46,6 +50,8 @@ const PaymentProvider = (props: { children: ReactNode }) => {
             if(error.response.status === 401) {
                 toast.error("Ops, faça login novamente e tente outra vez.")
             }
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -53,6 +59,7 @@ const PaymentProvider = (props: { children: ReactNode }) => {
         const token = JSON.parse(localStorage.getItem("@TOKEN")!);
 
         try {
+            setIsLoading(true);
             await api.patch(`/payments/${paymentId}`, formData, {
                 headers: {Authorization: `Bearer ${token}`}
             });
@@ -67,6 +74,7 @@ const PaymentProvider = (props: { children: ReactNode }) => {
         } finally {
             setIsEditPaymentModalOpen(false);
             setEditingPayment(null);
+            setIsLoading(false);
         }
     };
 
@@ -74,6 +82,7 @@ const PaymentProvider = (props: { children: ReactNode }) => {
         const token = JSON.parse(localStorage.getItem("@TOKEN")!);
 
         try {
+            setIsLoading(true);
             await api.delete(`/payments/${payment.id}`, {
                 headers: {Authorization: `Bearer ${token}`}
             });
@@ -88,10 +97,12 @@ const PaymentProvider = (props: { children: ReactNode }) => {
         } finally {
             setIsDeletePaymentModalOpen(false);
             setDeletingPayment(null);
+            setIsLoading(false);
         }
     };
 
     const values: IPaymentContext = {
+        isLoading,
         payments,
         isCreatePaymentModalOpen,
         setIsCreatePaymentModalOpen,

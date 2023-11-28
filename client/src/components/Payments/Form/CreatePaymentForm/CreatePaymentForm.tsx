@@ -12,9 +12,10 @@ import { H2 } from "../../../../styled-components/Typography.styles.ts";
 import { SendBtn } from "../../../../styled-components/Button.styles.ts";
 import {PaymentFormContainer} from "../../Payments.tsx";
 import Select from "../../../Select/Select.tsx";
+import Loader from "../../../Loader/Loader.tsx";
 
 function CreatePaymentForm() {
-  const { createPaymentRequest } = usePaymentContext() as IPaymentContext;
+  const { createPaymentRequest, isLoading } = usePaymentContext() as IPaymentContext;
 
   const {
     register,
@@ -46,7 +47,7 @@ function CreatePaymentForm() {
           <option value="credit">Crédito</option>
         </Select>
       </PaymentFormContainer>
-      <SendBtn type="submit">CADASTRAR CARTÃO</SendBtn>
+      <SendBtn type="submit" disabled={isLoading}>{isLoading ? <Loader/> : "CADASTRAR CARTÃO"}</SendBtn>
     </FormUser>
   );
 }

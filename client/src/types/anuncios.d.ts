@@ -24,6 +24,8 @@ export interface IAnuncio {
   }
   
   export interface IAnuncioContext {
+    isLoading: boolean
+
     anuncios: IAnuncio[]
 
     isCreateAnuncioModalOpen: boolean

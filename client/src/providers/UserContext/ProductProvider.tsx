@@ -20,20 +20,25 @@ const ProductProvider = (props: { children: ReactNode }) => {
   });
 
   const getAllProducts = async (page: number, perPage: number) => {
+    setIsLoading(true);
     const { data } = await api.get("products/all", {
       params: { page: page, perPage: perPage },
     });
     const { products, prevPage, nextPage } = data;
+    setIsLoading(false);
 
     setProductsPage({ prevPage, nextPage });
     setAllProducts(products);
   };
 
   const getProductsByCategory = async (categoryName: string, url: string | null) => {
+    setIsLoading(true)
     const { data } = await api.get(`products/category/${categoryName}${url ? url : '/'}`);
     const { products, prevPage, nextPage } = data;
 
     const productsList = products.map(product => product.product);
+
+    setIsLoading(false)
     
     setAllProducts(productsList);
     return { prevPage, nextPage };
@@ -60,6 +65,7 @@ const ProductProvider = (props: { children: ReactNode }) => {
   };
 
   const values: IFullProductContext = {
+    isLoading,
     allProducts,
     setAllProducts,
 

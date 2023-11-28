@@ -13,9 +13,10 @@ import { toast } from "react-toastify";
 import { H2 } from "../../../../styled-components/Typography.styles.ts";
 import { SendBtn } from "../../../../styled-components/Button.styles.ts";
 import { AddressFormContainer } from "../../Addresses.tsx";
+import Loader from "../../../Loader/Loader.tsx";
 
 function CreateAddressForm() {
-  const { createAddressRequest } = useAddressContext() as IAddressContext;
+  const { createAddressRequest, isLoading } = useAddressContext() as IAddressContext;
 
   const {
     register,
@@ -106,7 +107,7 @@ function CreateAddressForm() {
           id={"complement"}
         />
       </AddressFormContainer>
-      <SendBtn type="submit">CADASTRAR ENDEREÇO</SendBtn>
+      <SendBtn type="submit" disabled={isLoading}>{isLoading ? <Loader/> : "CADASTRAR ENDEREÇO"}</SendBtn>
     </FormUser>
   );
 }

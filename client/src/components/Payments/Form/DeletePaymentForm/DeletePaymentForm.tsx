@@ -4,6 +4,7 @@ import { H2 } from "../../../../styled-components/Typography.styles";
 import { IPaymentContext } from "../../../../types/payment";
 import { colors } from "../../../../styled-components/root";
 import Trash from "../../../../assets/Remove-Confirmation.svg"
+import Loader from "../../../Loader";
 
 const Card = styled.div`
         width: 100%;
@@ -44,11 +45,16 @@ const Card = styled.div`
             color: ${colors.black};
             background-color: ${colors.white000};
         }
+
+        &:disabled {
+            background-color: ${colors.grey20};
+            cursor: wait;
+        }
     `;
 
 function DeletePaymentForm() {
 
-    const { deletingPayment: payment, deletePayment, setIsDeletePaymentModalOpen } = usePaymentContext() as IPaymentContext;
+    const { deletingPayment: payment, deletePayment, setIsDeletePaymentModalOpen, isLoading } = usePaymentContext() as IPaymentContext;
 
     return (
         <div>
@@ -58,7 +64,7 @@ function DeletePaymentForm() {
                 <img src={Trash}/>
                 <CartButtons>
                     <Button onClick={() => setIsDeletePaymentModalOpen(false)}>Cancelar</Button>
-                    <RemoveButton onClick={() => deletePayment(payment!)}>Excluir</RemoveButton>
+                    <RemoveButton onClick={() => deletePayment(payment!)} disabled={isLoading}>{isLoading ? <Loader/> : "Excluir"}</RemoveButton>
                 </CartButtons>
             </Card>
         </div>

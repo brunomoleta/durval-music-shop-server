@@ -11,9 +11,10 @@ import { SendBtn } from "../../../../styled-components/Button.styles.ts";
 import { AnuncioFormContainer } from "../../Anuncios.tsx";
 import { IAnuncioContext, IProductForm } from "../../../../types/anuncios";
 import Select from "../../../Select/Select.tsx";
+import Loader from "../../../Loader/Loader.tsx";
 
 function CreateAnuncioForm() {
-  const { createAnuncioRequest } = useAnuncioContext() as IAnuncioContext;
+  const { createAnuncioRequest, isLoading } = useAnuncioContext() as IAnuncioContext;
 
   const {
     register,
@@ -94,7 +95,7 @@ function CreateAnuncioForm() {
         id={".brandName"}
       />
       </AnuncioFormContainer>
-      <SendBtn type="submit">CADASTRAR ANUNCIO</SendBtn>
+      <SendBtn type="submit" disabled={isLoading}>{isLoading ? <Loader/> : "CADASTRAR ANUNCIO"}</SendBtn>
     </FormUser>
   );
 }

@@ -10,6 +10,7 @@ import { AddressCard } from "./AddressCard/AddressCard";
 import Modal from "../Modal";
 import DeleteAddressForm from "./Form/DeleteAddressForm";
 import { colors } from "../../styled-components/root.ts";
+import Loader from "../Loader/Loader.tsx";
 
 const AddressContent = styled.div`
   width: 100%;
@@ -53,7 +54,15 @@ export const AddressFormContainer = styled.div`
 
 function Addresses() {
 
-    const { addresses, isCreateAddressModalOpen, setIsCreateAddressModalOpen, getAllAddresses, isDeleteAddressModalOpen, setIsDeleteAddressModalOpen } = useAddressContext() as IAddressContext;
+    const {
+      addresses,
+      isCreateAddressModalOpen,
+      setIsCreateAddressModalOpen,
+      getAllAddresses,
+      isDeleteAddressModalOpen,
+      setIsDeleteAddressModalOpen,
+      isLoading,
+    } = useAddressContext() as IAddressContext;
 
     useEffect(() => {
       getAllAddresses();
@@ -81,8 +90,12 @@ function Addresses() {
           </AddressContent>
         ) : (
           <>
-            <img src={NotFound} style={{ alignSelf: "center" }} />
-            <H2>Nenhum endereço cadastrado.</H2>
+            {isLoading ? <Loader/> : (
+              <>
+                <img src={NotFound} style={{ alignSelf: "center" }} />
+                <H2>Nenhum endereço cadastrado.</H2>
+              </>
+            )}
           </>
         )}
       </div>

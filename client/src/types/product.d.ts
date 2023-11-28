@@ -31,6 +31,8 @@ export interface CardProductProps {
 }
 
 export interface IFullProductContext {
+  isLoading: boolean
+
   allProducts: IProductContext[] | null;
   setAllProducts: React.Dispatch<React.SetStateAction<IProductContext[]>>;
 

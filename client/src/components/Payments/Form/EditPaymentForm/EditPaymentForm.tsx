@@ -12,9 +12,10 @@ import { H2 } from "../../../../styled-components/Typography.styles.ts";
 import { SendBtn } from "../../../../styled-components/Button.styles.ts";
 import {PaymentFormContainer} from "../../Payments.tsx";
 import Select from "../../../Select/Select.tsx";
+import Loader from "../../../Loader/Loader.tsx";
 
 function EditPaymentForm() {
-  const { editPayment, editingPayment } =
+  const { editPayment, editingPayment, isLoading } =
     usePaymentContext() as IPaymentContext;
 
   const {
@@ -50,7 +51,7 @@ function EditPaymentForm() {
         </Select>
       </PaymentFormContainer>
 
-      <SendBtn type="submit">EDITAR CARTÃO</SendBtn>
+      <SendBtn type="submit" disabled={isLoading}>{isLoading ? <Loader/> : "EDITAR CARTÃO"}</SendBtn>
     </FormUser>
   );
 }

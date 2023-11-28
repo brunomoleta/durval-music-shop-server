@@ -11,6 +11,7 @@ const AnuncioProvider = (props: { children: ReactNode }) => {
     
     const [ anuncios, setAnuncios ] = useState<IAnuncio[]>([]);
 
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
     const [ isCreateAnuncioModalOpen, setIsCreateAnuncioModalOpen ] = useState<boolean>(false);
     const [ isEditAnuncioModalOpen, setIsEditAnuncioModalOpen ] = useState<boolean>(false);
     const [ editingAnuncio, setEditingAnuncio ] = useState<IAnuncio | null>(null);
@@ -106,6 +107,7 @@ const AnuncioProvider = (props: { children: ReactNode }) => {
     };
 
     const values: IAnuncioContext = {
+        isLoading,
         anuncios,
         isCreateAnuncioModalOpen,
         setIsCreateAnuncioModalOpen,

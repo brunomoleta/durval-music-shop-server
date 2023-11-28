@@ -10,6 +10,7 @@ import Modal from "../Modal";
 import DeletePaymentForm from "./Form/DeletePaymentForm";
 import PaymentCard from "./PaymentCard";
 import { colors } from "../../styled-components/root";
+import Loader from "../Loader";
 
 const PaymentContent = styled.div`
   width: 100%;
@@ -62,6 +63,7 @@ function Payments() {
     getAllPayments,
     isDeletePaymentModalOpen,
     setIsDeletePaymentModalOpen,
+    isLoading
   } = usePaymentContext() as IPaymentContext;
 
     useEffect(() => {
@@ -88,8 +90,12 @@ function Payments() {
           </PaymentContent>
         ) : (
           <>
-            <img src={CardImage} style={{ alignSelf: "center" }} />
-            <H2>Nenhum Cartão cadastrado.</H2>
+            {isLoading ? <Loader/> : (
+              <>
+                <img src={CardImage} style={{ alignSelf: "center" }} />
+                <H2>Nenhum Cartão cadastrado.</H2>
+              </>
+            )}
           </>
         )}
       </div>

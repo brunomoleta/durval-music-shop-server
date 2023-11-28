@@ -4,6 +4,7 @@ import { H2 } from "../../../../styled-components/Typography.styles";
 import { IAddressContext } from "../../../../types/address";
 import { colors } from "../../../../styled-components/root";
 import Trash from "../../../../assets/Remove-Confirmation.svg"
+import Loader from "../../../Loader";
 
 const Card = styled.div`
         width: 100%;
@@ -35,6 +36,11 @@ const Card = styled.div`
         &:hover{
             background-color: ${colors.grey10};
         }
+
+        &:disabled {
+            background-color: ${colors.grey20};
+            cursor: wait;
+        }
     `;
 
     const RemoveButton = styled(Button)`
@@ -48,7 +54,7 @@ const Card = styled.div`
 
 function DeleteAddressForm() {
 
-    const { deletingAddress: address, deleteAddress, setIsDeleteAddressModalOpen } = useAddressContext() as IAddressContext;
+    const { deletingAddress: address, deleteAddress, setIsDeleteAddressModalOpen, isLoading } = useAddressContext() as IAddressContext;
 
     return (
         <div>
@@ -59,7 +65,7 @@ function DeleteAddressForm() {
 
                 <CartButtons>
                     <Button onClick={() => setIsDeleteAddressModalOpen(false)}>Cancelar</Button>
-                    <RemoveButton onClick={() => deleteAddress(address!)}>Excluir</RemoveButton>
+                    <RemoveButton onClick={() => deleteAddress(address!)} disabled={isLoading}>{isLoading ? <Loader/> : "Excluir"}</RemoveButton>
                 </CartButtons>
             </Card>
         </div>
