@@ -9,14 +9,9 @@ export const app: Application = express();
 
 export const prisma = new PrismaClient();
 
-const regexPattern = /.durvalmusicshop.*\.vercel\.app.*/;
+const regexPattern: RegExp = /.durvalmusicshop.*\.vercel\.app.*/;
+const localUrl: string = "http://localhost:5173";
 
-const origins = [
-  "https://loja-do-durval.onrender.com/",
-  regexPattern,
-  "http://localhost:5173",
-  "https://durvalmusicshop.vercel.app/",
-];
 const corsOptions = {
   origin: regexPattern,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
