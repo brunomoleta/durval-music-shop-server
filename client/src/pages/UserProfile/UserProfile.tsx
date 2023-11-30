@@ -1,26 +1,21 @@
 import { buyingItems, personalItems } from "../../services/database.ts";
-import { nanoid } from "nanoid";
-import { Category } from "../../styled-components/Header.styles.tsx";
-import { ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  DefaultButton,
-  QuitButton,
-} from "../../styled-components/Button.styles.ts";
+import React, { ReactNode } from "react";
+import { QuitButton } from "../../styled-components/Button.styles.ts";
 import {
   H2,
   InternalWrapper,
-  ItemsWrapper,
   MainInfo,
   Wrapper,
 } from "../../styled-components/UserProfile.styles.ts";
+import ResumeItems from "../../components/Resume/ResumeItems";
+import Modal from "../../components/Modal";
+import ModalQuit from "../../components/ModalQuit";
 import { useUserContext } from "../../providers/UserContext";
-import {IUserContext} from "../../types/types";
+import { IUserContext } from "../../types/user";
 
 function UserProfile({ children }: { children: ReactNode }) {
+  const [openQuit, setOpenQuit] = React.useState(false);
   const { quitAccount } = useUserContext() as IUserContext;
-
-  const navigate = useNavigate();
 
   return (
     <>
@@ -28,37 +23,31 @@ function UserProfile({ children }: { children: ReactNode }) {
         <InternalWrapper>
           <div>
             <H2>Informações Pessoais</H2>
-            <ItemsWrapper>
-              {personalItems.map((item) => (
-                <Category key={nanoid()}>
-                  <DefaultButton
-                    onClick={() => navigate(`/resumo/${item.url}`)}
-                  >
-                    {item.text}
-                  </DefaultButton>
-                </Category>
-              ))}
-            </ItemsWrapper>
+            <ResumeItems array={personalItems} />
           </div>
           <hr />
           <div>
             <H2>Financeiro</H2>
-            <ItemsWrapper>
-              {buyingItems.map((item) => (
-                <Category key={nanoid()}>
-                  <DefaultButton
-                    onClick={() => navigate(`/resumo/${item.url}`)}
-                  >
-                    {item.text}
-                  </DefaultButton>
-                </Category>
-              ))}
-            </ItemsWrapper>
+            <ResumeItems array={buyingItems} />
+            <QuitButton onClick={() => setOpenQuit(!openQuit)}>
+              SAIR DA CONTA
+            </QuitButton>
           </div>
         </InternalWrapper>
         <MainInfo>{children}</MainInfo>
-        <QuitButton onClick={quitAccount}>SAIR DA CONTA</QuitButton>
       </Wrapper>
+      <Modal
+        open={openQuit}
+        onOpenChange={setOpenQuit}
+        element={
+          <ModalQuit
+            question="Desejas de fato deslogar?"
+            handleCloseModalClick={() => setOpenQuit(!openQuit)}
+            handleQuitButtonClick={() => quitAccount()}
+            quit="sim, deslogar"
+          />
+        }
+      />
     </>
   );
 }

@@ -5,9 +5,8 @@ import {Link} from "react-router-dom";
 export const ImageContainer = styled.div`
   height: 200px;
   
-  //overflow: hidden;
-  //object-fit: contain;
-  ////border: 1px solid red;
+  overflow: hidden;
+  object-fit: contain;
   
   display: grid;
   place-content: center;
@@ -49,16 +48,21 @@ export const ProductButton = styled(Link)`
   &:hover {
     box-shadow: 0 -9px 16px 3px #dddddd;
     outline-offset: 4px;
-    outline: 2px solid ${colors.purpleHover};
+    outline: 3px solid ${colors.purpleHover};
   }
+
+  & img {
+    transition: scale 300ms;
+  }
+
   &:hover img {
-    scale: 1.05;
+    scale: 1.10;
   }
 
   &:focus {
     scale: 1.05;
     outline-offset: 4px;
-    outline: 2px solid ${colors.purple};
+    outline: 3px solid ${colors.purple};
     z-index: 1;
   }
 `;

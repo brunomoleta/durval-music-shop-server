@@ -1,28 +1,58 @@
 import styled from "styled-components";
-import { colors, fontSize, genericValues } from "./root.ts";
+import {colors, fontSize, fontType, genericValues} from "./root.ts";
 import { DefaultLabel } from "./Modal.styles.tsx";
 import { Link } from "react-router-dom";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 export const SearchBar = styled.input`
   border: 2px solid ${colors.black};
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: ${fontSize.link};
   padding-block: 0.3rem;
-  padding-inline-start: 40px;
+  padding-inline-start: 1.125rem;
   min-width: 200px;
   width: 100%;
-  max-width: 640px;
+  
 
   &:focus {
     border: 2px solid ${colors.purpleSurface};
     outline: 2px solid ${colors.purple};
   }
+  
+  @media (min-width: 450px) {
+  padding-inline-start: 5.5rem;
+    
+  }
 `;
 
-export const LogoTop = styled.img`
+export const LogoTop = styled.span`
+  font-family: ${fontType.featured};
   margin: auto;
-  margin-block-end: 32px;
+  width: 100%;
+  height: auto;
+  
+  line-height: 110%;
+  
+  font-size: ${fontSize.h2};
+  font-weight: 700;
+  
+  text-align: center;
+  
+  align-self: center;
+  justify-self: center;
+  
+  transition: color 300ms;
+  
+  &:hover {
+    color: ${colors.purpleHover}
+  }
+  &:active {
+    color: ${colors.purpleActive}
+  }
+  &:focus {
+    color: ${colors.purpleHover}
+  }
+  
 `;
 export const ProfileIcon = styled.img<{ $bgColor?: boolean }>`
   
@@ -47,6 +77,7 @@ export const InfoWrapper = styled.div`
   display: grid;
   gap: 20px;
   place-items: center;
+  width: 100%;
   
   max-width: ${genericValues.pageWidth};
   @media (min-width: 768px) {
@@ -75,7 +106,16 @@ export const HeaderWrapper = styled.div`
   max-width: ${genericValues.pageWidth};
   width: 100%;
   margin-block-end: 24px;
+  margin-block-start: 8px;
   padding-inline: ${genericValues.pagePadding};
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(5svh, 8svh, 32px);
+  @media (min-width: 750px){
+    gap: 12px;
+  }
 `;
 export const SearchWrapper = styled.div`
   position: relative;
@@ -93,7 +133,13 @@ export const CategoriesWrapper = styled.ol`
 
 export const Label = styled(DefaultLabel)`
   position: absolute;
-  top: -28px;
+  pointer-events: none;
+  z-index: 1;
+  top: -32px;
+  @media (min-width: 450px) {
+    top: 8px;
+    left: 16px;
+  }
 `;
 export const CartQuantity = styled.span`
   position: absolute;

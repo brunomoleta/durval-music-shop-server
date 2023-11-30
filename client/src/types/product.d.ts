@@ -1,23 +1,47 @@
 import React from "react";
 
 export interface IProductContext {
-  id: number;
-  brandName: string;
-  categories: string[];
-  createdAt: string;
-  name: string;
-  description?: string;
-  price: number;
-  image: string;
-  stock: number;
-  color?: string;
-  condition: string;
-  deletedAt?: string;
-  ownerId: number;
+    id: number;
+    brandName: string;
+    categories: string[];
+    createdAt: string;
+    name: string;
+    description?: string;
+    price: number;
+    image: string;
+    stock: number;
+    color?: string;
+    condition: string;
+    deletedAt?: string;
+    ownerId: number;
+    owner: Owner;
+}
+
+export interface productsPage {
+    prevPage: string
+    nextPage: string
+}
+
+export interface IProductsPage {
+    prevPage: string | null;
+    nextPage: string | null;
 }
 
 export interface CardProductProps {
-  item: IProductContext;
+    item: IProductContext;
+}
+
+export interface IManagePagesProps {
+  nextPage: string | null;
+  prevPage: string | null;
+  setPrevPage: React.Dispatch<React.SetStateAction<string | null>>;
+  setNextPage: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+export interface IGetProductsByCategoryResponse {
+  nextPage: string | null;
+  prevPage: string | null;
+  products: {product: IProductContext}[];
 }
 
 export interface IFullProductContext {
@@ -25,9 +49,15 @@ export interface IFullProductContext {
   setAllProducts: React.Dispatch<React.SetStateAction<IProductContext[]>>;
 
   singleProduct: IProductContext;
-  changeActiveProduct: (number) => void;
+  setSingleProduct: React.Dispatch<React.SetStateAction<IProductContext>>
 
-  getProductById: (id: number | undefined) => Promise<void>;
+  productsPage: productsPage;
 
-  getAllProducts: () => Promise<void>;
+  getProductById: (id: number) => Promise<IProductContext>;
+  getProductsByCategory: (categoryId: string, url?: string | null) => Promise<IProductsPage>;
+  getProductsByBrand: (brandName: string, url?: string | null) => Promise<IProductsPage>;
+  searchProduct: (productInfo: string) => Promise<void>;
+
+  getAllProducts: (page: number, perPage: number) => Promise<IProductsPage>;
+
 }
