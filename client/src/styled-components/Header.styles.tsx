@@ -6,17 +6,22 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 export const SearchBar = styled.input`
   border: 2px solid ${colors.black};
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: ${fontSize.link};
   padding-block: 0.3rem;
-  padding-inline-start: 40px;
+  padding-inline-start: 1.125rem;
   min-width: 200px;
   width: 100%;
-  max-width: 640px;
+  
 
   &:focus {
     border: 2px solid ${colors.purpleSurface};
     outline: 2px solid ${colors.purple};
+  }
+  
+  @media (min-width: 450px) {
+  padding-inline-start: 5.5rem;
+    
   }
 `;
 
@@ -128,7 +133,13 @@ export const CategoriesWrapper = styled.ol`
 
 export const Label = styled(DefaultLabel)`
   position: absolute;
-  top: -28px;
+  pointer-events: none;
+  z-index: 1;
+  top: -32px;
+  @media (min-width: 450px) {
+    top: 8px;
+    left: 16px;
+  }
 `;
 export const CartQuantity = styled.span`
   position: absolute;

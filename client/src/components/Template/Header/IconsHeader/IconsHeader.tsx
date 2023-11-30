@@ -8,8 +8,8 @@ import Profile from "../../../../assets/profile.svg";
 import Cart from "../../../../assets/Cart.svg";
 import { useNavigate } from "react-router-dom";
 import {
-    useCartContext,
-    useUserContext,
+  useCartContext,
+  useUserContext,
 } from "../../../../providers/UserContext";
 
 import { fontSize } from "../../../../styled-components/root.ts";
@@ -17,13 +17,19 @@ import { IconButton } from "../../../../styled-components/Button.styles.ts";
 
 import { IUserContext } from "../../../../types/user";
 import { ICartContext } from "../../../../types/cart";
+import styled from "styled-components";
+
+const Span = styled.span`
+  font-size: ${fontSize.icons};
+  font-weight: 500;
+`;
 
 function IconsHeader() {
   const navigate = useNavigate();
 
   const { token, setIsLogOpen, isLogOpen } = useUserContext() as IUserContext;
-  const { setIsCartModalOpen, isCartModalOpen,cart } = useCartContext() as ICartContext;
-
+  const { setIsCartModalOpen, isCartModalOpen, cart } =
+    useCartContext() as ICartContext;
 
   return (
     <IconsWrapper>
@@ -35,12 +41,15 @@ function IconsHeader() {
         }
       >
         <ProfileIcon src={Profile} alt="User Button" />
-        <span style={{ fontSize: fontSize.icons }}>CONTA</span>
+        <Span>CONTA</Span>
       </IconButton>
       <CartWrapper>
-        <IconButton $bgColor onClick={() => setIsCartModalOpen(!isCartModalOpen)}>
+        <IconButton
+          $bgColor
+          onClick={() => setIsCartModalOpen(!isCartModalOpen)}
+        >
           <ProfileIcon src={Cart} alt="Carrinho" />
-          <span style={{ fontSize: fontSize.icons }}>CARRINHO</span>
+          <Span>CARRINHO</Span>
           <CartQuantity>{cart?.length}</CartQuantity>
         </IconButton>
       </CartWrapper>

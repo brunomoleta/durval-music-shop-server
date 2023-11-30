@@ -8,6 +8,7 @@ import React from "react";
 import { useProductContext } from "../../../../providers/UserContext/ProductProvider.tsx";
 import { IFullProductContext } from "../../../../types/product";
 import { useNavigate } from "react-router-dom";
+import { SendBtn } from "../../../../styled-components/Button.styles.ts";
 
 function SearchFormHeader() {
   const [searchValue, setSearchValue] = React.useState("");
@@ -17,9 +18,9 @@ function SearchFormHeader() {
   const { searchProduct } = useProductContext() as IFullProductContext;
 
   const handleSubmit = () => {
-    navigate('/catalog');
+    navigate("/catalog");
     searchProduct(searchValue);
-  }
+  };
 
   return (
     <SearchWrapper>
@@ -27,17 +28,32 @@ function SearchFormHeader() {
         style={{ width: "100%" }}
         onSubmit={(event) => {
           event.preventDefault();
-          handleSubmit()
+          handleSubmit();
         }}
       >
-        <Label htmlFor={`${id}-search`}>BUSCAR:</Label>
-        <Search style={{ position: "absolute", left: "8px", top: "21%" }} onClick={() => handleSubmit()}/>
-        <SearchBar
-          id={`${id}-search`}
-          value={searchValue}
-          onChange={(event) => setSearchValue(event.target.value)}
-          name={`${id}-search`}
-        />
+        <div style={{ width: "100%", maxWidth: "640px", position: "relative" }}>
+          <Label htmlFor={`${id}-search`}>BUSCAR:</Label>
+          <SearchBar
+            id={`${id}-search`}
+            value={searchValue}
+            onChange={(event) => setSearchValue(event.target.value)}
+            name={`${id}-search`}
+          />
+          <SendBtn
+            type="submit"
+            style={{
+              marginTop: "0",
+              height: "90%",
+              maxWidth: "50px",
+              position: "absolute",
+              right: "1%",
+              top: "2.225px",
+            }}
+            onClick={() => handleSubmit()}
+          >
+            <Search />
+          </SendBtn>
+        </div>
       </form>
     </SearchWrapper>
   );
