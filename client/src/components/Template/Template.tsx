@@ -9,10 +9,10 @@ import styled from "styled-components";
 import Footer from "./Footer";
 import Modal from "../Modal";
 import LoginOrSignUp from "../LoginOrSignUp";
-import CartModal from "../CartModal";
-import { useCartContext, useUserContext } from "../../providers/UserContext";
+
+import { useUserContext } from "../../providers/UserContext";
 import { IUserContext } from "../../types/user";
-import { ICartContext } from "../../types/cart";
+import Cart from "../Cart";
 
 const AppWrapper = styled.div`
   font-family: ${fontType.primary};
@@ -38,9 +38,6 @@ function Template(props: { children: React.ReactNode }) {
   const { isLogOpen, setIsLogOpen, isSignUp } =
     useUserContext() as IUserContext;
 
-  const { isCartModalOpen, setIsCartModalOpen } =
-    useCartContext() as ICartContext;
-
   return (
     <>
       <AppWrapper>
@@ -50,17 +47,13 @@ function Template(props: { children: React.ReactNode }) {
         </MainWrapper>
         <Footer />
       </AppWrapper>
-      
+
       <Modal
-          open={isLogOpen}
-          onOpenChange={setIsLogOpen}
-          element={LoginOrSignUp(isSignUp)}
-        />
-        <Modal
-          open={isCartModalOpen}
-          onOpenChange={setIsCartModalOpen}
-          element={CartModal()}
-        />
+        open={isLogOpen}
+        onOpenChange={setIsLogOpen}
+        element={LoginOrSignUp(isSignUp)}
+      />
+      <Cart />
     </>
   );
 }

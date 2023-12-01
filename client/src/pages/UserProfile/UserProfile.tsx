@@ -9,7 +9,7 @@ import {
 } from "../../styled-components/UserProfile.styles.ts";
 import ResumeItems from "../../components/Resume/ResumeItems";
 import Modal from "../../components/Modal";
-import ModalQuit from "../../components/ModalQuit";
+import ModalQuit from "../../components/Modal/ModalQuit";
 import { useUserContext } from "../../providers/UserContext";
 import { IUserContext } from "../../types/user";
 

@@ -1,4 +1,4 @@
-import CartItem from "../CartItem";
+import CartItem from "./CartItem";
 import { useCartContext, useUserContext } from "../../providers/UserContext";
 import { ICartContext } from "../../types/cart";
 import { nanoid } from "nanoid";
