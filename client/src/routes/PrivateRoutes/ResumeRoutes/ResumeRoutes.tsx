@@ -1,10 +1,11 @@
 import Resume from "../../../components/Resume/index.js";
-import Addresses from "../../../components/Addresses/index.js";
-import Payments from "../../../components/Payments/index.js";
-import Orders from "../../../components/Orders/index.js";
-import Anuncios from "../../../components/Anuncios/index.js";
+
 import {Route} from "react-router-dom";
 import ProfileTemplate from "../../../components/ProfileTemplate/index.js";
+import Addresses from "../../../components/ProfileTemplate/Addresses";
+import Payments from "../../../components/ProfileTemplate/Payments";
+import Orders from "../../../components/ProfileTemplate/Orders";
+import Anuncios from "../../../components/ProfileTemplate/Anuncios";
 
 const routesConfig = [
   { path: "/resumo", component: <Resume /> },
