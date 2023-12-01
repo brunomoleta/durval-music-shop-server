@@ -5,7 +5,7 @@ import CardProduct from "../CardProduct";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import NotFound from "../../pages/NotFound";
-import ManagePages from "../ManagePages/ManagePages";
+import ManagePages from "./ManagePages/ManagePages";
 import Loader from "../Loader";
 import { IUserContext } from "../../types/user";
 

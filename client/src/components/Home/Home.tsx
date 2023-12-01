@@ -1,6 +1,6 @@
 import LogoCategories from "./LogoCategories";
-import HomeCards from "../HomeCards";
 import AllProducts from "../AllProducts";
+import HomeCards from "./HomeCards";
 
 function Home() {
   return (
