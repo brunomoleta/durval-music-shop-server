@@ -1,5 +1,5 @@
 import React from "react";
-import {ILogin, IsignUpInfo} from "./types";
+import {ILogin} from "./types";
 
 export interface IUserContext {
   priceString: (number)=> string;
@@ -28,7 +28,6 @@ export interface IUserContext {
   token: string | null | undefined;
 
   setSignUpInfo: Dispatch<SetStateAction<any>>;
-  signUpInfo: IsignUpInfo;
 
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;

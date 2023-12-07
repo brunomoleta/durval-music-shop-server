@@ -65,11 +65,6 @@ function CartItem(props: ICart) {
   const { name, brandName, image, price, id } = product;
   const { removeProductInCart } = useCartContext() as ICartContext;
   const { priceString } = useUserContext() as IUserContext;
-  // const FinalPrice = new Intl.NumberFormat("pt-BR", {
-  //   style: "currency",
-  //   currency: "BRL",
-  //   minimumFractionDigits: 2,
-  // }).format(price);
 
   return (
     <>

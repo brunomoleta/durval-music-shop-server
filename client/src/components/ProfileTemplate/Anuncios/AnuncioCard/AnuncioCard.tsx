@@ -60,11 +60,6 @@ export function AnuncioCard(props: IAnuncioCard) {
     setIsEditAnuncioModalOpen(true);
   }
 
-  // const finalPrice = new Intl.NumberFormat("pt-BR", {
-  //   style: "currency",
-  //   currency: "BRL",
-  //   minimumFractionDigits: 2,
-  // }).format(price);
   return (
     <Card>
       <CardTitle>{`${name.toUpperCase()} - ${brandName.toUpperCase()}`}</CardTitle>

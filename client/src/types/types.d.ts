@@ -1,6 +1,7 @@
 import React from "react";
 import { FieldError } from "react-hook-form";
 
+
 interface IllustrationCardProps {
   image: string;
   title: string;
@@ -15,13 +16,6 @@ export interface IModal {
 
   maxWidth?: string;
   overflow?: string
-}
-
-interface ProductCardProps {
-  image: string;
-  name: string;
-  brand: string;
-  price: number;
 }
 
 export interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {

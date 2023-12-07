@@ -1,27 +1,20 @@
-export interface IAddress {
-    id: number,
+
+  export interface IAddressForm {
     name: string,
     street: string,
-    neihborhood: string,
-    number: number | string,
-    zip: string,
-    state: string,
     city: string,
+    neihborhood: string,
+    number: number ,
+    zip: string,
+    state: string
     complement: string,
+  }
+
+export interface IAddress extends IAddressForm{
+    id: number;
     userId: number
   }
-  
-  export interface IAddressForm {
-    "name": string,
-    "city": string,
-    "street": string,
-    "number": number,
-    "neihborhood": string,
-    "complement": string,
-    "zip": string,
-    "state": string
-  }
-  
+
   export interface IAddressContext {
     addresses: IAddress[]
 

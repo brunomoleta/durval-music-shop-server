@@ -83,11 +83,6 @@ function RenderCartItems() {
         return total + price * amount;
       }, 0)
     : 0;
-  // const finalPrice = new Intl.NumberFormat("pt-BR", {
-  //   style: "currency",
-  //   currency: "BRL",
-  //   minimumFractionDigits: 2,
-  // }).format(subTotal);
 
   return (
     <Wrapper>

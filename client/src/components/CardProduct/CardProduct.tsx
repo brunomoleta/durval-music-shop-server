@@ -32,11 +32,6 @@ function CardProduct(props: CardProductProps) {
   const { item } = props;
   const { image, brandName, name, price } = item;
 
-  // const PriceString = new Intl.NumberFormat("pt-BR", {
-  //   style: "currency",
-  //   currency: "BRL",
-  //   minimumFractionDigits: 2,
-  // }).format(price);
   const FinalPrice = () => <Price>{priceString(price)}</Price>;
 
   return (
