@@ -57,7 +57,7 @@ const BottonInfo = styled.div`
 function RenderCartItems() {
   const { cart, setIsCartModalOpen, isCartModalOpen } =
     useCartContext() as ICartContext;
-  const { setIsLogOpen, isLogOpen } = useUserContext() as IUserContext;
+  const {priceString, setIsLogOpen, isLogOpen } = useUserContext() as IUserContext;
 
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -83,11 +83,11 @@ function RenderCartItems() {
         return total + price * amount;
       }, 0)
     : 0;
-  const finalPrice = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-    minimumFractionDigits: 2,
-  }).format(subTotal);
+  // const finalPrice = new Intl.NumberFormat("pt-BR", {
+  //   style: "currency",
+  //   currency: "BRL",
+  //   minimumFractionDigits: 2,
+  // }).format(subTotal);
 
   return (
     <Wrapper>
@@ -105,7 +105,7 @@ function RenderCartItems() {
         <div>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <H3 style={{ fontSize: fontSize.link }}>Subtotal:</H3>
-            <FinalPrice>{finalPrice}</FinalPrice>
+            <FinalPrice>{priceString(subTotal)}</FinalPrice>
           </div>
           <p style={{ color: colors.grey70, fontSize: fontSize.smallLink }}>
             O frete é adicionado a seguir :)

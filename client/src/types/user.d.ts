@@ -2,6 +2,7 @@ import React from "react";
 import {ILogin, IsignUpInfo} from "./types";
 
 export interface IUserContext {
+  priceString: (number)=> string;
 
   isLoggedIn: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;

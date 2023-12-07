@@ -10,7 +10,8 @@ import { colors, fontSize } from "../../../styled-components/root.ts";
 import { ICart, ICartContext } from "../../../types/cart";
 
 import ProductAmount from "../ProductAmount";
-import { useCartContext } from "../../../providers/UserContext";
+import { useCartContext, useUserContext } from "../../../providers/UserContext";
+import { IUserContext } from "../../../types/user";
 
 const ProductInfo = styled.div`
   display: grid;
@@ -50,25 +51,25 @@ const Warning = styled.p`
   }
 `;
 
-
 const RemoveBtn = styled.button`
   display: grid;
   justify-items: center;
-  &:hover{
+
+  &:hover {
     outline: 2px solid ${colors.red40};
   }
-`
+`;
 
 function CartItem(props: ICart) {
   const { product, amount } = props;
   const { name, brandName, image, price, id } = product;
   const { removeProductInCart } = useCartContext() as ICartContext;
-
-  const FinalPrice = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-    minimumFractionDigits: 2,
-  }).format(price);
+  const { priceString } = useUserContext() as IUserContext;
+  // const FinalPrice = new Intl.NumberFormat("pt-BR", {
+  //   style: "currency",
+  //   currency: "BRL",
+  //   minimumFractionDigits: 2,
+  // }).format(price);
 
   return (
     <>
@@ -91,15 +92,19 @@ function CartItem(props: ICart) {
               alignItems: "center",
             }}
           >
-            <RemoveBtn
-                onClick={() => removeProductInCart(id)}>
+            <RemoveBtn onClick={() => removeProductInCart(id)}>
               <img src={Trash} />
-              <span style={{
-                color: colors.red60,
-                fontSize:fontSize.smallLink}}>remover</span>
+              <span
+                style={{
+                  color: colors.red60,
+                  fontSize: fontSize.smallLink,
+                }}
+              >
+                remover
+              </span>
             </RemoveBtn>
             <ProductAmount product={product} amount={amount} />
-            <PriceModal>{FinalPrice}</PriceModal>
+            <PriceModal>{priceString(price)}</PriceModal>
           </div>
         </ProductInfo>
       </Wrapper>

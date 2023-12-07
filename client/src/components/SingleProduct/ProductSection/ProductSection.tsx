@@ -41,6 +41,7 @@ const ProductSection = () => {
     ProductContext,
   ) as IFullProductContext;
   const { addProductInCart } = useCartContext() as ICartContext;
+  const { priceString } = useUserContext() as IUserContext;
 
   const { id } = useParams();
   useEffect(() => {
@@ -54,12 +55,12 @@ const ProductSection = () => {
     }
   }, []);
 
-  const finalPrice = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-    minimumFractionDigits: 2,
-  }).format(singleProduct?.price);
-
+  // const finalPrice = new Intl.NumberFormat("pt-BR", {
+  //   style: "currency",
+  //   currency: "BRL",
+  //   minimumFractionDigits: 2,
+  // }).format(singleProduct?.price);
+  const singleProductPrice = singleProduct?.price;
   return (
     <SectionBuy>
       {
@@ -90,7 +91,7 @@ const ProductSection = () => {
 
         <SpanCharacteristic>
           <span>Preço: </span>
-          {finalPrice}
+          {priceString(singleProductPrice)}
         </SpanCharacteristic>
 
         {singleProduct?.color && (

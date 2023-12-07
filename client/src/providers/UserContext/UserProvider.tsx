@@ -45,7 +45,7 @@ function UserProvider(props: { children: React.ReactNode }) {
     const fullName = `${updatedFirstName} ${updatedLastName}`;
     const updatedFormData = { ...newFormData, name: fullName };
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       await api.post("/users", updatedFormData);
       toast.success(
         `${updatedFirstName} seu cadastro foi efetuado com sucesso :)`,
@@ -96,7 +96,16 @@ function UserProvider(props: { children: React.ReactNode }) {
     }
   };
 
+  const priceString = (price: number) =>
+    new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+      minimumFractionDigits: 2,
+    }).format(price);
+
   const values: IUserContext = {
+    priceString,
+
     isSignUp,
     setIsSignUp,
 
@@ -132,4 +141,4 @@ function UserProvider(props: { children: React.ReactNode }) {
   );
 }
 
-export { UserProvider, useUserContext };
+export {UserProvider, useUserContext};

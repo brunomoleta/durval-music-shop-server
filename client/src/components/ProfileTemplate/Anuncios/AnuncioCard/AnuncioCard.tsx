@@ -1,21 +1,28 @@
 import styled from "styled-components";
 import EditAnuncioForm from "../Form/EditAnuncioForm";
 import { Link } from "react-router-dom";
-import {colors} from "../../../../styled-components/root.ts";
-import {IAnuncio, IAnuncioCard, IAnuncioContext} from "../../../../types/anuncios";
-import {useAnuncioContext} from "../../../../providers/UserContext/AnuncioProvider.tsx";
-import {useProductContext} from "../../../../providers/UserContext";
-import {IFullProductContext} from "../../../../types/product";
-import {Button, Card, CardTitle, CartButtons, CartContent} from "../../../../styled-components/resumeCard.styles.ts";
+import { colors } from "../../../../styled-components/root.ts";
+import {
+  IAnuncio,
+  IAnuncioCard,
+  IAnuncioContext,
+} from "../../../../types/anuncios";
+import { useAnuncioContext } from "../../../../providers/UserContext/AnuncioProvider.tsx";
+import {
+  useProductContext,
+  useUserContext,
+} from "../../../../providers/UserContext";
+import { IFullProductContext } from "../../../../types/product";
+import {
+  Button,
+  Card,
+  CardTitle,
+  CartButtons,
+  CartContent,
+} from "../../../../styled-components/resumeCard.styles.ts";
 import Modal from "../../../Modal";
 import ModalQuit from "../../../Modal/ModalQuit";
-// import {
-//   Button,
-//   Card,
-//   CardTitle,
-//   CartButtons,
-//   CartContent,
-// } from "../../../styled-components/resumeCard.styles.ts";
+import { IUserContext } from "../../../../types/user";
 
 const ViewButton = styled(Link)`
   color: ${colors.purple};
@@ -46,24 +53,25 @@ export function AnuncioCard(props: IAnuncioCard) {
     deleteAnuncio,
   } = useAnuncioContext() as IAnuncioContext;
   const { getProductById } = useProductContext() as IFullProductContext;
+  const { priceString } = useUserContext() as IUserContext;
 
   function handleEditPost(anuncio: IAnuncio) {
     setEditingAnuncio(anuncio);
     setIsEditAnuncioModalOpen(true);
   }
 
-  const finalPrice = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-    minimumFractionDigits: 2,
-  }).format(price);
+  // const finalPrice = new Intl.NumberFormat("pt-BR", {
+  //   style: "currency",
+  //   currency: "BRL",
+  //   minimumFractionDigits: 2,
+  // }).format(price);
   return (
     <Card>
       <CardTitle>{`${name.toUpperCase()} - ${brandName.toUpperCase()}`}</CardTitle>
       <CartContent>
         <ul>
           <Li>
-            <Span>Preço:</Span> {finalPrice},
+            <Span>Preço:</Span> {priceString(price)},
           </Li>
           <Li>
             <Span>Estoque:</Span> {stock}
