@@ -14,10 +14,10 @@ import { WarningInlineButton } from "../../../styled-components/Button.styles.ts
 
 function CartModal() {
   const { cart } = useCartContext() as ICartContext;
+  const { cleanCart, isCartModalOpen } = useCartContext() as ICartContext;
   const sortedProducts =
     cart &&
     cart.sort((a, b) => Number(b.product.price) - Number(a.product.price));
-  const { cleanCart, isCartModalOpen } = useCartContext() as ICartContext;
 
   return (
     <div>
