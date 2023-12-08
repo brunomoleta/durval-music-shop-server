@@ -157,6 +157,8 @@ export const CartWrapper = styled.div`
   position: relative;
   display: flex;
   gap: 16px;
+  font-weight: 600;
+
 `;
 
 export const DContent = styled(DropdownMenu.Content)`

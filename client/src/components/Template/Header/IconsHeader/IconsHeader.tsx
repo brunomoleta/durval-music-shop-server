@@ -18,6 +18,7 @@ import { IconButton } from "../../../../styled-components/Button.styles.ts";
 import { IUserContext } from "../../../../types/user";
 import { ICartContext } from "../../../../types/cart";
 import styled from "styled-components";
+import FloatingText from "./FloatingText";
 
 const Span = styled.span`
   font-size: ${fontSize.icons};
@@ -50,6 +51,7 @@ function IconsHeader() {
         >
           <ProfileIcon src={Cart} alt="Carrinho" />
           <Span>CARRINHO</Span>
+          <FloatingText/>
           <CartQuantity>{cart?.length}</CartQuantity>
         </IconButton>
       </CartWrapper>
