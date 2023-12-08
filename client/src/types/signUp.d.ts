@@ -17,7 +17,4 @@ export interface ISignUp extends ILogin {
 }
 
 
-export interface IName {
-  firstName: string;
-  lastName: string;
-}
+export interface IName extends Pick<ISignUp, 'firstName' | 'lastName'> {}
