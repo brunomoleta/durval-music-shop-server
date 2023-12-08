@@ -4,10 +4,10 @@ import { IFullProductContext } from "../../types/product";
 import CardProduct from "../CardProduct";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NotFound from "../../pages/NotFound";
 import ManagePages from "./ManagePages/ManagePages";
 import Loader from "../Loader";
 import { IUserContext } from "../../types/user";
+import NoProductFound from "../NoProductFound";
 
 const ListContainer = styled.div`
   display: flex;
@@ -53,7 +53,7 @@ function Catalog() {
   useEffect(() => {
     async function filterProducts() {
       if (!verifyParams || verifyParams.brandName === "todas") {
-        const pages = await getAllProducts(1, 7);
+        const pages = await getAllProducts(1, 6);
 
         setNextPage(pages.nextPage);
         setPrevPage(pages.prevPage);
@@ -80,7 +80,7 @@ function Catalog() {
       ) : allProducts && allProducts.length > 0 ? (
         <ListContainer>
           <ProductsList>
-            {allProducts!.map((product) => (
+            {allProducts.map((product) => (
               <CardProduct item={product} key={product.id} />
             ))}
           </ProductsList>
@@ -92,7 +92,11 @@ function Catalog() {
           />
         </ListContainer>
       ) : (
-        <NotFound />
+        <NoProductFound
+          message="Nenhum produto encontrado para sua busca :("
+          subTitle="Você sabia que nós somos o e-commerce nº01 no Brasil no ReclameAqui?"
+          isButton={false}
+        />
       )}
     </>
   );
