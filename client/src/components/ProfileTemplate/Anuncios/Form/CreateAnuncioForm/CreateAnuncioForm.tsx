@@ -1,18 +1,17 @@
-
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AnuncioFormContainer } from "../../Anuncios.tsx";
-import {IAnuncioContext, IProductForm} from "../../../../../types/anuncios";
-import {useAnuncioContext} from "../../../../../providers/UserContext/AnuncioProvider.tsx";
-import {useUserContext} from "../../../../../providers/UserContext";
-import {IUserContext} from "../../../../../types/user";
-import {anuncioSchema} from "../../../../../schemas/anuncioSchema";
-import {FormUser} from "../../../../../styled-components/Modal.styles.tsx";
-import {H2} from "../../../../../styled-components/Typography.styles.ts";
+import { IAnuncioContext, IProductForm } from "../../../../../types/anuncios";
+import { useAnuncioContext } from "../../../../../providers/UserContext/AnuncioProvider.tsx";
+import { useUserContext } from "../../../../../providers/UserContext";
+import { IUserContext } from "../../../../../types/user";
+import { anuncioSchema } from "../../../../../schemas/anuncioSchema";
+import { FormUser } from "../../../../../styled-components/Modal.styles.tsx";
+import { H2 } from "../../../../../styled-components/Typography.styles.ts";
 import Input from "../../../../Login/Forms/Input";
 import Select from "../../../../Select";
-import {SendBtn} from "../../../../../styled-components/Button.styles.ts";
+import { SendBtn } from "../../../../../styled-components/Button.styles.ts";
 import Loader from "../../../../Loader";
+import { FormContainer } from "../../../../../styled-components/ProfileItem.style.ts";
 
 function CreateAnuncioForm() {
   const { createAnuncioRequest } = useAnuncioContext() as IAnuncioContext;
@@ -41,7 +40,7 @@ function CreateAnuncioForm() {
   return (
     <FormUser onSubmit={handleSubmit(submit)}>
       <H2>Anunciar Produto</H2>
-      <AnuncioFormContainer>
+      <FormContainer>
         <Input
           label="Nome"
           error={errors.name}
@@ -104,7 +103,7 @@ function CreateAnuncioForm() {
           {...register("brandName")}
           id={".brandName"}
         />
-      </AnuncioFormContainer>
+      </FormContainer>
       <SendBtn type="submit" disabled={isLoading}>
         {isLoading ? <Loader /> : "CADASTRAR ANUNCIO"}
       </SendBtn>

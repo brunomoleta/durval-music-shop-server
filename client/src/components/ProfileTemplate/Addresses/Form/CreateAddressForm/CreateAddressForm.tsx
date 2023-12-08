@@ -7,9 +7,9 @@ import axios from "axios";
 import {toast} from "react-toastify";
 import {FormUser} from "../../../../../styled-components/Modal.styles.tsx";
 import {H2} from "../../../../../styled-components/Typography.styles.ts";
-import {AddressFormContainer} from "../../Addresses.tsx";
 import Input from "../../../../Login/Forms/Input";
 import {SendBtn} from "../../../../../styled-components/Button.styles.ts";
+import {FormContainer} from "../../../../../styled-components/ProfileItem.style.ts";
 
 function CreateAddressForm() {
   const { createAddressRequest } = useAddressContext() as IAddressContext;
@@ -51,7 +51,7 @@ function CreateAddressForm() {
   return (
     <FormUser onSubmit={handleSubmit(submit)}>
       <H2>Cadastrar Endereço</H2>
-      <AddressFormContainer>
+      <FormContainer>
         <Input
           label="Nome"
           error={errors.name}
@@ -102,7 +102,7 @@ function CreateAddressForm() {
           {...register("complement")}
           id={"complement"}
         />
-      </AddressFormContainer>
+      </FormContainer>
       <SendBtn type="submit">CADASTRAR ENDEREÇO</SendBtn>
     </FormUser>
   );

@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AnuncioFormContainer } from "../../Anuncios.tsx";
 import {useAnuncioContext} from "../../../../../providers/UserContext/AnuncioProvider.tsx";
 import {IAnuncioContext, IProductForm} from "../../../../../types/anuncios";
 import {useUserContext} from "../../../../../providers/UserContext";
@@ -12,6 +11,7 @@ import Input from "../../../../Login/Forms/Input";
 import Select from "../../../../Select";
 import Loader from "../../../../Loader";
 import {SendBtn} from "../../../../../styled-components/Button.styles.ts";
+import {FormContainer} from "../../../../../styled-components/ProfileItem.style.ts";
 
 function EditAnuncioForm() {
   const { editAnuncio, editingAnuncio } =
@@ -49,7 +49,7 @@ function EditAnuncioForm() {
   return (
     <FormUser onSubmit={handleSubmit(submit)}>
       <H2>Editar Anuncio</H2>
-      <AnuncioFormContainer>
+      <FormContainer>
         <Input
           label="Nome"
           error={errors.name}
@@ -112,7 +112,7 @@ function EditAnuncioForm() {
           {...register("brandName")}
           id={".brandName"}
         />
-      </AnuncioFormContainer>
+      </FormContainer>
       <SendBtn type="submit" disabled={isLoading}>
         {isLoading ? <Loader /> : "SALVAR EDIÇÃO"}
       </SendBtn>
