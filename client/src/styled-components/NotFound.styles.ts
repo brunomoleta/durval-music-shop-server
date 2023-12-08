@@ -10,6 +10,7 @@ export const Figure = styled.figure`
 export const ImageNotFound = styled.img`
   height: auto;
   width: 100%;
+  max-width: 600px;
 `;
 
 export const Wrapper = styled.div`

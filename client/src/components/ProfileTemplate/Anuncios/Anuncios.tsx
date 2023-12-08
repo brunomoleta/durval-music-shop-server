@@ -1,11 +1,8 @@
-import styled from "styled-components";
 import NotFound from "../../../assets/Nothing-in-Cart.svg";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { useEffect } from "react";
 import CreateAnuncioForm from "./Form/CreateAnuncioForm/CreateAnuncioForm.tsx";
 import AnuncioCard from "./AnuncioCard/AnuncioCard.tsx";
-import { ResumeHeader } from "../Addresses";
-import {colors} from "../../../styled-components/root.ts";
 import {IAnuncioContext} from "../../../types/anuncios";
 import {useUserContext} from "../../../providers/UserContext";
 import {IUserContext} from "../../../types/user";
@@ -13,46 +10,8 @@ import {useAnuncioContext} from "../../../providers/UserContext/AnuncioProvider.
 import {H1, H2} from "../../../styled-components/Typography.styles.ts";
 import Loader from "../../Loader";
 import Modal from "../../Modal";
+import {AddProfileItemBtn, ProfileContent, ResumeHeader} from "../../../styled-components/ProfileItem.style.ts";
 
-const AnuncioContent = styled.div`
-  width: 100%;
-  max-width: 40rem;
-  margin-top: 20px;
-  overflow-y: auto;
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 10px;
-  box-shadow:
-    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
-    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
-`;
-
-const AddAnuncioBtn = styled.button`
-  padding: 16px;
-  border-radius: 20px;
-  transition: scale 500ms;
-
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  box-shadow:
-    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
-    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
-  background-color: ${colors.purple};
-  color: ${colors.white000};
-
-  &:hover {
-    transform: scale(1.05);
-    background-color: ${colors.purpleHover};
-  }
-`;
-
-export const AnuncioFormContainer = styled.div`
-  overflow-y: auto;
-  padding-inline-end: 16px;
-`;
 
 function Anuncios() {
   const {
@@ -71,21 +30,21 @@ function Anuncios() {
     <>
       <ResumeHeader>
         <H1>ANÚNCIOS</H1>
-        <AddAnuncioBtn onClick={() => setIsCreateAnuncioModalOpen(true)}>
+          <AddProfileItemBtn onClick={() => setIsCreateAnuncioModalOpen(true)}>
           <MdOutlineAddCircleOutline size="18" />
           Anúncio
-        </AddAnuncioBtn>
+          </AddProfileItemBtn>
       </ResumeHeader>
 
       <div>
         {isLoading ? (
           <Loader />
         ) : anuncios.length > 0 ? (
-          <AnuncioContent>
+          <ProfileContent>
             {anuncios.map((anuncio) => (
               <AnuncioCard key={anuncio.id} anuncio={anuncio} />
             ))}
-          </AnuncioContent>
+          </ProfileContent>
         ) : (
           <>
             <img alt="" src={NotFound} style={{ alignSelf: "center" }} />

@@ -17,15 +17,4 @@ export interface ISignUp extends ILogin {
 }
 
 
-export interface IsignUpInfo {
-  email?: string;
-  password?: string;
-  confirmPassword?: string;
-  firstName?: string;
-  lastName?: string;
-}
-
-export interface IName {
-  firstName: string;
-  lastName: string;
-}
+export interface IName extends Pick<ISignUp, 'firstName' | 'lastName'> {}

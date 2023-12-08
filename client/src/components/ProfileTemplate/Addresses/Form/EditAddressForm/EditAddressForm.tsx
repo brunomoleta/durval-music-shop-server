@@ -2,7 +2,6 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
-import { AddressFormContainer } from "../../Addresses.tsx";
 import {useAddressContext} from "../../../../../providers/UserContext/AddressProvider.tsx";
 import {IAddressContext, IAddressForm} from "../../../../../types/address";
 import {useUserContext} from "../../../../../providers/UserContext";
@@ -13,6 +12,7 @@ import {H2} from "../../../../../styled-components/Typography.styles.ts";
 import Input from "../../../../Login/Forms/Input";
 import {SendBtn} from "../../../../../styled-components/Button.styles.ts";
 import Loader from "../../../../Loader";
+import {FormContainer} from "../../../../../styled-components/ProfileItem.style.ts";
 
 function EditAddressForm() {
   const { editAddress, editingAddress } =
@@ -61,7 +61,7 @@ function EditAddressForm() {
   return (
     <FormUser onSubmit={handleSubmit(submit)}>
       <H2>Editar Endereço</H2>
-      <AddressFormContainer>
+      <FormContainer>
         <Input
           label="Nome"
           error={errors.name}
@@ -114,7 +114,7 @@ function EditAddressForm() {
           {...register("complement")}
           id={"complement"}
         />
-      </AddressFormContainer>
+      </FormContainer>
 
       <SendBtn type="submit" disabled={isLoading}>
         {isLoading ? <Loader /> : "EDITAR ENDEREÇO"}

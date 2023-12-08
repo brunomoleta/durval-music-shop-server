@@ -1,67 +1,17 @@
-import styled from "styled-components";
 import NotFound from "../../../assets/No-Order.svg";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import CreateAddressForm from "./Form/CreateAddressForm";
 import { useEffect } from "react";
-import { AddressCard } from "./AddressCard/AddressCard";
-import {useAddressContext} from "../../../providers/UserContext/AddressProvider.tsx";
-import {IAddressContext} from "../../../types/address";
-import {useUserContext} from "../../../providers/UserContext";
-import {IUserContext} from "../../../types/user";
-import {H1, H2} from "../../../styled-components/Typography.styles.ts";
+import { AddressCard } from "./AddressCard";
+import { useAddressContext } from "../../../providers/UserContext/AddressProvider.tsx";
+import { IAddressContext } from "../../../types/address";
+import { useUserContext } from "../../../providers/UserContext";
+import { IUserContext } from "../../../types/user";
+import { H1, H2 } from "../../../styled-components/Typography.styles.ts";
 import Loader from "../../Loader";
 import Modal from "../../Modal";
-import {colors} from "../../../styled-components/root.ts";
+import {AddProfileItemBtn, ProfileContent, ResumeHeader} from "../../../styled-components/ProfileItem.style.ts";
 
-const AddressContent = styled.div`
-  width: 100%;
-  max-width: 40rem;
-  margin-top: 20px;
-  overflow-y: auto;
-
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 10px;
-  box-shadow:
-    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
-    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
-`;
-export const ResumeHeader = styled.div`
-  display: flex;
-  flex-flow: column;
-  gap: 20px;
-
-  @media (min-width: 800px) {
-    flex-flow: unset;
-    justify-content: space-between;
-  }
-`;
-
-const AddAddressBtn = styled.button`
-  padding: 16px;
-  border-radius: 20px;
-  transition: 0.5s;
-
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  box-shadow:
-    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
-    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
-  background-color: ${colors.purple};
-  color: ${colors.white000};
-
-  &:hover {
-    transform: scale(1.05);
-    background-color: ${colors.purpleHover};
-  }
-`;
-
-export const AddressFormContainer = styled.div`
-  overflow-y: auto;
-  padding-inline-end: 16px;
-`;
 
 function Addresses() {
   const {
@@ -70,7 +20,10 @@ function Addresses() {
     setIsCreateAddressModalOpen,
     getAllAddresses,
   } = useAddressContext() as IAddressContext;
-  const { isLoading} = useUserContext() as IUserContext;
+  const { isLoading } = useUserContext() as IUserContext;
+
+  const sortedAddresses =
+    addresses && addresses.sort((a, b) => Number(b.name) - Number(a.name));
 
   useEffect(() => {
     getAllAddresses();
@@ -80,23 +33,23 @@ function Addresses() {
     <>
       <ResumeHeader>
         <H1>ENDEREÇOS</H1>
-        <AddAddressBtn
+        <AddProfileItemBtn
           onClick={() => setIsCreateAddressModalOpen(!isCreateAddressModalOpen)}
         >
           <MdOutlineAddCircleOutline size="18" />
           Endereço
-        </AddAddressBtn>
+        </AddProfileItemBtn>
       </ResumeHeader>
 
       <div>
         {isLoading ? (
           <Loader />
         ) : addresses.length > 0 ? (
-          <AddressContent>
-            {addresses.map((address) => (
+          <ProfileContent>
+            {sortedAddresses.map((address) => (
               <AddressCard key={address.id} address={address} />
             ))}
-          </AddressContent>
+          </ProfileContent>
         ) : (
           <>
             <img alt="" src={NotFound} style={{ alignSelf: "center" }} />

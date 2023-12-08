@@ -7,6 +7,12 @@ interface IllustrationCardProps {
   description: string;
 }
 
+export interface NoProductFoundProps {
+  message: string;
+  subTitle: string;
+  isButton: boolean;
+}
+
 export interface IModal {
   open: boolean;
   onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,14 +20,7 @@ export interface IModal {
   element: JSX.element;
 
   maxWidth?: string;
-  overflow?: string
-}
-
-interface ProductCardProps {
-  image: string;
-  name: string;
-  brand: string;
-  price: number;
+  overflow?: string;
 }
 
 export interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {

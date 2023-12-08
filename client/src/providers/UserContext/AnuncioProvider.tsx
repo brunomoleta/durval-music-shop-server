@@ -20,7 +20,6 @@ const AnuncioProvider = (props: { children: ReactNode }) => {
   const [editingAnuncio, setEditingAnuncio] = useState<IAnuncio | null>(null);
   const [isDeleteAnuncioModalOpen, setIsDeleteAnuncioModalOpen] =
     useState<boolean>(false);
-  const [deletingAnuncio, setDeletingAnuncio] = useState<IAnuncio | null>(null);
 
   async function createAnuncioRequest(formData: IProductForm) {
     const { categories } = formData;
@@ -104,7 +103,7 @@ const AnuncioProvider = (props: { children: ReactNode }) => {
       await api.delete(`/products/${anuncio.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      toast.success(`Produto "${deletingAnuncio!.name}" removido com sucesso!`);
+      toast.success(`Anúncio removido com sucesso!`);
 
       getAllAnuncios();
     } catch (error: any) {
@@ -114,7 +113,6 @@ const AnuncioProvider = (props: { children: ReactNode }) => {
       }
     } finally {
       setIsDeleteAnuncioModalOpen(false);
-      setDeletingAnuncio(null);
       setIsLoading(false);
     }
   }
@@ -132,8 +130,6 @@ const AnuncioProvider = (props: { children: ReactNode }) => {
     setEditingAnuncio,
     isDeleteAnuncioModalOpen,
     setIsDeleteAnuncioModalOpen,
-    deletingAnuncio,
-    setDeletingAnuncio,
     deleteAnuncio,
   };
 

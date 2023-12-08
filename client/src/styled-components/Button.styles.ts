@@ -172,3 +172,24 @@ export const QuitButton = styled(DefaultButton)`
     outline: 2px solid ${colors.red80};
   }
 `;
+
+export const RoundButton = styled.button<{ $positionLeft?: boolean }>`
+  outline: 2px solid ${colors.grey60};
+  width: fit-content;
+  padding: 10px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: ${colors.white000};
+
+  &:hover {
+    outline: 3px solid ${colors.purpleHover};
+  }
+
+  &:focus {
+    outline: 3px solid ${colors.purpleHover};
+  }
+
+  top: 50%;
+  left: ${(props) => (props.$positionLeft ? 0 : "none")};
+  right: ${(props) => (props.$positionLeft ? "none" : 0)};
+`;
