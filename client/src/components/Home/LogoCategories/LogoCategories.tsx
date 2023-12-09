@@ -8,6 +8,7 @@ import {nanoid} from "nanoid";
 const Wrapper = styled.div`
   padding-inline: ${genericValues.pagePadding};
   width: 100%;
+  max-width: ${genericValues.genericMaxWidth};
   @media(min-width: 1000px){
     padding-inline: 0;
   }
@@ -38,7 +39,9 @@ const BrandsOl = styled.ol`
   }
 `;
 const Brand =  styled.li`
-  flex: 0 0 40%;
+  flex: 0 0 clamp(50%, 60%, 160px);
+  max-width: 160px;
+
 `
 const CategoryButton = styled(DefaultButton)`
   display: flex;
