@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import {colors, fontSize, fontType, genericValues} from "./root.ts";
 import { DefaultLabel } from "./Modal.styles.tsx";
-import { Link } from "react-router-dom";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 export const SearchBar = styled.input`
