@@ -11,9 +11,10 @@ export const prisma = new PrismaClient();
 
 const regexPattern: RegExp = /.durvalmusicshop.*\.vercel\.app.*/;
 const localUrl: string = "http://localhost:5173";
+const acceptedValuesArray = [regexPattern, localUrl]
 
 const corsOptions = {
-  origin: regexPattern,
+  origin: acceptedValuesArray,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
