@@ -10,7 +10,6 @@ export const SearchBar = styled.input`
   font-size: ${fontSize.link};
   padding-block: 0.3rem;
   padding-inline-start: 1.125rem;
-  min-width: 200px;
   width: 100%;
   
 
@@ -30,36 +29,34 @@ export const LogoTop = styled.span`
   margin: auto;
   width: 100%;
   height: auto;
-  
+
   line-height: 110%;
-  
-  font-size: ${fontSize.h2};
+
+  font-size: clamp(${fontSize.text}, 10svw, ${fontSize.h2});
   font-weight: 700;
-  
+
   text-align: center;
-  
+
   align-self: center;
   justify-self: center;
-  
+
   transition: color 300ms;
-  
+
   &:hover {
     color: ${colors.purpleHover}
   }
+
   &:active {
     color: ${colors.purpleActive}
   }
+
   &:focus {
     color: ${colors.purpleHover}
   }
-  
+
 `;
 export const ProfileIcon = styled.img<{ $bgColor?: boolean }>`
   
-`;
-
-export const StyledLink = styled(Link)`
-  text-decoration: underline;
 `;
 
 export const Category = styled.li`
@@ -199,7 +196,7 @@ export const DSeparator = styled(DropdownMenu.Separator)`
   color: ${colors.purpleSurface};
 `;
 export const DSubContent = styled(DropdownMenu.SubContent)`
-  font-width: 400;
+  font-weight: 500;
   width: auto;
   max-width: 14ch;
   background-color: white;

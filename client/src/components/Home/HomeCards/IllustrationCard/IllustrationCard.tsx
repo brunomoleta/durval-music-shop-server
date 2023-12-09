@@ -1,11 +1,14 @@
 import styled from "styled-components";
-import {IllustrationCardProps} from "../../../../types/types";
-import {H3} from "../../../../styled-components/Typography.styles.ts";
-import {Figure, ImageNotFound, TextWrapper, Wrapper} from "../../../../styled-components/NotFound.styles.ts";
-import {Card, CardGrid} from "../../../../styled-components/Cards.styles.ts";
-import {colors} from "../../../../styled-components/root.ts";
-
-
+import { IllustrationCardProps } from "../../../../types/types";
+import { H3 } from "../../../../styled-components/Typography.styles.ts";
+import {
+  Figure,
+  ImageNotFound,
+  TextWrapper,
+  Wrapper,
+} from "../../../../styled-components/NotFound.styles.ts";
+import { Card, CardGrid } from "../../../../styled-components/Cards.styles.ts";
+import {colors, genericValues} from "../../../../styled-components/root.ts";
 
 const CardImage = styled(ImageNotFound)`
   max-width: 240px;
@@ -13,6 +16,7 @@ const CardImage = styled(ImageNotFound)`
 const CardWrapper = styled(TextWrapper)`
   gap: 16px;
   max-width: 30ch;
+  font-size: ${genericValues.clampFontSize};
 `;
 
 function IllustrationCard({

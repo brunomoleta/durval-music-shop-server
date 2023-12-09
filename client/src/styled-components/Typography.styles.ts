@@ -13,7 +13,6 @@ export const H2 = styled.h2`
   font-weight: 600;
 `
 export const H3 = styled.h3`
-  font-size: ${fontSize.text};
   font-weight: 500;
 `
 

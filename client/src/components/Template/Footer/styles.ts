@@ -1,9 +1,5 @@
 import styled from "styled-components";
-import {
-  colors,
-  fontSize,
-  genericValues,
-} from "../../../styled-components/root.ts";
+import { colors, genericValues } from "../../../styled-components/root.ts";
 import { Link } from "react-router-dom";
 
 export const Foot = styled.footer`
@@ -14,6 +10,7 @@ export const Foot = styled.footer`
   display: flex;
   justify-content: center;
   overflow-x: hidden;
+  font-size: ${genericValues.clampFontSize};
 `;
 
 export const DivContainer = styled.div`
@@ -94,7 +91,6 @@ export const DivDown = styled.div`
 
 export const SpanTerms = styled.span`
   color: grey;
-  font-size: ${fontSize.smallLink};
 `;
 
 export const DivRight = styled.div`
@@ -120,12 +116,10 @@ export const DivColumns = styled.div`
 `;
 
 export const TitleColumns = styled.h6`
-  font-size: ${fontSize.sub};
   color: grey;
 `;
 
 export const UlOptions = styled.ul`
-  font-size: ${fontSize.text};
   color: ${colors.black};
   display: flex;
   flex-direction: column;
@@ -133,7 +127,6 @@ export const UlOptions = styled.ul`
 `;
 
 export const Li = styled.li`
-  font-size: ${fontSize.smallLink};
   color: ${colors.black};
   font-weight: 500;
 `;
