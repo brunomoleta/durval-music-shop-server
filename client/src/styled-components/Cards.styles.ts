@@ -81,11 +81,10 @@ export const CardProd = styled(Card)`
 `;
 
 export const CardGrid = styled.div`
-    align-items: normal;
-    display: grid;
-    grid-template-rows: auto  150px;
-    justify-items: center;
-    gap: 24px;
+  align-items: normal;
+  display: grid;
+  justify-items: center;
+  gap: 24px;
   padding-inline: 16px;
   margin-block: 10px;
 `
