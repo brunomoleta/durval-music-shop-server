@@ -193,3 +193,11 @@ export const RoundButton = styled.button<{ $positionLeft?: boolean }>`
   left: ${(props) => (props.$positionLeft ? 0 : "none")};
   right: ${(props) => (props.$positionLeft ? "none" : 0)};
 `;
+
+export const PasswordButton = styled.button`
+  background-color: inherit;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+`
