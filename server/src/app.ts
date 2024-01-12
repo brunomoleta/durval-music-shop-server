@@ -9,6 +9,7 @@ export const app: Application = express();
 
 export const prisma = new PrismaClient();
 
+const ngrokPattern = /https:\/\/[a-zA-Z0-9-]+\.ngrok-free\.app(.*)/;
 const regexPattern: RegExp = /.durvalmusicshop.*\.vercel\.app.*/;
 const localUrl: string = "http://localhost:5173";
 
