@@ -19,6 +19,10 @@ export interface ICartContext {
   ) => void;
 
   cleanCart: () => void
+
+  prevCounter: number;
+  setPrevCounter: React.Dispatch<React.SetStateAction<number>>;
+
 }
 
 export interface ICart {
