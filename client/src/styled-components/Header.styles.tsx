@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colors, fontSize, fontType, genericValues} from "./root.ts";
+import { colors, fontSize, fontType, genericValues } from "./root.ts";
 import { DefaultLabel } from "./Modal.styles.tsx";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
@@ -10,16 +10,14 @@ export const SearchBar = styled.input`
   padding-block: 0.3rem;
   padding-inline-start: 1.125rem;
   width: 100%;
-  
 
   &:focus {
     border: 2px solid ${colors.purpleSurface};
     outline: 2px solid ${colors.purple};
   }
-  
+
   @media (min-width: 450px) {
-  padding-inline-start: 5.5rem;
-    
+    padding-inline-start: 5.5rem;
   }
 `;
 
@@ -42,21 +40,18 @@ export const LogoTop = styled.span`
   transition: color 300ms;
 
   &:hover {
-    color: ${colors.purpleHover}
+    color: ${colors.purpleHover};
   }
 
   &:active {
-    color: ${colors.purpleActive}
+    color: ${colors.purpleActive};
   }
 
   &:focus {
-    color: ${colors.purpleHover}
+    color: ${colors.purpleHover};
   }
 
-`;
-export const ProfileIcon = styled.img<{ $bgColor?: boolean }>`
-  
-`;
+export const ProfileIcon = styled.img<{ $bgColor?: boolean }>``;
 
 export const Category = styled.li`
   padding-block: 4px;
@@ -74,7 +69,7 @@ export const InfoWrapper = styled.div`
   gap: 20px;
   place-items: center;
   width: 100%;
-  
+
   max-width: ${genericValues.pageWidth};
   @media (min-width: 768px) {
     grid-template-columns: 1fr auto;
@@ -94,6 +89,7 @@ export const Wrapper = styled.header`
   justify-content: center;
   width: 100%;
   padding-block-start: 24px;
+  min-width: 0;
   box-shadow:
     hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
     hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
@@ -109,7 +105,7 @@ export const HeaderWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: clamp(5svh, 8svh, 32px);
-  @media (min-width: 750px){
+  @media (min-width: 750px) {
     gap: 12px;
   }
 `;
@@ -122,7 +118,7 @@ export const CategoriesWrapper = styled.ol`
   align-items: center;
   gap: 24px;
 
-  @media(max-width: 360px){
+  @media (max-width: 360px) {
     display: none;
   }
 `;
@@ -143,7 +139,7 @@ export const CartQuantity = styled.span`
   right: 0;
   background-color: ${colors.purple};
   color: ${colors.offWhite};
-  
+
   padding-inline: 10px;
   padding-block: 0px;
   border-radius: 20px;
@@ -154,7 +150,6 @@ export const CartWrapper = styled.div`
   display: flex;
   gap: 16px;
   font-weight: 600;
-
 `;
 
 export const DContent = styled(DropdownMenu.Content)`
