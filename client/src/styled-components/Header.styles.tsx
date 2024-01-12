@@ -50,18 +50,19 @@ export const LogoTop = styled.span`
   &:focus {
     color: ${colors.purpleHover};
   }
-
+`;
 export const ProfileIcon = styled.img<{ $bgColor?: boolean }>``;
 
+
 export const Category = styled.li`
-  padding-block: 4px;
-  font-weight: 500;
+    padding-block: 4px;
+    font-weight: 500;
 
-  &:hover > * {
-    color: ${colors.purpleHover};
-  }
+    &:hover > * {
+        color: ${colors.purpleHover};
+    }
 
-  z-index: 1;
+    z-index: 1;
 `;
 
 export const InfoWrapper = styled.div`
