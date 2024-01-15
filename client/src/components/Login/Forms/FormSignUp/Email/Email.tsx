@@ -14,7 +14,7 @@ import {SendBtn} from "../../../../../styled-components/Button.styles.ts";
 function Email() {
   const { setStep, signUpInfo, setSignUpInfo } = useUserContext() as IUserContext;
   const id = React.useId();
-  const emailId = `${id}-firstName`;
+  const emailId = `${id}-email`;
 
   const {
     register,

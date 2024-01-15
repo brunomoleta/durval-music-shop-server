@@ -15,7 +15,6 @@ function FormSignUp() {
       {step === 1 && <Email />}
       {step === 2 && <Password />}
       {step === 3 && <Confirmation />}
-      <></>
     </>
   );
 }
