@@ -76,16 +76,13 @@ export const InlineButton = styled(DefaultButton)`
 
 export const WarningInlineButton = styled(InlineButton)`
   color: ${colors.red50};
-  font-size: ${fontSize.text};
-  position: absolute;
-  top: 3ex;
-  left: 00px;
+    font-size: clamp(${fontSize.icons},7dvw,${fontSize.smallLink});
 
-  @media (min-width: 550px) {
-    top: 0px;
-    left: unset;
-    right: 0px;
-  }
+  top: 5ex;
+  left: 0;
+    
+    position: absolute;
+
 
   &:hover {
     color: ${colors.red80};
@@ -115,14 +112,16 @@ export const StyledButton = styled.button`
   }
 `;
 export const SendBtn = styled(StyledButton)`
-  width: 100%;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  margin-block: 0;
-  margin-top: 30px;
-  font-weight: 500;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-block: 0;
+    margin-top: 30px;
+    font-weight: 500;
+    font-size: clamp(${fontSize.icons}, 7dvw, ${fontSize.smallLink});
+    
 `;
 
 export const ModalBottonButton = styled(SendBtn)`
@@ -142,16 +141,20 @@ export const ModalBottonButton = styled(SendBtn)`
 `;
 
 export const ModalButton = styled.button`
-  position: absolute;
-  top: 30px;
-  right: 40px;
 
-  max-height: 40px;
+    min-height: 40px;
+    min-width: 40px;
+    border-radius: 4px;
+    padding: 8px;   
+    max-width: fit-content;
 
-  width: auto;
-  border-radius: 4px;
-  padding: 8px;
-  max-width: fit-content;
+    @media (min-width: 32rem) {
+        position: absolute;
+        top: -60px;
+        right: 00px;
+        color: ${colors.black};
+        background-color: ${colors.white000};
+    }
 `;
 
 
