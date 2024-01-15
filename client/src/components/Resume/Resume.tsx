@@ -1,6 +1,7 @@
-import Money from "../../assets/Refund.svg"
+import Refund from "../../assets/Refund.svg"
 import styled from "styled-components";
 import {fontSize} from "../../styled-components/root.ts";
+import Illustration from "../Illustration";
 
 const H1 = styled.h1`
   width: 100%;
@@ -21,7 +22,7 @@ function Resume() {
   return (
     <Section>
       <H1>Seja bem-vinda(o)!</H1>
-        <img src={Money} alt=""/>
+        <Illustration image={Refund} alt='women with cash on her hands' />
     </Section>
   );
 }

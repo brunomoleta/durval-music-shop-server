@@ -11,6 +11,7 @@ export interface NoProductFoundProps {
   message: string;
   subTitle: string;
   isButton: boolean;
+  element: React.ReactNode
 }
 
 export interface IModal {
@@ -21,6 +22,9 @@ export interface IModal {
 
   maxWidth?: string;
   overflow?: string;
+
+  title: string;
+  button?: React.ReactNode
 }
 
 export interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {

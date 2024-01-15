@@ -1,7 +1,17 @@
 import EditAddressForm from "../Form/EditAddressForm";
-import {IAddress, IAddressCard, IAddressContext} from "../../../../types/address";
-import {useAddressContext} from "../../../../providers/UserContext/AddressProvider.tsx";
-import {Button, Card, CardTitle, CartButtons, CartContent} from "../../../../styled-components/resumeCard.styles.ts";
+import {
+  IAddress,
+  IAddressCard,
+  IAddressContext,
+} from "../../../../types/address";
+import { useAddressContext } from "../../../../providers/UserContext/AddressProvider.tsx";
+import {
+  Button,
+  Card,
+  CardTitle,
+  CartButtons,
+  CartContent,
+} from "../../../../styled-components/resumeCard.styles.ts";
 import Modal from "../../../Modal";
 import ModalQuit from "../../../Modal/ModalQuit";
 
@@ -44,17 +54,18 @@ export function AddressCard(props: IAddressCard) {
           </Button>
         </CartButtons>
         <Modal
+          title="Editar endereço"
           open={isEditAddressModalOpen}
           onOpenChange={setIsEditAddressModalOpen}
           element={EditAddressForm()}
         />
 
         <Modal
+          title={`Tens certeza de remover o endereço de ${address.name}?`}
           open={isDeleteAddressModalOpen}
           onOpenChange={setIsDeleteAddressModalOpen}
           element={
             <ModalQuit
-              question={`Tens certeza de remover o endereço de ${address.name}?`}
               handleCloseModalClick={() => setIsDeleteAddressModalOpen(false)}
               handleQuitButtonClick={() => deleteAddress(address)}
             />

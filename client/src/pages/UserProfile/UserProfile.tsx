@@ -37,11 +37,11 @@ function UserProfile({ children }: { children: ReactNode }) {
         <MainInfo>{children}</MainInfo>
       </Wrapper>
       <Modal
+        title="Desejas de fato deslogar?"
         open={openQuit}
         onOpenChange={setOpenQuit}
         element={
           <ModalQuit
-            question="Desejas de fato deslogar?"
             handleCloseModalClick={() => setOpenQuit(!openQuit)}
             handleQuitButtonClick={() => quitAccount()}
             quit="sim, deslogar"

@@ -1,3 +1,4 @@
+import NoOrder from "../../assets/No-Order.svg";
 import styled from "styled-components";
 import { useProductContext, useUserContext } from "../../providers/UserContext";
 import { IFullProductContext } from "../../types/product";
@@ -8,6 +9,7 @@ import ManagePages from "./ManagePages/ManagePages";
 import Loader from "../Loader";
 import { IUserContext } from "../../types/user";
 import NoProductFound from "../NoProductFound";
+import Illustration from "../Illustration";
 
 const ListContainer = styled.div`
   display: flex;
@@ -93,6 +95,7 @@ function Catalog() {
         </ListContainer>
       ) : (
         <NoProductFound
+          element={<Illustration image={NoOrder} alt="" />}
           message="Nenhum produto encontrado para sua busca :("
           subTitle="Você sabia que nós somos o e-commerce nº01 no Brasil no ReclameAqui?"
           isButton={false}

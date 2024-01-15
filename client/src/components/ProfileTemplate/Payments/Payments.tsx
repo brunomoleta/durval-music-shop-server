@@ -58,6 +58,7 @@ function Payments() {
       </div>
 
       <Modal
+          title='Criar pagamento'
         open={isCreatePaymentModalOpen}
         onOpenChange={setIsCreatePaymentModalOpen}
         element={CreatePaymentForm()}

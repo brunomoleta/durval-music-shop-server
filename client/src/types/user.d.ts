@@ -1,8 +1,10 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { IsignUpInfo } from "./types";
 
 export interface IUserContext {
   priceString: (number) => string;
+
+  cleanUpRequests: ()=> void;
 
   isLoggedIn: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -32,4 +34,9 @@ export interface IUserContext {
 
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  stepLogin: number;
+  setStepLogin: React.Dispatch<React.SetStateAction<number>>;
+
+  loginInfo: ILogin;
+  setLoginInfo: Dispatch<SetStateAction<any>>;
 }
