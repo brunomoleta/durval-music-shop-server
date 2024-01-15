@@ -1,13 +1,10 @@
-import NoOrder from "../../assets/No-Order.svg";
-
 import { SendBtn } from "../../styled-components/Button.styles.ts";
-import { ImageNotFound } from "../../styled-components/NotFound.styles.ts";
 import { CardSubTitle, H1 } from "../../styled-components/Typography.styles.ts";
 import { useCartContext } from "../../providers/UserContext";
 import { ICartContext } from "../../types/cart";
 import { Link } from "react-router-dom";
 import React from "react";
-import {NoProductFoundProps} from "../../types/types";
+import { NoProductFoundProps } from "../../types/types";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -16,17 +13,18 @@ export const Wrapper = styled.div`
   flex-flow: column;
   gap: 24px;
   text-align: center;
-`
+`;
 const NoProductFound: React.FC<NoProductFoundProps> = ({
   message,
   subTitle,
   isButton,
+  element,
 }) => {
   const { isCartModalOpen, setIsCartModalOpen } =
     useCartContext() as ICartContext;
   return (
     <Wrapper>
-      <ImageNotFound src={NoOrder} alt="url not found" />
+      {element}
       <H1>{message}</H1>
       <CardSubTitle>{subTitle}</CardSubTitle>
       {isButton ? (
