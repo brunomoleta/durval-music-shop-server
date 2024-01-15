@@ -1,18 +1,16 @@
-
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {SendBtn} from "../../../../../styled-components/Button.styles.ts";
+import { SendBtn } from "../../../../../styled-components/Button.styles.ts";
 import Loader from "../../../../Loader";
 import Select from "../../../../Select";
 import Input from "../../../../Login/Forms/Input";
-import {H2} from "../../../../../styled-components/Typography.styles.ts";
-import {FormUser} from "../../../../../styled-components/Modal.styles.tsx";
-import {IPaymentContext, IPaymentForm} from "../../../../../types/payment";
-import {useUserContext} from "../../../../../providers/UserContext";
-import {usePaymentContext} from "../../../../../providers/UserContext/PaymentProvider.tsx";
-import {IUserContext} from "../../../../../types/user";
-import {paymentSchema} from "../../../../../schemas/paymentSchema";
-import {FormContainer} from "../../../../../styled-components/ProfileItem.style.ts";
+import { FormUser } from "../../../../../styled-components/Modal.styles.tsx";
+import { IPaymentContext, IPaymentForm } from "../../../../../types/payment";
+import { useUserContext } from "../../../../../providers/UserContext";
+import { usePaymentContext } from "../../../../../providers/UserContext/PaymentProvider.tsx";
+import { IUserContext } from "../../../../../types/user";
+import { paymentSchema } from "../../../../../schemas/paymentSchema";
+import { FormContainer } from "../../../../../styled-components/ProfileItem.style.ts";
 
 function EditPaymentForm() {
   const { editPayment, editingPayment } =
@@ -37,7 +35,6 @@ function EditPaymentForm() {
 
   return (
     <FormUser onSubmit={handleSubmit(submit)}>
-      <H2>Editar Cartão</H2>
       <FormContainer>
         <Input
           label="Número do Cartão"

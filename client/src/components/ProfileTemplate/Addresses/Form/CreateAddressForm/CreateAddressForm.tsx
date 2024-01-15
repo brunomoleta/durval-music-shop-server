@@ -1,15 +1,14 @@
-import {IAddressContext, IAddressForm} from "../../../../../types/address";
-import {useAddressContext} from "../../../../../providers/UserContext/AddressProvider.tsx";
-import {useForm} from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {addressSchema} from "../../../../../schemas/addressSchema";
+import { IAddressContext, IAddressForm } from "../../../../../types/address";
+import { useAddressContext } from "../../../../../providers/UserContext/AddressProvider.tsx";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { addressSchema } from "../../../../../schemas/addressSchema";
 import axios from "axios";
-import {toast} from "react-toastify";
-import {FormUser} from "../../../../../styled-components/Modal.styles.tsx";
-import {H2} from "../../../../../styled-components/Typography.styles.ts";
+import { toast } from "react-toastify";
+import { FormUser } from "../../../../../styled-components/Modal.styles.tsx";
 import Input from "../../../../Login/Forms/Input";
-import {SendBtn} from "../../../../../styled-components/Button.styles.ts";
-import {FormContainer} from "../../../../../styled-components/ProfileItem.style.ts";
+import { SendBtn } from "../../../../../styled-components/Button.styles.ts";
+import { FormContainer } from "../../../../../styled-components/ProfileItem.style.ts";
 
 function CreateAddressForm() {
   const { createAddressRequest } = useAddressContext() as IAddressContext;
@@ -50,7 +49,6 @@ function CreateAddressForm() {
 
   return (
     <FormUser onSubmit={handleSubmit(submit)}>
-      <H2>Cadastrar Endereço</H2>
       <FormContainer>
         <Input
           label="Nome"
@@ -63,7 +61,9 @@ function CreateAddressForm() {
           error={errors.zip}
           {...register("zip")}
           id={"zip"}
-          onBlur={(e) => e.target.value.length >= 7 && searchZip(e.target.value)}
+          onBlur={(e) =>
+            e.target.value.length >= 7 && searchZip(e.target.value)
+          }
         />
         <Input
           label="Rua"

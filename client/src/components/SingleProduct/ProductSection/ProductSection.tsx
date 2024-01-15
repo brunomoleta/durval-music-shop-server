@@ -33,6 +33,7 @@ import Modal from "../../Modal";
 import { useParams } from "react-router-dom";
 import { IUserContext } from "../../../types/user";
 import Loader from "../../Loader";
+import { genericValues } from "../../../styled-components/root.ts";
 
 const ProductSection = () => {
   const [showImage, setShowImage] = React.useState(false);
@@ -60,7 +61,8 @@ const ProductSection = () => {
     <SectionBuy>
       {
         <Modal
-          maxWidth={"100svw"}
+          title=""
+          maxWidth={genericValues.genericMaxWidth}
           overflow={"scroll"}
           open={showImage}
           onOpenChange={setShowImage}

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { colors, fontSize, fontType, genericValues } from "./root.ts";
 import { DefaultLabel } from "./Modal.styles.tsx";
-import { Link } from "react-router-dom";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 export const SearchBar = styled.input`
@@ -10,7 +9,6 @@ export const SearchBar = styled.input`
   font-size: ${fontSize.link};
   padding-block: 0.3rem;
   padding-inline-start: 1.125rem;
-  min-width: 200px;
   width: 100%;
 
   &:focus {
@@ -31,7 +29,7 @@ export const LogoTop = styled.span`
 
   line-height: 110%;
 
-  font-size: ${fontSize.h2};
+  font-size: clamp(${fontSize.text}, 10svw, ${fontSize.h2});
   font-weight: 700;
 
   text-align: center;
@@ -55,19 +53,16 @@ export const LogoTop = styled.span`
 `;
 export const ProfileIcon = styled.img<{ $bgColor?: boolean }>``;
 
-export const StyledLink = styled(Link)`
-  text-decoration: underline;
-`;
 
 export const Category = styled.li`
-  padding-block: 4px;
-  font-weight: 500;
+    padding-block: 4px;
+    font-weight: 500;
 
-  &:hover > * {
-    color: ${colors.purpleHover};
-  }
+    &:hover > * {
+        color: ${colors.purpleHover};
+    }
 
-  z-index: 1;
+    z-index: 1;
 `;
 
 export const InfoWrapper = styled.div`
@@ -196,7 +191,7 @@ export const DSeparator = styled(DropdownMenu.Separator)`
   color: ${colors.purpleSurface};
 `;
 export const DSubContent = styled(DropdownMenu.SubContent)`
-  font-width: 400;
+  font-weight: 500;
   width: auto;
   max-width: 14ch;
   background-color: white;

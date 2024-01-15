@@ -24,7 +24,8 @@ import { ICartContext } from "../../types/cart";
 import { IUserContext } from "../../types/user";
 
 function CardProduct(props: CardProductProps) {
-  const { addProductInCart } = useCartContext() as ICartContext;
+  const { addProductInCart } =
+    useCartContext() as ICartContext;
   const { getProductById, setSingleProduct } =
     useProductContext() as IFullProductContext;
   const { priceString } = useUserContext() as IUserContext;
@@ -63,7 +64,11 @@ function CardProduct(props: CardProductProps) {
         </ProductGrid>
       </ProductButton>
 
-      <AddCartButton onClick={() => addProductInCart(item)}>
+      <AddCartButton
+        onClick={() => {
+          addProductInCart(item);
+        }}
+      >
         <ProfileIcon src={Cart} alt="Carrinho" />
         <span style={{ fontSize: fontSize.icons }}>CARRINHO+</span>
       </AddCartButton>

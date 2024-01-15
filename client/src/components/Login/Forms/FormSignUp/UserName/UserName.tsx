@@ -1,15 +1,13 @@
-import {
-  Form,
-} from "../../../../../styled-components/Modal.styles.tsx";
+import { Form } from "../../../../../styled-components/Modal.styles.tsx";
 import Input from "../../Input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useUserContext } from "../../../../../providers/UserContext";
 import nameSchema from "../../../../../schemas/nameSchema";
-import {IUserContext} from "../../../../../types/user";
-import {IName} from "../../../../../types/signUp";
-import {SendBtn} from "../../../../../styled-components/Button.styles.ts";
+import { IUserContext } from "../../../../../types/user";
+import { IName } from "../../../../../types/signUp";
+import { SendBtn } from "../../../../../styled-components/Button.styles.ts";
 
 function UserName() {
   const { setStep, signUpInfo, setSignUpInfo } =
@@ -34,10 +32,7 @@ function UserName() {
 
   return (
     <>
-      <Form
-        onSubmit={handleSubmit(submit)
-        }
-      >
+      <Form onSubmit={handleSubmit(submit)}>
         <Input
           label="nome"
           type="text"
@@ -53,7 +48,7 @@ function UserName() {
           id={lastNameId}
         />
 
-        <SendBtn type={"submit"}>AVANÇAR</SendBtn>
+        <SendBtn type="submit">AVANÇAR</SendBtn>
       </Form>
     </>
   );

@@ -5,65 +5,24 @@ import {
   Name,
   PriceModal,
 } from "../../../styled-components/CardProduct.styles.ts";
-import styled from "styled-components";
 import { colors, fontSize } from "../../../styled-components/root.ts";
 import { ICart, ICartContext } from "../../../types/cart";
 
 import ProductAmount from "../ProductAmount";
 import { useCartContext, useUserContext } from "../../../providers/UserContext";
 import { IUserContext } from "../../../types/user";
-
-const ProductInfo = styled.div`
-  display: grid;
-  align-content: center;
-  gap: 32px;
-  width: 100%;
-`;
-const Wrapper = styled.div`
-  display: grid;
-  height: 100%;
-  max-height: 200px;
-  grid-template-columns: 120px auto;
-  gap: 32px;
-  padding-block: 20px;
-
-  border-bottom: 2px solid ${colors.purple};
-  opacity: 0.99;
-  position: relative;
-
-  @media (max-width: 550px) {
-    display: flex;
-    flex-flow: column;
-    justify-items: center;
-    max-height: none;
-    height: auto;
-  }
-`;
-const Warning = styled.p`
-  position: absolute;
-  font-size: ${fontSize.smallLink};
-  left: 0;
-  color: ${colors.purpleBorder};
-  bottom: 2px;
-  @media (min-width: 600px) {
-    left: unset;
-    right: 0;
-  }
-`;
-
-const RemoveBtn = styled.button`
-  display: grid;
-  justify-items: center;
-
-  &:hover {
-    outline: 2px solid ${colors.red40};
-  }
-`;
+import {
+  ProductInfo,
+  RemoveBtn,
+  Warning,
+  Wrapper,
+} from "../../../styled-components/CartItem.styles.ts";
 
 function CartItem(props: ICart) {
   const { product, amount } = props;
   const { name, brandName, image, price, id } = product;
-  const { removeProductInCart } = useCartContext() as ICartContext;
+  const { removeProductInCart } =
+    useCartContext() as ICartContext;
   const { priceString } = useUserContext() as IUserContext;
 
   return (
@@ -87,8 +46,12 @@ function CartItem(props: ICart) {
               alignItems: "center",
             }}
           >
-            <RemoveBtn onClick={() => removeProductInCart(id)}>
-              <img src={Trash} />
+            <RemoveBtn
+              onClick={() => {
+                removeProductInCart(id);
+              }}
+            >
+              <img alt="" src={Trash} />
               <span
                 style={{
                   color: colors.red60,

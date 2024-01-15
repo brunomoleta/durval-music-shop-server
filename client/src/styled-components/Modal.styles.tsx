@@ -7,7 +7,7 @@ import { colors, fontSize } from "./root.ts";
 export const Field = styled.fieldset`
   display: flex;
   flex-flow: column;
-  margin-block: 24px;
+  margin-block-end: 24px;
   border-radius: 8px;
   border: 2px solid ${colors.offWhite};
   outline: 1px solid ${colors.offWhite}
@@ -41,42 +41,51 @@ export const DDescription = styled(Dialog.Description)`
   color: ${colors.grey70};
 `;
 
+
 export const DContent = styled(Dialog.Content)`
   display: grid;
   place-items: center;
   gap: clamp(1svh, 2svh, 32px);
   
   background-color: white;
-  border-radius: 8px;
-  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px hsl(206 22% 7% / 20%) 0 10px
-    20px -15px;
+  border-radius: 0px;
+  box-shadow: 
+      hsl(206 22% 7% / 35%) 0px 10px 38px -10px hsl(206 22% 7% / 20%) 0 10px 20px -15px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 90vw;
-  height: auto;
-  max-height: 95dvh;
-
+  width: 100%;
+  height: 100%;
+  
   padding-block: clamp(2%, 5%, 64px);
   padding-inline: clamp(2%, 5%, 40px);
 
   & > * {
     width: 100%;
   }
+  @media (min-width: 32rem){
+    border-radius: 8px;
+    height: auto;
+    width: auto;
+  }
 `;
 
+
+
 export const DTitle = styled(Dialog.Title)`
-  text-align: center;
+  
   line-height: 130%;
   font-weight: 500;
   font-size: ${
           fontSize.h2
   };
+  font-size: clamp(${fontSize.text},10dvw,${fontSize.h2});
 `
 export const DClose = styled(Dialog.Close)`
   width: auto;
+  
 `
 
 export const Form = styled.form`

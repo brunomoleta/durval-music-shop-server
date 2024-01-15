@@ -3,15 +3,18 @@ import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { useEffect } from "react";
 import CreateAnuncioForm from "./Form/CreateAnuncioForm/CreateAnuncioForm.tsx";
 import AnuncioCard from "./AnuncioCard/AnuncioCard.tsx";
-import {IAnuncioContext} from "../../../types/anuncios";
-import {useUserContext} from "../../../providers/UserContext";
-import {IUserContext} from "../../../types/user";
-import {useAnuncioContext} from "../../../providers/UserContext/AnuncioProvider.tsx";
-import {H1, H2} from "../../../styled-components/Typography.styles.ts";
+import { IAnuncioContext } from "../../../types/anuncios";
+import { useUserContext } from "../../../providers/UserContext";
+import { IUserContext } from "../../../types/user";
+import { useAnuncioContext } from "../../../providers/UserContext/AnuncioProvider.tsx";
+import { H1, H2 } from "../../../styled-components/Typography.styles.ts";
 import Loader from "../../Loader";
 import Modal from "../../Modal";
-import {AddProfileItemBtn, ProfileContent, ResumeHeader} from "../../../styled-components/ProfileItem.style.ts";
-
+import {
+  AddProfileItemBtn,
+  ProfileContent,
+  ResumeHeader,
+} from "../../../styled-components/ProfileItem.style.ts";
 
 function Anuncios() {
   const {
@@ -30,10 +33,10 @@ function Anuncios() {
     <>
       <ResumeHeader>
         <H1>ANÚNCIOS</H1>
-          <AddProfileItemBtn onClick={() => setIsCreateAnuncioModalOpen(true)}>
+        <AddProfileItemBtn onClick={() => setIsCreateAnuncioModalOpen(true)}>
           <MdOutlineAddCircleOutline size="18" />
           Anúncio
-          </AddProfileItemBtn>
+        </AddProfileItemBtn>
       </ResumeHeader>
 
       <div>
@@ -54,6 +57,7 @@ function Anuncios() {
       </div>
 
       <Modal
+        title="Criar anúncio"
         open={isCreateAnuncioModalOpen}
         onOpenChange={setIsCreateAnuncioModalOpen}
         element={CreateAnuncioForm()}

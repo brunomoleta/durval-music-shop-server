@@ -18,9 +18,7 @@ export const Wrapper = styled.div`
   gap: clamp(1svh, 3svh, 16px);
   grid-template-rows: auto auto;
   height: 85svh;
-  @media (min-width: 550px) {
-    height: 100%;
-  }
+  
 `;
 
 export const BottonInfo = styled.div`
