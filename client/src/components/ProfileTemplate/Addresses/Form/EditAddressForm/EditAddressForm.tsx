@@ -8,7 +8,6 @@ import {useUserContext} from "../../../../../providers/UserContext";
 import {IUserContext} from "../../../../../types/user";
 import {addressSchema} from "../../../../../schemas/addressSchema";
 import {FormUser} from "../../../../../styled-components/Modal.styles.tsx";
-import {H2} from "../../../../../styled-components/Typography.styles.ts";
 import Input from "../../../../Login/Forms/Input";
 import {SendBtn} from "../../../../../styled-components/Button.styles.ts";
 import Loader from "../../../../Loader";
@@ -60,7 +59,6 @@ function EditAddressForm() {
 
   return (
     <FormUser onSubmit={handleSubmit(submit)}>
-      <H2>Editar Endereço</H2>
       <FormContainer>
         <Input
           label="Nome"

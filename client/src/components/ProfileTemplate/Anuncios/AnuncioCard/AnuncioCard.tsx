@@ -99,16 +99,17 @@ export function AnuncioCard(props: IAnuncioCard) {
         </CartButtons>
       </CartContent>
       <Modal
+        title="editar anúncio"
         open={isEditAnuncioModalOpen}
         onOpenChange={setIsEditAnuncioModalOpen}
         element={EditAnuncioForm()}
       />
       <Modal
+        title={`Tens certeza de remover o produto: ${anuncio.name}?`}
         open={isDeleteAnuncioModalOpen}
         onOpenChange={setIsDeleteAnuncioModalOpen}
         element={
           <ModalQuit
-            question={`Tens certeza de remover o produto: ${anuncio.name}?`}
             handleCloseModalClick={() => setIsDeleteAnuncioModalOpen(false)}
             handleQuitButtonClick={() => deleteAnuncio(anuncio)}
           />

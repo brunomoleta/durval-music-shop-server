@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Trash from "../../../assets/Remove-Confirmation.svg";
 import { colors } from "../../../styled-components/root.ts";
-import { H2 } from "../../../styled-components/Typography.styles.ts";
 import { useUserContext } from "../../../providers/UserContext";
 import { IUserContext } from "../../../types/user";
 import Loader from "../../Loader";
@@ -64,12 +63,10 @@ const RemoveButton = styled(Button)`
 `;
 
 function ModalQuit({
-  question,
   handleCloseModalClick,
   handleQuitButtonClick,
   quit = "Remover",
 }: {
-  question: string;
   handleCloseModalClick: () => void;
   handleQuitButtonClick: () => Promise<void> | void;
   quit?: string;
@@ -79,7 +76,6 @@ function ModalQuit({
   return (
     <>
       <Card>
-        <H2>{question}</H2>
 
         <img alt="" src={Trash} />
         <CartButtons>

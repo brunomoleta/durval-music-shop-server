@@ -6,7 +6,6 @@ import {usePaymentContext} from "../../../../../providers/UserContext/PaymentPro
 import {useUserContext} from "../../../../../providers/UserContext";
 import {paymentSchema} from "../../../../../schemas/paymentSchema";
 import {FormUser} from "../../../../../styled-components/Modal.styles.tsx";
-import {H2} from "../../../../../styled-components/Typography.styles.ts";
 import Input from "../../../../Login/Forms/Input";
 import Select from "../../../../Select";
 import {SendBtn} from "../../../../../styled-components/Button.styles.ts";
@@ -33,7 +32,6 @@ function CreatePaymentForm() {
 
   return (
     <FormUser onSubmit={handleSubmit(submit)}>
-      <H2>Cadastrar Cartão</H2>
       <FormContainer>
         <Input
           label="Número do Cartão"

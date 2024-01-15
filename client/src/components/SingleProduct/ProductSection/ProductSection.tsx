@@ -61,6 +61,7 @@ const ProductSection = () => {
     <SectionBuy>
       {
         <Modal
+          title=""
           maxWidth={genericValues.genericMaxWidth}
           overflow={"scroll"}
           open={showImage}

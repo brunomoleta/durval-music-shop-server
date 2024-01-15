@@ -15,6 +15,8 @@ function useUserContext() {
 function UserProvider(props: { children: React.ReactNode }) {
   const navigate = useNavigate();
 
+  const [loginInfo, setLoginInfo] = React.useState({});
+
   const [signUpInfo, setSignUpInfo] = React.useState({});
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -25,6 +27,7 @@ function UserProvider(props: { children: React.ReactNode }) {
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
 
   const [step, setStep] = React.useState(0);
+  const [stepLogin, setStepLogin] = React.useState(0);
 
   const storedToken = localStorage.getItem("@TOKEN");
   const token: string | null | undefined = storedToken || null;
@@ -66,6 +69,14 @@ function UserProvider(props: { children: React.ReactNode }) {
     }
   };
 
+  function cleanUpRequests() {
+    setStep(0);
+    setStepLogin(0);
+    setSignUpInfo({});
+    setLoginInfo({});
+    setIsSignUp(!isSignUp);
+  }
+
   function changePasswordVisibility() {
     setIsPasswordVisible(!isPasswordVisible);
   }
@@ -106,6 +117,8 @@ function UserProvider(props: { children: React.ReactNode }) {
   const values: IUserContext = {
     priceString,
 
+    cleanUpRequests,
+
     isSignUp,
     setIsSignUp,
 
@@ -132,8 +145,13 @@ function UserProvider(props: { children: React.ReactNode }) {
 
     step,
     setStep,
+    stepLogin,
+    setStepLogin,
 
     quitAccount,
+
+    loginInfo,
+    setLoginInfo,
   };
 
   return (
@@ -141,4 +159,4 @@ function UserProvider(props: { children: React.ReactNode }) {
   );
 }
 
-export {UserProvider, useUserContext};
+export { UserProvider, useUserContext };

@@ -1,15 +1,15 @@
 import { X } from "react-feather";
 import { ModalButton } from "../../../styled-components/Button.styles.ts";
-import * as Dialog from "@radix-ui/react-dialog";
+import { DClose } from "../../../styled-components/Modal.styles.tsx";
 
 function CloseModalButton() {
   return (
     <>
-      <ModalButton aria-label="Close">
-        <Dialog.Close asChild>
+      <DClose asChild>
+        <ModalButton aria-label="Close">
           <X size={20} />
-        </Dialog.Close>
-      </ModalButton>
+        </ModalButton>
+      </DClose>
     </>
   );
 }

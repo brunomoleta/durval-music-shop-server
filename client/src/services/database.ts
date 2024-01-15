@@ -11,8 +11,7 @@ import Delivery from "../assets/Fast-Delivery.svg";
 import Return from "../assets/Free-Return.svg";
 import EasyPay from "../assets/Easy-Payment.svg";
 
-
-export const logoName: string = "DURVAL music shop"
+export const logoName: string = "DURVAL music shop";
 export const categories = [
   {
     url: "audio",
@@ -70,6 +69,18 @@ export const brandsLogo = [
   },
 ];
 
+export const LogInInfo = {
+  title: "Login",
+  description: "Logue para comprar o melhor equipamento por menos ",
+  question: "Não tens conta com a gente?",
+  buttonTitle: "CADASTRAR",
+};
+export const SignUpInfo = {
+  title: "Bem-vinda(o)",
+  description: "Cadastre-se conosco e encontre seu equipamento ",
+  question: "Tens conta com a gente?",
+  buttonTitle: "LOGIN",
+};
 export const HomeIllustrations = [
   {
     image: Quality,
@@ -129,4 +140,3 @@ export const buyingItems = [
 ];
 
 export const corporationOptions = ["ARQUIVOS", "MÍDIA", "SOBRE NÓS"];
-
