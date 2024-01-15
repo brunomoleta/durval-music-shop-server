@@ -7,8 +7,12 @@ import LoginOrSignUp from "../LoginOrSignUp";
 import { useUserContext } from "../../providers/UserContext";
 import { IUserContext } from "../../types/user";
 import Cart from "../Cart";
-import {AppWrapper, MainWrapper, Wrapper} from "../../styled-components/Template.styles.ts";
-
+import {
+  AppWrapper,
+  MainWrapper,
+  Wrapper,
+} from "../../styled-components/Template.styles.ts";
+import { LogInInfo, SignUpInfo } from "../../services/database.ts";
 
 function Template(props: { children: React.ReactNode }) {
   const { isLogOpen, setIsLogOpen, isSignUp } =
@@ -25,6 +29,7 @@ function Template(props: { children: React.ReactNode }) {
       </AppWrapper>
 
       <Modal
+        title={isSignUp ? SignUpInfo.title : LogInInfo.title}
         open={isLogOpen}
         onOpenChange={setIsLogOpen}
         element={LoginOrSignUp(isSignUp)}

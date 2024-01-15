@@ -1,9 +1,19 @@
 import EditPaymentForm from "../Form/EditPaymentForm";
-import {Button, Card, CardTitle, CartButtons, CartContent} from "../../../../styled-components/resumeCard.styles.ts";
+import {
+  Button,
+  Card,
+  CardTitle,
+  CartButtons,
+  CartContent,
+} from "../../../../styled-components/resumeCard.styles.ts";
 import Modal from "../../../Modal";
 import ModalQuit from "../../../Modal/ModalQuit";
-import {IPayment, IPaymentCard, IPaymentContext} from "../../../../types/payment";
-import {usePaymentContext} from "../../../../providers/UserContext/PaymentProvider.tsx";
+import {
+  IPayment,
+  IPaymentCard,
+  IPaymentContext,
+} from "../../../../types/payment";
+import { usePaymentContext } from "../../../../providers/UserContext/PaymentProvider.tsx";
 
 export function PaymentCard(props: IPaymentCard) {
   const { payment } = props;
@@ -41,16 +51,17 @@ export function PaymentCard(props: IPaymentCard) {
         </CartButtons>
       </CartContent>
       <Modal
+        title="Editar método de pagamento"
         open={isEditPaymentModalOpen}
         onOpenChange={setIsEditPaymentModalOpen}
         element={EditPaymentForm()}
       />
       <Modal
+        title="Tens certeza de remover este cartão?"
         open={isDeletePaymentModalOpen}
         onOpenChange={setIsDeletePaymentModalOpen}
         element={
           <ModalQuit
-            question={`Tens certeza de remover este cartão `}
             handleCloseModalClick={() => setIsDeletePaymentModalOpen(false)}
             handleQuitButtonClick={() => deletePayment(payment)}
           />

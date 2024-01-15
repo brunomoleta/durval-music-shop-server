@@ -10,8 +10,11 @@ import { IUserContext } from "../../../types/user";
 import { H1, H2 } from "../../../styled-components/Typography.styles.ts";
 import Loader from "../../Loader";
 import Modal from "../../Modal";
-import {AddProfileItemBtn, ProfileContent, ResumeHeader} from "../../../styled-components/ProfileItem.style.ts";
-
+import {
+  AddProfileItemBtn,
+  ProfileContent,
+  ResumeHeader,
+} from "../../../styled-components/ProfileItem.style.ts";
 
 function Addresses() {
   const {
@@ -59,6 +62,7 @@ function Addresses() {
       </div>
 
       <Modal
+        title="Criar endereço"
         open={isCreateAddressModalOpen}
         onOpenChange={setIsCreateAddressModalOpen}
         element={CreateAddressForm()}

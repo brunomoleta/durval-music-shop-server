@@ -6,7 +6,6 @@ import { useUserContext } from "../../../../../providers/UserContext";
 import { IUserContext } from "../../../../../types/user";
 import { anuncioSchema } from "../../../../../schemas/anuncioSchema";
 import { FormUser } from "../../../../../styled-components/Modal.styles.tsx";
-import { H2 } from "../../../../../styled-components/Typography.styles.ts";
 import Input from "../../../../Login/Forms/Input";
 import Select from "../../../../Select";
 import { SendBtn } from "../../../../../styled-components/Button.styles.ts";
@@ -39,7 +38,6 @@ function CreateAnuncioForm() {
 
   return (
     <FormUser onSubmit={handleSubmit(submit)}>
-      <H2>Anunciar Produto</H2>
       <FormContainer>
         <Input
           label="Nome"
