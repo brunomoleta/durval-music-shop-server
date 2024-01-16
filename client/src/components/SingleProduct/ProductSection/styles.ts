@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors, fontSize } from "../../../styled-components/root.ts";
+import {QUERIES} from "../../../services/database.ts";
 
 export const SectionBuy = styled.section`
   display: flex;
@@ -9,7 +10,7 @@ export const SectionBuy = styled.section`
   justify-content: space-between;
   align-items: center;
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     flex-direction: row;
     margin: 0 30px 0 30px;
   }
@@ -26,7 +27,7 @@ export const DivImg = styled.button`
     scale: 1.10;
   }
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,7 +45,7 @@ export const DivInfoContainer = styled.div`
   width: 100%;
   gap: 15px;
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     gap: 30px;
     width: 40%;
   }
@@ -62,7 +63,7 @@ export const SpanCategory = styled.span`
   font-size: ${fontSize.smallLink};
   margin-bottom: -10px;
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     margin-bottom: -20px;
   }
 `;
@@ -73,7 +74,7 @@ export const H3NameProduct = styled.h3`
   font-weight: 700;
   line-height: 130%;
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     font-size: ${fontSize.h2h3};
   }
 `;
@@ -83,7 +84,7 @@ export const SpanPrice = styled.span`
   font-size: ${fontSize.sub};
   font-weight: 700;
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     font-size: ${fontSize.h2h3};
   }
 `;

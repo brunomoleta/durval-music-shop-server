@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors, fontSize } from "./root.ts";
+import {QUERIES} from "../services/database.ts";
 
 export const DefaultButton = styled.button`
   text-align: start;
@@ -148,7 +149,7 @@ export const ModalButton = styled.button`
     padding: 8px;   
     max-width: fit-content;
 
-    @media (min-width: 32rem) {
+    @media ${QUERIES.tabletAndUp} {
         position: absolute;
         top: -60px;
         right: 00px;
@@ -196,3 +197,11 @@ export const RoundButton = styled.button<{ $positionLeft?: boolean }>`
   left: ${(props) => (props.$positionLeft ? 0 : "none")};
   right: ${(props) => (props.$positionLeft ? "none" : 0)};
 `;
+
+export const PasswordButton = styled.button`
+  background-color: inherit;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+`

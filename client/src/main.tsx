@@ -6,10 +6,10 @@ import {
   UserProvider,
   ProductProvider,
   CartProvider,
+  AddressProvider,
+  PaymentProvider,
+  AnuncioProvider,
 } from "./providers/UserContext";
-import { AddressProvider } from "./providers/UserContext/AddressProvider.tsx";
-import { PaymentProvider } from "./providers/UserContext/PaymentProvider.tsx";
-import { AnuncioProvider } from "./providers/UserContext/AnuncioProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

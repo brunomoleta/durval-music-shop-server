@@ -11,10 +11,13 @@ import Select from "../../../../Select";
 import { SendBtn } from "../../../../../styled-components/Button.styles.ts";
 import Loader from "../../../../Loader";
 import { FormContainer } from "../../../../../styled-components/ProfileItem.style.ts";
+import React from "react";
 
 function CreateAnuncioForm() {
   const { createAnuncioRequest } = useAnuncioContext() as IAnuncioContext;
   const { isLoading } = useUserContext() as IUserContext;
+
+  const id = React.useId();
 
   const {
     register,
@@ -30,6 +33,7 @@ function CreateAnuncioForm() {
       ...formData,
       stock: Number(formData.stock),
       price: Number(formData.price),
+      brandName: formData.brandName.toLowerCase(),
     };
 
     await createAnuncioRequest(requestData);
@@ -43,13 +47,13 @@ function CreateAnuncioForm() {
           label="Nome"
           error={errors.name}
           {...register("name")}
-          id={"name"}
+          id={`${id}-name`}
         />
         <Input
           label="Descrição"
           error={errors.description}
           {...register("description")}
-          id={"description"}
+          id={`${id}-description`}
         />
         <Input
           label="Preço (R$)"
@@ -62,25 +66,25 @@ function CreateAnuncioForm() {
           label="Imagem"
           error={errors.image}
           {...register("image")}
-          id={"image"}
+          id={`${id}-image`}
         />
         <Input
           label="Estoque"
           error={errors.stock}
           {...register("stock")}
-          id={"stock"}
+          id={`${id}-stock`}
         />
         <Input
           label="Cor"
           error={errors.color}
           {...register("color")}
-          id={"color"}
+          id={`${id}-color`}
         />
         <Select
           label="Condição"
           error={errors.condition}
           {...register("condition")}
-          id="condition"
+          id={`${id}-condition`}
           defaultValue=""
         >
           <option value="" disabled>
@@ -93,13 +97,13 @@ function CreateAnuncioForm() {
           label="Categorias"
           error={errors.categories}
           {...register("categories")}
-          id={"categories"}
+          id={`${id}-categories`}
         />
         <Input
           label="Marca"
           error={errors.brandName}
           {...register("brandName")}
-          id={".brandName"}
+          id={`${id}-brandName`}
         />
       </FormContainer>
       <SendBtn type="submit" disabled={isLoading}>

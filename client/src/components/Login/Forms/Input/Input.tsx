@@ -4,38 +4,13 @@ import {
   DefaultLabel,
   Field,
 } from "../../../../styled-components/Modal.styles.tsx";
-import styled from "styled-components";
-import {colors, fontSize} from "../../../../styled-components/root.ts";
 import { useUserContext } from "../../../../providers/UserContext";
 import { Eye, EyeOff } from "react-feather";
 import { IUserContext } from "../../../../types/user";
+import { PasswordButton } from "../../../../styled-components/Button.styles.ts";
+import {LabelWrapper, Span, StyledInput} from "../../../../styled-components/Input.styles.ts";
 
-const StyledInput = styled.input`
-  width: 100%;
-  border-bottom: 2px solid ${colors.black};
 
-  &:focus {
-    border: none;
-    border-bottom: 2px solid ${colors.purple};
-    outline: 1px solid transparent;
-  }
-}
-`;
-const Span = styled.span`
-  color: ${colors.red70};
-  width: fit-content;
-  @media (max-width: 500px) {
-    font-size: ${fontSize.smallLink};
-  }
-`;
-const LabelWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  @media (min-width: 500px) {
-    flex-flow: unset;
-    justify-content: space-between;
-  }
-`;
 
 const Input = React.forwardRef(
   (
@@ -55,21 +30,14 @@ const Input = React.forwardRef(
           <div style={{ position: "relative" }}>
             <StyledInput type={type} id={id} ref={ref} {...delegated} />
             {label.toLowerCase().includes("senha") && (
-              <button
-                style={{
-                  backgroundColor: "inherit",
-                  position: "absolute",
-                  top: "0",
-                  right: "0",
-                  zIndex: "1",
-                }}
+              <PasswordButton
                 onClick={(event) => {
                   event.preventDefault();
                   changePasswordVisibility();
                 }}
               >
                 {type === "text" ? <Eye /> : <EyeOff />}
-              </button>
+              </PasswordButton>
             )}
           </div>
         </Field>

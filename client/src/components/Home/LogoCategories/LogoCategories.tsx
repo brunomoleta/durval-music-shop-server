@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { brandsLogo } from "../../../services/database.ts";
+import {brandsLogo, QUERIES} from "../../../services/database.ts";
 import styled from "styled-components";
 import {colors, genericValues} from "../../../styled-components/root.ts";
 import {DefaultButton} from "../../../styled-components/Button.styles.ts";
@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   padding-inline: ${genericValues.pagePadding};
   width: 100%;
   max-width: ${genericValues.genericMaxWidth};
-  @media(min-width: 1000px){
+  @media${QUERIES.laptopAndUp}{
     padding-inline: 0;
   }
 `
@@ -30,7 +30,7 @@ const BrandsOl = styled.ol`
   scroll-snap-type: x mandatory;
 
 
-  @media (min-width: 1000px) {
+  @media ${QUERIES.laptopAndUp} {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     overflow: hidden;

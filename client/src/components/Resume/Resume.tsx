@@ -2,6 +2,7 @@ import Refund from "../../assets/Refund.svg"
 import styled from "styled-components";
 import {fontSize} from "../../styled-components/root.ts";
 import Illustration from "../Illustration";
+import {QUERIES} from "../../services/database.ts";
 
 const H1 = styled.h1`
   width: 100%;
@@ -9,7 +10,7 @@ const H1 = styled.h1`
   text-align: center;
   line-height: 130%;
   font-size: ${fontSize.h3};
-  @media (min-width: 700px){
+  @media ${QUERIES.tabletAndUp}{
     
   font-size: ${fontSize.h1};
   }

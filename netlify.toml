@@ -1,3 +1,0 @@
-base = "client"
-command = "yarn run build"
-publish = "client/build"
