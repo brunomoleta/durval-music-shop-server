@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { colors, fontSize, fontType, genericValues } from "./root.ts";
 import { DefaultLabel } from "./Modal.styles.tsx";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import {QUERIES} from "../services/database.ts";
 
 export const SearchBar = styled.input`
   border: 2px solid ${colors.black};
@@ -16,7 +17,7 @@ export const SearchBar = styled.input`
     outline: 2px solid ${colors.purple};
   }
 
-  @media (min-width: 450px) {
+  @media ${QUERIES.tabletAndUp} {
     padding-inline-start: 5.5rem;
   }
 `;
@@ -66,16 +67,18 @@ export const Category = styled.li`
 `;
 
 export const InfoWrapper = styled.div`
-  display: grid;
-  gap: 20px;
-  place-items: center;
-  width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
 
-  max-width: ${genericValues.pageWidth};
-  @media (min-width: 768px) {
+    max-width: 1440px;
+    @media ${QUERIES.tabletAndUp}) {
     grid-template-columns: 1fr auto;
     margin-inline: 0px;
-  }
+    justify-content: revert;
+}
 `;
 
 export const IconsWrapper = styled.div`
@@ -106,20 +109,24 @@ export const HeaderWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: clamp(5svh, 8svh, 32px);
-  @media (min-width: 750px) {
+  @media ${QUERIES.desktopAndUp}) {
     gap: 12px;
   }
 `;
 export const SearchWrapper = styled.div`
-  position: relative;
-  width: 100%;
+    position: relative;
+    width: fit-content;
+    
+  @media ${QUERIES.desktopAndUp}) {
+    margin-inline-end: auto;
+}
 `;
 export const CategoriesWrapper = styled.ol`
   display: flex;
   align-items: center;
   gap: 24px;
 
-  @media (max-width: 360px) {
+  @media (max-width: 20rem) {
     display: none;
   }
 `;
@@ -129,7 +136,7 @@ export const Label = styled(DefaultLabel)`
   pointer-events: none;
   z-index: 1;
   top: -32px;
-  @media (min-width: 450px) {
+  @media ${QUERIES.tabletAndUp} {
     top: 8px;
     left: 16px;
   }
