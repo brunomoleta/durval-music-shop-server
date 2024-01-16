@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {colors, fontSize} from "./root.ts";
 import {Link} from "react-router-dom";
+import {QUERIES} from "../services/database.ts";
 
 export const ImageContainer = styled.div`
   height: 200px;
@@ -22,7 +23,7 @@ export const ImgModalContainer = styled(ImageContainer)`
   border-radius: 4px;
   display: grid;
   width: 100%;
-  @media (min-width: 550px) {
+  @media ${QUERIES.tabletAndUp} {
     height: 160px;
     width: 120px;
   }

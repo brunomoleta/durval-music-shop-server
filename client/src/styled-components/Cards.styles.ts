@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors, genericValues } from "./root.ts";
+import {QUERIES} from "../services/database.ts";
 
 export const Cards = styled.ul`
   width: 100%;
@@ -19,7 +20,7 @@ export const Cards = styled.ul`
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
 
-  @media (min-width: 1000px) {
+  @media ${QUERIES.laptopAndUp} {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     overflow: hidden;
@@ -45,7 +46,7 @@ export const ProductCards = styled.ol`
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
 
-  @media (min-width: 1000px) {
+  @media ${QUERIES.laptopAndUp} {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     overflow: hidden;
@@ -73,7 +74,7 @@ export const CardProd = styled(Card)`
   position: relative;
   
   flex: 0 0 100%;
-  @media (min-width: 600px){
+  @media ${QUERIES.tabletAndUp}{
     flex: 0 0 50%;
     
   }
