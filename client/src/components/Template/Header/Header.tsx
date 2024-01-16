@@ -22,8 +22,7 @@ function Header() {
           <SearchFormHeader />
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "1fr auto",
+              display: "flex",
               gap: "24px",
             }}
           >
