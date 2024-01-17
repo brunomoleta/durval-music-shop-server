@@ -84,7 +84,8 @@
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
-      "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.js"
+      "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",
+      "nanoid": "<rootDir>/__mocks__/nanoidMock.js"
     },
     "testEnvironment": "jsdom"
   }
