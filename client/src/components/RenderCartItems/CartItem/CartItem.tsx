@@ -9,21 +9,20 @@ import { colors, fontSize } from "../../../styled-components/root.ts";
 import { ICart, ICartContext } from "../../../types/cart";
 
 import ProductAmount from "../ProductAmount";
-import { useCartContext, useUserContext } from "../../../providers/UserContext";
-import { IUserContext } from "../../../types/user";
+import { useCartContext } from "../../../providers/UserContext";
 import {
   ProductInfo,
   RemoveBtn,
   Warning,
   Wrapper,
 } from "../../../styled-components/CartItem.styles.ts";
+import { priceString } from "../../../services/utils.ts";
 
 function CartItem(props: ICart) {
   const { product, amount } = props;
   const { name, brandName, image, price, id } = product;
   const { removeProductInCart } =
     useCartContext() as ICartContext;
-  const { priceString } = useUserContext() as IUserContext;
 
   return (
     <>

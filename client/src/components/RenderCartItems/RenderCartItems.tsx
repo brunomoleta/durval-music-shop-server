@@ -13,16 +13,17 @@ import { useNavigate } from "react-router-dom";
 import React, { useRef } from "react";
 import {
   BottonInfo,
-  CartOl,
   Buttons,
+  CartOl,
   FinalPrice,
   Wrapper,
 } from "../../styled-components/RenderCartItems.ts";
+import {priceString} from "../../services/utils.ts";
 
 function RenderCartItems() {
   const { cart, setIsCartModalOpen, isCartModalOpen } =
     useCartContext() as ICartContext;
-  const { priceString, setIsLogOpen, isLogOpen } =
+  const { setIsLogOpen, isLogOpen } =
     useUserContext() as IUserContext;
 
   const buttonRef = useRef<HTMLButtonElement>(null);

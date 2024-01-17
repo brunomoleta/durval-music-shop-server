@@ -2,7 +2,6 @@ import React, { Dispatch, SetStateAction } from "react";
 import { IsignUpInfo } from "./types";
 
 export interface IUserContext {
-  priceString: (number) => string;
 
   cleanUpRequests: ()=> void;
 

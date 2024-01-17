@@ -6,7 +6,6 @@ import { AddCartButton } from "../../styled-components/Button.styles.ts";
 import {
   useCartContext,
   useProductContext,
-  useUserContext,
 } from "../../providers/UserContext";
 import {
   CardProductProps,
@@ -21,14 +20,13 @@ import {
   ProductButton,
 } from "../../styled-components/CardProduct.styles.ts";
 import { ICartContext } from "../../types/cart";
-import { IUserContext } from "../../types/user";
+import {priceString} from "../../services/utils.ts";
 
 function CardProduct(props: CardProductProps) {
   const { addProductInCart } =
     useCartContext() as ICartContext;
   const { getProductById, setSingleProduct } =
     useProductContext() as IFullProductContext;
-  const { priceString } = useUserContext() as IUserContext;
 
   const { item } = props;
   const { image, brandName, name, price } = item;
