@@ -1,34 +1,35 @@
 import React from "react";
 
 export interface IProductContext {
-    id: number;
-    brandName: string;
-    categories: string[];
-    createdAt: string;
-    name: string;
-    description?: string;
-    price: number;
-    image: string;
-    stock: number;
-    color?: string;
-    condition: string;
-    deletedAt?: string;
-    ownerId: number;
-    owner: Owner;
+  id: number;
+  brandName: string;
+  categories: string[];
+  createdAt: string;
+  name: string;
+  description?: string;
+  price: number;
+  image: string;
+  stock: number;
+  color?: string;
+  condition: string;
+  deletedAt?: string;
+  ownerId: number;
+  owner: Owner;
 }
 
 export interface productsPage {
-    prevPage: string
-    nextPage: string
+  prevPage: string;
+  nextPage: string;
 }
 
 export interface IProductsPage {
-    prevPage: string | null;
-    nextPage: string | null;
+  prevPage: string | null;
+  nextPage: string | null;
 }
 
 export interface CardProductProps {
-    item: IProductContext;
+  item: IProductContext;
+  children?: React.ReactNode;
 }
 
 export interface IManagePagesProps {
@@ -41,7 +42,7 @@ export interface IManagePagesProps {
 export interface IGetProductsByCategoryResponse {
   nextPage: string | null;
   prevPage: string | null;
-  products: {product: IProductContext}[];
+  products: { product: IProductContext }[];
 }
 
 export interface IFullProductContext {
@@ -49,15 +50,20 @@ export interface IFullProductContext {
   setAllProducts: React.Dispatch<React.SetStateAction<IProductContext[]>>;
 
   singleProduct: IProductContext;
-  setSingleProduct: React.Dispatch<React.SetStateAction<IProductContext>>
+  setSingleProduct: React.Dispatch<React.SetStateAction<IProductContext>>;
 
   productsPage: productsPage;
 
   getProductById: (id: number) => Promise<IProductContext>;
-  getProductsByCategory: (categoryId: string, url?: string | null) => Promise<IProductsPage>;
-  getProductsByBrand: (brandName: string, url?: string | null) => Promise<IProductsPage>;
+  getProductsByCategory: (
+    categoryId: string,
+    url?: string | null,
+  ) => Promise<IProductsPage>;
+  getProductsByBrand: (
+    brandName: string,
+    url?: string | null,
+  ) => Promise<IProductsPage>;
   searchProduct: (productInfo: string) => Promise<void>;
 
   getAllProducts: (page: number, perPage: number) => Promise<IProductsPage>;
-
 }
