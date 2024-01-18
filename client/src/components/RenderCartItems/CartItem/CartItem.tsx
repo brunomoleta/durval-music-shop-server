@@ -31,7 +31,7 @@ function CartItem(props: ICart) {
           <Warning>{product.stock} é o estoque total ;)</Warning>
         )}
         <ImgModalContainer>
-          <img src={image} alt={`${name} image`} />
+          <img src={image} alt={`${name}`} />
         </ImgModalContainer>
         <ProductInfo>
           <div>

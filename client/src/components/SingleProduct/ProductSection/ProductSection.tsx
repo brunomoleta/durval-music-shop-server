@@ -33,7 +33,7 @@ import { useParams } from "react-router-dom";
 import { IUserContext } from "../../../types/user";
 import Loader from "../../Loader";
 import { genericValues } from "../../../styled-components/root.ts";
-import {priceString} from "../../../services/utils.ts";
+import { priceString } from "../../../services/utils.ts";
 
 const ProductSection = () => {
   const [showImage, setShowImage] = React.useState(false);
@@ -66,7 +66,11 @@ const ProductSection = () => {
           open={showImage}
           onOpenChange={setShowImage}
           element={
-            <ImgProduct src={singleProduct?.image} alt="Product Image" />
+            <ImgProduct
+              src={singleProduct?.image}
+              alt={singleProduct?.name}
+              title={singleProduct?.name}
+            />
           }
         />
       }
@@ -74,7 +78,11 @@ const ProductSection = () => {
         {isLoading ? (
           <Loader />
         ) : (
-          <ImgProduct src={singleProduct?.image} alt="Product Image" />
+          <ImgProduct
+            src={singleProduct?.image}
+            alt={singleProduct?.name}
+            title={singleProduct?.name}
+          />
         )}
       </DivImg>
       <DivInfoContainer>

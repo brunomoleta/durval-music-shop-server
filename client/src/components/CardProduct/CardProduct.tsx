@@ -3,10 +3,7 @@ import { fontSize } from "../../styled-components/root.ts";
 import Cart from "../../assets/Cart.svg";
 import { ProfileIcon } from "../../styled-components/Header.styles.tsx";
 import { AddCartButton } from "../../styled-components/Button.styles.ts";
-import {
-  useCartContext,
-  useProductContext,
-} from "../../providers/UserContext";
+import { useCartContext, useProductContext } from "../../providers/UserContext";
 import {
   CardProductProps,
   IFullProductContext,
@@ -20,18 +17,15 @@ import {
   ProductButton,
 } from "../../styled-components/CardProduct.styles.ts";
 import { ICartContext } from "../../types/cart";
-import {priceString} from "../../services/utils.ts";
+import { capitalizedString, priceString } from "../../services/utils.ts";
 
 function CardProduct(props: CardProductProps) {
-  const { addProductInCart } =
-    useCartContext() as ICartContext;
+  const { addProductInCart } = useCartContext() as ICartContext;
   const { getProductById, setSingleProduct } =
     useProductContext() as IFullProductContext;
 
   const { item } = props;
   const { image, brandName, name, price } = item;
-
-  const FinalPrice = () => <Price>{priceString(price)}</Price>;
 
   return (
     <CardProd>
@@ -50,15 +44,15 @@ function CardProduct(props: CardProductProps) {
       >
         <ProductGrid>
           <ImageContainer>
-            <img src={image} alt={`${name} image`} />
+            <img src={image} alt={`${name}`} title={name} />
           </ImageContainer>
           <div>
-            <Brand>{brandName}</Brand>
+            <Brand>{capitalizedString(brandName)}</Brand>
             <div style={{ display: "grid", gridTemplateRows: "90px auto" }}>
               <Name>{name}</Name>
             </div>
           </div>
-          {FinalPrice()}
+          <Price>{priceString(price)}</Price>
         </ProductGrid>
       </ProductButton>
 

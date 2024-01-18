@@ -4,3 +4,5 @@ export const priceString = (price: number) =>
       currency: "BRL",
       minimumFractionDigits: 2,
     }).format(price);
+
+export const capitalizedString = (string:string) => string.charAt(0).toUpperCase() + string.slice(1);
