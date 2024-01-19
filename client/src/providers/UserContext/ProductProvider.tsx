@@ -93,6 +93,17 @@ const ProductProvider = (props: { children: ReactNode }) => {
     }
   };
 
+    const getSingleProduct = async (id: number) => {
+    try {
+      const product: IProductContext = await getProductById(id);
+
+      setSingleProduct(product);
+      window.scrollTo(0, 0);
+    } catch (error) {
+      console.error("Error fetching product:", error);
+    }
+  };
+
   const searchProduct = async (productInfo: string) => {
     try {
       setIsLoading(true);
@@ -104,6 +115,8 @@ const ProductProvider = (props: { children: ReactNode }) => {
       setIsLoading(false);
     }
   };
+
+
 
   const values: IFullProductContext = {
     allProducts,
@@ -118,6 +131,7 @@ const ProductProvider = (props: { children: ReactNode }) => {
     setSingleProduct,
 
     getProductById,
+    getSingleProduct,
 
     productsPage,
   };
@@ -128,5 +142,4 @@ const ProductProvider = (props: { children: ReactNode }) => {
     </ProductContext.Provider>
   );
 };
-
 export { ProductProvider, useProductContext };
