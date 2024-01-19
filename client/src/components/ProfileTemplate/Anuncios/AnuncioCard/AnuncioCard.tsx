@@ -19,7 +19,7 @@ import {
 } from "../../../../styled-components/resumeCard.styles.ts";
 import Modal from "../../../Modal";
 import ModalQuit from "../../../Modal/ModalQuit";
-import { priceString } from "../../../../services/utils.ts";
+import { priceToString } from "../../../../services/utils.ts";
 
 const ViewButton = styled(Link)`
   color: ${colors.purple};
@@ -62,7 +62,7 @@ export function AnuncioCard(props: IAnuncioCard) {
       <CartContent>
         <ul>
           <Li>
-            <Span>Preço:</Span> {priceString(price)}
+            <Span>Preço:</Span> {priceToString(price)}
           </Li>
           <Li>
             <Span>Estoque:</Span> {stock}

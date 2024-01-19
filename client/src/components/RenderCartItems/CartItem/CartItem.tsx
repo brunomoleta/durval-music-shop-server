@@ -16,7 +16,7 @@ import {
   Warning,
   Wrapper,
 } from "../../../styled-components/CartItem.styles.ts";
-import { priceString } from "../../../services/utils.ts";
+import { priceToString } from "../../../services/utils.ts";
 
 function CartItem(props: ICart) {
   const { product, amount } = props;
@@ -61,7 +61,7 @@ function CartItem(props: ICart) {
               </span>
             </RemoveBtn>
             <ProductAmount product={product} amount={amount} />
-            <PriceModal>{priceString(price)}</PriceModal>
+            <PriceModal>{priceToString(price)}</PriceModal>
           </div>
         </ProductInfo>
       </Wrapper>

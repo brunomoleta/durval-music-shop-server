@@ -18,7 +18,7 @@ import {
   FinalPrice,
   Wrapper,
 } from "../../styled-components/RenderCartItems.ts";
-import {priceString} from "../../services/utils.ts";
+import {priceToString} from "../../services/utils.ts";
 
 function RenderCartItems() {
   const { cart, setIsCartModalOpen, isCartModalOpen } =
@@ -67,7 +67,7 @@ function RenderCartItems() {
         <div>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <H3 style={{ fontSize: fontSize.link }}>Subtotal:</H3>
-            <FinalPrice>{priceString(subTotal)}</FinalPrice>
+            <FinalPrice>{priceToString(subTotal)}</FinalPrice>
           </div>
           <p style={{ color: colors.grey70, fontSize: fontSize.smallLink }}>
             O frete é adicionado a seguir :)

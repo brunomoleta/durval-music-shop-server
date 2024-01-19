@@ -8,23 +8,24 @@ import {
   Name,
   Price,
 } from "../../../styled-components/CardProduct.styles.ts";
-import { capitalizedString, priceString } from "../../../services/utils.ts";
+import { capitalizedFirstLetter, priceToString } from "../../../services/utils.ts";
 
 function ProductInfo(props: CardProductProps) {
   const { item } = props;
   const { image, brandName, name, price } = item;
   return (
+
     <ProductGrid>
       <ImageContainer>
         <img src={image} alt={`${name}`} title={name} />
       </ImageContainer>
       <div>
-        <Brand>{capitalizedString(brandName)}</Brand>
+        <Brand>{capitalizedFirstLetter(brandName)}</Brand>
         <div style={{ display: "grid", gridTemplateRows: "90px auto" }}>
           <Name>{name}</Name>
         </div>
       </div>
-      <Price>{priceString(price)}</Price>
+      <Price>{priceToString(price)}</Price>
     </ProductGrid>
   );
 }

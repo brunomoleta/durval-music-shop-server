@@ -5,7 +5,8 @@ import { product } from "../../mocks/ProductCard/renderProduct.route.mock.ts";
 import CardProduct from "../../../components/CardProduct";
 import { UserProvider } from "../../../providers/UserContext";
 import { BrowserRouter } from "react-router-dom";
-import {capitalizedString} from "../../../services/utils.ts";
+import { capitalizedFirstLetter } from "../../../services/utils.ts";
+import {handleButtonClick} from "../../mocks/ProductCard/handleButtonClick.route.mock.ts";
 // import {
 //   // handleButtonClick,
 //   tryAddProductAtCart,
@@ -18,25 +19,28 @@ describe("RenderProductCard", () => {
   render(
     <BrowserRouter>
       <UserProvider>
-        <CardProduct item={guitar} />
+        <CardProduct item={guitar}/>
       </UserProvider>
     </BrowserRouter>,
   );
 
-  test("Should render product card, including info, image and button", async () => {
+  test("Should render product card, including info and image", async () => {
     expect(screen.getByText(guitar.name).textContent).toStrictEqual(
       "Fender Stratocaster sunburst",
     );
-    expect(screen.getByText(capitalizedString(guitar.brandName)).textContent).toStrictEqual(
-      "Fender",
-    );
+    expect(
+      screen.getByText(capitalizedFirstLetter(guitar.brandName)).textContent,
+    ).toStrictEqual("Fender");
     expect(screen.getByAltText(guitar.name)).toBeInTheDocument();
+    expect(screen.getByText("R$ 7.000,00")).toBeInTheDocument();
+  });
+  test("Should render button and fire click event", () => {
+    handleButtonClick
     expect(
       screen.getByRole("button", {
         name: /CARRINHO+/,
       }),
     ).toBeInTheDocument();
-    expect(screen.getByText("R$ 7.000,00")).toBeInTheDocument();
   });
 
   // describe("Trigger addProductInCart", () => {

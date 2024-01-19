@@ -33,7 +33,7 @@ import { useParams } from "react-router-dom";
 import { IUserContext } from "../../../types/user";
 import Loader from "../../Loader";
 import { genericValues } from "../../../styled-components/root.ts";
-import { priceString } from "../../../services/utils.ts";
+import { priceToString } from "../../../services/utils.ts";
 
 const ProductSection = () => {
   const [showImage, setShowImage] = React.useState(false);
@@ -95,7 +95,7 @@ const ProductSection = () => {
 
         <SpanCharacteristic>
           <span>Preço: </span>
-          {priceString(singleProductPrice)}
+          {priceToString(singleProductPrice)}
         </SpanCharacteristic>
 
         {singleProduct?.color && (
