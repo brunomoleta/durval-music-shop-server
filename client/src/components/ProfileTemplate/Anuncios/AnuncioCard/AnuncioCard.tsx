@@ -8,10 +8,7 @@ import {
   IAnuncioContext,
 } from "../../../../types/anuncios";
 import { useAnuncioContext } from "../../../../providers/UserContext/AnuncioProvider.tsx";
-import {
-  useProductContext,
-  useUserContext,
-} from "../../../../providers/UserContext";
+ import { useProductContext } from "../../../../providers/UserContext";
 import { IFullProductContext } from "../../../../types/product";
 import {
   Button,
@@ -22,7 +19,7 @@ import {
 } from "../../../../styled-components/resumeCard.styles.ts";
 import Modal from "../../../Modal";
 import ModalQuit from "../../../Modal/ModalQuit";
-import { IUserContext } from "../../../../types/user";
+import { priceToString } from "../../../../services/utils.ts";
 
 const ViewButton = styled(Link)`
   color: ${colors.purple};
@@ -53,7 +50,6 @@ export function AnuncioCard(props: IAnuncioCard) {
     deleteAnuncio,
   } = useAnuncioContext() as IAnuncioContext;
   const { getProductById } = useProductContext() as IFullProductContext;
-  const { priceString } = useUserContext() as IUserContext;
 
   function handleEditPost(anuncio: IAnuncio) {
     setEditingAnuncio(anuncio);
@@ -66,7 +62,7 @@ export function AnuncioCard(props: IAnuncioCard) {
       <CartContent>
         <ul>
           <Li>
-            <Span>Preço:</Span> {priceString(price)},
+            <Span>Preço:</Span> {priceToString(price)}
           </Li>
           <Li>
             <Span>Estoque:</Span> {stock}

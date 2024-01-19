@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colors, fontSize, fontType, genericValues } from "./root.ts";
 import { DefaultLabel } from "./Modal.styles.tsx";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import {QUERIES} from "../services/database.ts";
+import { QUERIES } from "../services/database.ts";
 
 export const SearchBar = styled.input`
   border: 2px solid ${colors.black};
@@ -54,30 +54,29 @@ export const LogoTop = styled.span`
 `;
 export const ProfileIcon = styled.img<{ $bgColor?: boolean }>``;
 
-
 export const Category = styled.li`
-    padding-block: 4px;
-    font-weight: 500;
+  padding-block: 4px;
+  font-weight: 500;
 
-    &:hover > * {
-        color: ${colors.purpleHover};
-    }
+  &:hover > * {
+    color: ${colors.purpleHover};
+  }
 
-    z-index: 1;
+  z-index: 1;
 `;
 
 export const InfoWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
+    
     gap: 20px;
+    align-items: center;
     justify-content: center;
     width: 100%;
-
     max-width: 1440px;
     @media ${QUERIES.tabletAndUp}) {
-    grid-template-columns: 1fr auto;
-    margin-inline: 0px;
-    justify-content: revert;
+        grid-template-columns: revert;
+        margin-inline: 0px;
 }
 `;
 
@@ -99,27 +98,27 @@ export const Wrapper = styled.header`
     hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
 `;
 export const HeaderWrapper = styled.div`
-  max-width: ${genericValues.pageWidth};
-  width: 100%;
-  margin-block-end: 24px;
-  margin-block-start: 8px;
-  padding-inline: ${genericValues.pagePadding};
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  gap: clamp(5svh, 8svh, 32px);
-  @media ${QUERIES.desktopAndUp}) {
-    gap: 12px;
-  }
+    max-width: ${genericValues.pageWidth};
+    width: 100%;
+    margin-block-end: 24px;
+    margin-block-start: 8px;
+    padding-inline: ${genericValues.pagePadding};
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(5svh, 8svh, 32px);
 `;
 export const SearchWrapper = styled.div`
     position: relative;
-    width: fit-content;
-    
-  @media ${QUERIES.desktopAndUp}) {
-    margin-inline-end: auto;
-}
+    flex: 0 5 50ch;
+    width: 100%;
+    margin-inline: auto;
+    max-inline-size: 65ch;
+
+    @media ${QUERIES.laptopAndUp} {
+        margin-inline: 0 auto ;
+    }
 `;
 export const CategoriesWrapper = styled.ol`
   display: flex;

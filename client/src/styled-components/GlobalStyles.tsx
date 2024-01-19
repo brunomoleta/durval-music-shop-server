@@ -185,7 +185,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   * {
-    max-inline-size: 50ch;
+    max-inline-size: 60ch;
   }
 
   html,

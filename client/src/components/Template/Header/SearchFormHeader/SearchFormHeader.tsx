@@ -24,14 +24,14 @@ function SearchFormHeader() {
 
   return (
     <SearchWrapper>
+
       <form
-        style={{ width: "100%" }}
+          style={{ width: "100%", position: "relative" }}
         onSubmit={(event) => {
           event.preventDefault();
           handleSubmit();
         }}
       >
-        <div style={{ width: "100%", maxWidth: "640px", position: "relative" }}>
           <Label htmlFor={`${id}-search`}>BUSCAR:</Label>
           <SearchBar
             id={`${id}-search`}
@@ -53,7 +53,6 @@ function SearchFormHeader() {
           >
             <Search />
           </SendBtn>
-        </div>
       </form>
     </SearchWrapper>
   );
