@@ -6,7 +6,7 @@ import { AddCartButton } from "../../styled-components/Button.styles.ts";
 import { useCartContext } from "../../providers/UserContext";
 import { ICartContext } from "../../types/cart";
 import { CardProductProps } from "../../types/product";
-import ProductButton from "./ProductInfo";
+import ProductButton from "./ProductButton";
 import ProductInfo from "./ProductInfo";
 
 function CardProduct(props: CardProductProps) {
@@ -15,7 +15,8 @@ function CardProduct(props: CardProductProps) {
   const { item } = props;
   return (
     <CardProd>
-      <ProductButton item={item}>
+      <ProductButton
+          item={item}>
         <ProductInfo item={item} />
       </ProductButton>
 
