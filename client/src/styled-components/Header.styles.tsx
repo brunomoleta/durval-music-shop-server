@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colors, fontSize, fontType, genericValues } from "./root.ts";
 import { DefaultLabel } from "./Modal.styles.tsx";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import {QUERIES} from "../services/database.ts";
+import { QUERIES } from "../services/database.ts";
 
 export const SearchBar = styled.input`
   border: 2px solid ${colors.black};

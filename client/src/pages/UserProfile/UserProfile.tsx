@@ -42,8 +42,8 @@ function UserProfile({ children }: { children: ReactNode }) {
         onOpenChange={setOpenQuit}
         element={
           <ModalQuit
-            handleCloseModalClick={() => setOpenQuit(!openQuit)}
-            handleQuitButtonClick={() => quitAccount()}
+            handleCloseModalClick={() => setOpenQuit(true)}
+            handleQuitButtonClick={quitAccount}
             quit="sim, deslogar"
           />
         }

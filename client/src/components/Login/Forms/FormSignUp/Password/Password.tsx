@@ -35,7 +35,7 @@ function Password() {
 
   const id = React.useId();
   const passwordId = `${id}-password`;
-  const confirmPasswordId = `${id}-lastName`;
+  const confirmPasswordId = `${id}-confirm-password`;
 
   const {
     register,
