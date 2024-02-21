@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import {fontSize} from "./root.ts";
+import {QUERIES} from "../services/database.ts";
 
 export const Wrapper = styled.div`
   display: flex;
   flex-flow: column-reverse;
   margin: 64px;
   
-  @media (min-width: 700px) {
+  @media ${QUERIES.tabletAndUp} {
     display: grid;
     grid-template-columns: 1fr 4fr;
   }

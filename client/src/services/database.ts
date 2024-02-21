@@ -11,6 +11,17 @@ import Delivery from "../assets/Fast-Delivery.svg";
 import Return from "../assets/Free-Return.svg";
 import EasyPay from "../assets/Easy-Payment.svg";
 
+const BREAKPOINTS = {
+  tabletMin: 35,
+  laptopMin: 62.5,
+  desktopMin: 93.5,
+};
+
+export const QUERIES = {
+  tabletAndUp: `(min-width: ${BREAKPOINTS.tabletMin}rem)`,
+  laptopAndUp: `(min-width: ${BREAKPOINTS.laptopMin}rem)`,
+  desktopAndUp: `(min-width: ${BREAKPOINTS.desktopMin}rem)`,
+};
 export const logoName: string = "DURVAL music shop";
 export const categories = [
   {

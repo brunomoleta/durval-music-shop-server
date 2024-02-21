@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { colors, fontSize, fontType, genericValues } from "./root.ts";
 import { DefaultLabel } from "./Modal.styles.tsx";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { QUERIES } from "../services/database.ts";
 
 export const SearchBar = styled.input`
   border: 2px solid ${colors.black};
@@ -16,7 +17,7 @@ export const SearchBar = styled.input`
     outline: 2px solid ${colors.purple};
   }
 
-  @media (min-width: 450px) {
+  @media ${QUERIES.tabletAndUp} {
     padding-inline-start: 5.5rem;
   }
 `;
@@ -53,29 +54,30 @@ export const LogoTop = styled.span`
 `;
 export const ProfileIcon = styled.img<{ $bgColor?: boolean }>``;
 
-
 export const Category = styled.li`
-    padding-block: 4px;
-    font-weight: 500;
+  padding-block: 4px;
+  font-weight: 500;
 
-    &:hover > * {
-        color: ${colors.purpleHover};
-    }
+  &:hover > * {
+    color: ${colors.purpleHover};
+  }
 
-    z-index: 1;
+  z-index: 1;
 `;
 
 export const InfoWrapper = styled.div`
-  display: grid;
-  gap: 20px;
-  place-items: center;
-  width: 100%;
-
-  max-width: ${genericValues.pageWidth};
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr auto;
-    margin-inline: 0px;
-  }
+    display: flex;
+    flex-wrap: wrap;
+    
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1440px;
+    @media ${QUERIES.tabletAndUp}) {
+        grid-template-columns: revert;
+        margin-inline: 0px;
+}
 `;
 
 export const IconsWrapper = styled.div`
@@ -96,30 +98,34 @@ export const Wrapper = styled.header`
     hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
 `;
 export const HeaderWrapper = styled.div`
-  max-width: ${genericValues.pageWidth};
-  width: 100%;
-  margin-block-end: 24px;
-  margin-block-start: 8px;
-  padding-inline: ${genericValues.pagePadding};
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  gap: clamp(5svh, 8svh, 32px);
-  @media (min-width: 750px) {
-    gap: 12px;
-  }
+    max-width: ${genericValues.pageWidth};
+    width: 100%;
+    margin-block-end: 24px;
+    margin-block-start: 8px;
+    padding-inline: ${genericValues.pagePadding};
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(5svh, 8svh, 32px);
 `;
 export const SearchWrapper = styled.div`
-  position: relative;
-  width: 100%;
+    position: relative;
+    flex: 0 5 50ch;
+    width: 100%;
+    margin-inline: auto;
+    max-inline-size: 65ch;
+
+    @media ${QUERIES.laptopAndUp} {
+        margin-inline: 0 auto ;
+    }
 `;
 export const CategoriesWrapper = styled.ol`
   display: flex;
   align-items: center;
   gap: 24px;
 
-  @media (max-width: 360px) {
+  @media (max-width: 20rem) {
     display: none;
   }
 `;
@@ -129,7 +135,7 @@ export const Label = styled(DefaultLabel)`
   pointer-events: none;
   z-index: 1;
   top: -32px;
-  @media (min-width: 450px) {
+  @media ${QUERIES.tabletAndUp} {
     top: 8px;
     left: 16px;
   }

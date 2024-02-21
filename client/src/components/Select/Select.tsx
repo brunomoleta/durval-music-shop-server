@@ -3,6 +3,7 @@ import { ISelect } from "../../types/types";
 import styled from "styled-components";
 import { colors, fontSize } from "../../styled-components/root";
 import { DefaultLabel, Field } from "../../styled-components/Modal.styles";
+import {QUERIES} from "../../services/database.ts";
 
 const StyledSelect = styled.select`
   width: 100%;
@@ -24,7 +25,7 @@ const Span = styled.span`
 const LabelWrapper = styled.div`
   display: flex;
   flex-flow: column;
-  @media (min-width: 500px) {
+  @media ${QUERIES.tabletAndUp} {
     flex-flow: unset;
     justify-content: space-between;
   }

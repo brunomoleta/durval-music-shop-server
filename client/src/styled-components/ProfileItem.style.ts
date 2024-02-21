@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import {colors} from "./root.ts";
+import {QUERIES} from "../services/database.ts";
 
 export const ResumeHeader = styled.div`
   display: flex;
   flex-flow: column;
   gap: 20px;
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     flex-flow: unset;
     justify-content: space-between;
   }

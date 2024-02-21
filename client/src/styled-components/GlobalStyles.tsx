@@ -123,6 +123,7 @@ const GlobalStyles = createGlobalStyle`
     font-weight: inherit;
   }
 
+
   h1 {
     font-size: inherit;
     font-weight: inherit;
@@ -185,7 +186,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   * {
-    max-inline-size: 50ch;
+    max-inline-size: 60ch;
   }
 
   html,
@@ -204,12 +205,6 @@ const GlobalStyles = createGlobalStyle`
     max-inline-size: none;
   }
 
-  a {
-    // pointer-events: none;
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
-  }
 
   /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,

@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import {H3} from "./Typography.styles.ts";
 import {fontSize} from "./root.ts";
+import {QUERIES} from "../services/database.ts";
 
 export const Buttons = styled.div`
   display: grid;
   gap: 24px;
-  @media (min-width: 550px) {
+  @media ${QUERIES.tabletAndUp} {
     display: flex;
   }
 `;
@@ -34,7 +35,7 @@ export const CartOl = styled.ol`
   padding-inline-end: clamp(8px, 5%, 32px);
   height: 100%;
   margin-block-start: 40px;
-  @media (min-width: 550px) {
+  @media ${QUERIES.tabletAndUp} {
     max-height: 450px;
 
     margin-block: 0;

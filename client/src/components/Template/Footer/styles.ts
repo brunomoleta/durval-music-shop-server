@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { colors, genericValues } from "../../../styled-components/root.ts";
 import { Link } from "react-router-dom";
+import {QUERIES} from "../../../services/database.ts";
 
 export const Foot = styled.footer`
   width: 100%;
@@ -22,7 +23,7 @@ export const DivContainer = styled.div`
   padding-inline: ${genericValues.pagePadding};
   gap: 40px;
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     gap: 80px;
   }
 `;
@@ -36,7 +37,7 @@ export const DivUp = styled.div`
   padding-inline: ${genericValues.pagePadding};
   gap: 50px;
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     flex-direction: row;
   }
 `;
@@ -71,7 +72,7 @@ export const ImgMediaLogos = styled.img`
   width: 30px;
   height: 30px;
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     width: 35px;
     height: 35px;
   }
@@ -83,7 +84,7 @@ export const DivDown = styled.div`
   gap: 10px;
   margin-left: 30px;
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     flex-direction: row;
     gap: 30px;
   }
@@ -98,7 +99,7 @@ export const DivRight = styled.div`
   flex-direction: column;
   gap: 30px;
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     flex-direction: row;
     width: 50%;
   }
@@ -110,7 +111,7 @@ export const DivColumns = styled.div`
   min-width: 350px;
   gap: 15px;
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     min-width: 220px;
   }
 `;
@@ -144,7 +145,7 @@ export const AnchorStores = styled(Link)``;
 export const ImgStores = styled.img`
   width: 180px;
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     width: 200px;
   }
 `;

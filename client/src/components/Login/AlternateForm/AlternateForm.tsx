@@ -3,6 +3,7 @@ import { useUserContext } from "../../../providers/UserContext";
 
 import styled from "styled-components";
 import { IUserContext } from "../../../types/user";
+import {QUERIES} from "../../../services/database.ts";
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,13 +11,13 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  @media (min-width: 600px) {
+  @media ${QUERIES.tabletAndUp} {
     flex-flow: row;
   }
 `;
 
 const Question = styled.h3`
-  @media (min-width: 600px) {
+  @media ${QUERIES.tabletAndUp} {
     text-align: center;
   }
 `;

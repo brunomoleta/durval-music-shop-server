@@ -13,16 +13,17 @@ import { useNavigate } from "react-router-dom";
 import React, { useRef } from "react";
 import {
   BottonInfo,
-  CartOl,
   Buttons,
+  CartOl,
   FinalPrice,
   Wrapper,
 } from "../../styled-components/RenderCartItems.ts";
+import {priceToString} from "../../services/utils.ts";
 
 function RenderCartItems() {
   const { cart, setIsCartModalOpen, isCartModalOpen } =
     useCartContext() as ICartContext;
-  const { priceString, setIsLogOpen, isLogOpen } =
+  const { setIsLogOpen, isLogOpen } =
     useUserContext() as IUserContext;
 
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -66,7 +67,7 @@ function RenderCartItems() {
         <div>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <H3 style={{ fontSize: fontSize.link }}>Subtotal:</H3>
-            <FinalPrice>{priceString(subTotal)}</FinalPrice>
+            <FinalPrice>{priceToString(subTotal)}</FinalPrice>
           </div>
           <p style={{ color: colors.grey70, fontSize: fontSize.smallLink }}>
             O frete é adicionado a seguir :)
