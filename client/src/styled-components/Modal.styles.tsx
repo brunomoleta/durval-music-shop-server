@@ -49,8 +49,8 @@ export const DContent = styled(Dialog.Content)`
   gap: clamp(1svh, 2svh, 32px);
 
   background-color: white;
-  border-radius: 0px;
-  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px hsl(206 22% 7% / 20%) 0 10px 20px -15px;
+  border-radius: 0;
+  box-shadow: hsl(206 22% 7% / 35%) 0 10px 38px -10px hsl(206 22% 7% / 20%) 0 10px 20px -15px;
   position: fixed;
   top: 50%;
   left: 50%;

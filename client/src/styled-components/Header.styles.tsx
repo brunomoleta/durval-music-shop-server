@@ -76,7 +76,7 @@ export const InfoWrapper = styled.div`
     max-width: 1440px;
     @media ${QUERIES.tabletAndUp}) {
     grid-template-columns: 1fr auto;
-    margin-inline: 0px;
+    margin-inline: 0;
     justify-content: revert;
 }
 `;
@@ -95,8 +95,8 @@ export const Wrapper = styled.header`
   padding-block-start: 24px;
   min-width: 0;
   box-shadow:
-    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
-    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+    hsl(206 22% 7% / 35%) 0 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0 10px 20px -15px;
 `;
 export const HeaderWrapper = styled.div`
   max-width: ${genericValues.pageWidth};
@@ -149,7 +149,7 @@ export const CartQuantity = styled.span`
   color: ${colors.offWhite};
 
   padding-inline: 10px;
-  padding-block: 0px;
+  padding-block: 0;
   border-radius: 20px;
   font-size: ${fontSize.icons};
 `;
@@ -167,8 +167,8 @@ export const DContent = styled(DropdownMenu.Content)`
   padding: 8px;
   padding-block: 16px;
   box-shadow:
-    0px 10px 38px -10px rgba(22, 23, 24, 0.35),
-    0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+    0 10px 38px -10px rgba(22, 23, 24, 0.35),
+    0 10px 20px -15px rgba(22, 23, 24, 0.2);
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
@@ -206,8 +206,8 @@ export const DSubContent = styled(DropdownMenu.SubContent)`
   padding-inline: 8px;
   padding-block: 16px;
   box-shadow:
-    0px 10px 38px -10px rgba(22, 23, 24, 0.35),
-    0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+    0 10px 38px -10px rgba(22, 23, 24, 0.35),
+    0 10px 20px -15px rgba(22, 23, 24, 0.2);
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
