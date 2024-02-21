@@ -2,7 +2,7 @@ import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
 
 import { colors, fontSize } from "./root.ts";
-import {QUERIES} from "../services/database.ts";
+import { QUERIES } from "../services/database.ts";
 
 
 export const Field = styled.fieldset`
@@ -47,11 +47,10 @@ export const DContent = styled(Dialog.Content)`
   display: grid;
   place-items: center;
   gap: clamp(1svh, 2svh, 32px);
-  
+
   background-color: white;
-  border-radius: 0px;
-  box-shadow: 
-      hsl(206 22% 7% / 35%) 0px 10px 38px -10px hsl(206 22% 7% / 20%) 0 10px 20px -15px;
+  border-radius: 0;
+  box-shadow: hsl(206 22% 7% / 35%) 0 10px 38px -10px hsl(206 22% 7% / 20%) 0 10px 20px -15px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -59,14 +58,15 @@ export const DContent = styled(Dialog.Content)`
 
   width: 100%;
   height: 100%;
-  
+
   padding-block: clamp(2%, 5%, 64px);
   padding-inline: clamp(2%, 5%, 40px);
 
   & > * {
     width: 100%;
   }
-  @media ${QUERIES.tabletAndUp}{
+
+  @media ${QUERIES.tabletAndUp} {
     border-radius: 8px;
     height: auto;
     width: auto;

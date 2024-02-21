@@ -10,14 +10,12 @@ function Modal({
   element,
   title = "",
   button,
-  maxWidth = "700px",
-  overflow = "unset",
 }: IModal) {
   return (
     <Dialog.Root modal={true} open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         <DOverLay />
-        <DContent style={{ maxWidth: maxWidth, overflow: overflow }}>
+        <DContent>
           <ModalHeader button={button} title={title} />
           {element}
         </DContent>
