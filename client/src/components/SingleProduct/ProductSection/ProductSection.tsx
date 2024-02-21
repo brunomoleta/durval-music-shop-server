@@ -24,7 +24,6 @@ import {
   useCartContext,
   useUserContext,
 } from "../../../providers/UserContext";
-// import { useParams } from "react-router-dom";
 import { IFullProductContext } from "../../../types/product";
 import { SendBtn } from "../../../styled-components/Button.styles.ts";
 import { ICartContext } from "../../../types/cart";
@@ -34,6 +33,7 @@ import { useParams } from "react-router-dom";
 import { IUserContext } from "../../../types/user";
 import Loader from "../../Loader";
 import { genericValues } from "../../../styled-components/root.ts";
+import { priceToString } from "../../../services/utils.ts";
 
 const ProductSection = () => {
   const [showImage, setShowImage] = React.useState(false);
@@ -42,7 +42,6 @@ const ProductSection = () => {
     ProductContext,
   ) as IFullProductContext;
   const { addProductInCart } = useCartContext() as ICartContext;
-  const { priceString } = useUserContext() as IUserContext;
 
   const { id } = useParams();
   useEffect(() => {
@@ -67,7 +66,11 @@ const ProductSection = () => {
           open={showImage}
           onOpenChange={setShowImage}
           element={
-            <ImgProduct src={singleProduct?.image} alt="Product Image" />
+            <ImgProduct
+              src={singleProduct?.image}
+              alt={singleProduct?.name}
+              title={singleProduct?.name}
+            />
           }
         />
       }
@@ -75,7 +78,11 @@ const ProductSection = () => {
         {isLoading ? (
           <Loader />
         ) : (
-          <ImgProduct src={singleProduct?.image} alt="Product Image" />
+          <ImgProduct
+            src={singleProduct?.image}
+            alt={singleProduct?.name}
+            title={singleProduct?.name}
+          />
         )}
       </DivImg>
       <DivInfoContainer>
@@ -88,7 +95,7 @@ const ProductSection = () => {
 
         <SpanCharacteristic>
           <span>Preço: </span>
-          {priceString(singleProductPrice)}
+          {priceToString(singleProductPrice)}
         </SpanCharacteristic>
 
         {singleProduct?.color && (

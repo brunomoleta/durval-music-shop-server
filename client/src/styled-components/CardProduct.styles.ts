@@ -43,7 +43,7 @@ export const PriceModal = styled(Price)`
   text-align: end;
 `
 
-export const ProductButton = styled(Link)`
+export const ProductCardButton = styled(Link)`
   border-radius: 8px;
 
   &:hover {

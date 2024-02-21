@@ -1,7 +1,7 @@
 export interface IProductForm {
   name: string;
   description: string | undefined;
-  price: number | string;
+  price: number;
   image: string;
   stock: number | string;
   color: string | undefined;

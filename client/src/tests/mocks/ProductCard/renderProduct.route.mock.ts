@@ -7,7 +7,7 @@
     name: "Fender Stratocaster sunburst",
     description: "High end pro guitar.",
     price: 7000,
-    image: "None",
+    image: "https://cdn.awsli.com.br/1000x1000/157/157612/produto/85791062f33f506dbd.jpg",
     stock: 7,
     color: "sunburst",
     condition: "new",
