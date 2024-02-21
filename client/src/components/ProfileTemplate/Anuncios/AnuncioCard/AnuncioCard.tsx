@@ -7,7 +7,7 @@ import {
   IAnuncioCard,
   IAnuncioContext,
 } from "../../../../types/anuncios";
-import { useAnuncioContext } from "../../../../providers/UserContext/AnuncioProvider.tsx";
+import { useAnuncioContext } from "../../../../providers/UserContext";
  import { useProductContext } from "../../../../providers/UserContext";
 import { IFullProductContext } from "../../../../types/product";
 import {

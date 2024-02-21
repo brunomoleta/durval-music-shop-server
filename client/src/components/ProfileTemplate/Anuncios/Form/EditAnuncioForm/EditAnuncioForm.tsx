@@ -25,7 +25,7 @@ function EditAnuncioForm() {
     values: {
       name: editingAnuncio ? editingAnuncio.name : "",
       description: editingAnuncio ? editingAnuncio.description : "",
-      price: editingAnuncio ? String(editingAnuncio.price) : 0,
+      price: editingAnuncio ? (editingAnuncio.price) : 0,
       image: editingAnuncio ? editingAnuncio.image : "",
       stock: editingAnuncio ? String(editingAnuncio.stock) : 0,
       color: editingAnuncio ? editingAnuncio.color : "",

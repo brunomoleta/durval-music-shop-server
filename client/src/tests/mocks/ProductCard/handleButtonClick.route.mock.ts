@@ -1,6 +1,9 @@
 export const handleButtonClick = jest.fn();
 
-export const tryAddProductAtCart = jest.mock("../../providers/UserContext", () => ({
+export const useCartContextMock = jest.fn(() => ({
   useCartContext: () => ({
-    addProductInCart: handleButtonClick }),
+    addProductInCart: handleButtonClick,
+  }),
 }));
+
+jest.mock("../../../providers/UserContext", () => useCartContextMock);
