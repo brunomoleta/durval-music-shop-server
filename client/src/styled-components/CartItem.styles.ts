@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {colors, fontSize} from "./root.ts";
+import {QUERIES} from "../services/database.ts";
 
 export const ProductInfo = styled.div`
   display: grid;
@@ -33,7 +34,7 @@ export const Warning = styled.p`
   left: 0;
   color: ${colors.purpleBorder};
   bottom: 2px;
-  @media (min-width: 600px) {
+  @media ${QUERIES.tabletAndUp} {
     left: unset;
     right: 0;
   }

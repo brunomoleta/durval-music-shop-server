@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {colors, fontSize} from "./root.ts";
+import {QUERIES} from "../services/database.ts";
 
 export const StyledInput = styled.input`
   width: 100%;
@@ -22,7 +23,7 @@ export const Span = styled.span`
 export const LabelWrapper = styled.div`
   display: flex;
   flex-flow: column;
-  @media (min-width: 500px) {
+  @media ${QUERIES.tabletAndUp} {
     flex-flow: unset;
     justify-content: space-between;
   }

@@ -1,2 +1,2 @@
-export * from './CardProduct.js';
-export { default } from './CardProduct.js';
+export * from './CardProduct.tsx';
+export { default } from './CardProduct.tsx';

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors, fontSize } from "../../../styled-components/root.ts";
+import {QUERIES} from "../../../services/database.ts";
 
 export const SectionDescription = styled.section`
   margin: 0 10px 0 10px;
@@ -7,7 +8,7 @@ export const SectionDescription = styled.section`
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 800px) {
+  @media ${QUERIES.tabletAndUp} {
     margin-left: 55px;
   }
 `;

@@ -10,6 +10,7 @@ import Loader from "../Loader";
 import { IUserContext } from "../../types/user";
 import NoProductFound from "../NoProductFound";
 import Illustration from "../Illustration";
+import {QUERIES} from "../../services/database.ts";
 
 const ListContainer = styled.div`
   display: flex;
@@ -25,7 +26,7 @@ const ProductsList = styled.ul`
   gap: 2.3rem;
   padding: 0 2rem;
 
-  @media (min-width: 600px) {
+  @media ${QUERIES.tabletAndUp} {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 
@@ -33,7 +34,7 @@ const ProductsList = styled.ul`
     column-gap: 2rem;
   }
 
-  @media (min-width: 836px) {
+  @media ${QUERIES.tabletAndUp} {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }

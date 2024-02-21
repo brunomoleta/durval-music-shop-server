@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import {fontSize} from "../../../styled-components/root.ts";
 import {SendBtn} from "../../../styled-components/Button.styles.ts";
+import {QUERIES} from "../../../services/database.ts";
 
 const H1 = styled.h1`
   width: 100%;
@@ -10,7 +11,7 @@ const H1 = styled.h1`
   text-align: center;
   line-height: 130%;
   font-size: ${fontSize.h3};
-  @media (min-width: 700px) {
+  @media ${QUERIES.tabletAndUp} {
     font-size: ${fontSize.h2};
   }
 `;

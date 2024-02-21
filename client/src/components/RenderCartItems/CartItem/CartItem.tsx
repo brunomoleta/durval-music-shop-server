@@ -9,21 +9,20 @@ import { colors, fontSize } from "../../../styled-components/root.ts";
 import { ICart, ICartContext } from "../../../types/cart";
 
 import ProductAmount from "../ProductAmount";
-import { useCartContext, useUserContext } from "../../../providers/UserContext";
-import { IUserContext } from "../../../types/user";
+import { useCartContext } from "../../../providers/UserContext";
 import {
   ProductInfo,
   RemoveBtn,
   Warning,
   Wrapper,
 } from "../../../styled-components/CartItem.styles.ts";
+import { priceToString } from "../../../services/utils.ts";
 
 function CartItem(props: ICart) {
   const { product, amount } = props;
   const { name, brandName, image, price, id } = product;
   const { removeProductInCart } =
     useCartContext() as ICartContext;
-  const { priceString } = useUserContext() as IUserContext;
 
   return (
     <>
@@ -32,7 +31,7 @@ function CartItem(props: ICart) {
           <Warning>{product.stock} é o estoque total ;)</Warning>
         )}
         <ImgModalContainer>
-          <img src={image} alt={`${name} image`} />
+          <img src={image} alt={`${name}`} />
         </ImgModalContainer>
         <ProductInfo>
           <div>
@@ -62,7 +61,7 @@ function CartItem(props: ICart) {
               </span>
             </RemoveBtn>
             <ProductAmount product={product} amount={amount} />
-            <PriceModal>{priceString(price)}</PriceModal>
+            <PriceModal>{priceToString(price)}</PriceModal>
           </div>
         </ProductInfo>
       </Wrapper>

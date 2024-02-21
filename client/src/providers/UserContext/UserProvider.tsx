@@ -107,15 +107,9 @@ function UserProvider(props: { children: React.ReactNode }) {
     }
   };
 
-  const priceString = (price: number) =>
-    new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-      minimumFractionDigits: 2,
-    }).format(price);
+
 
   const values: IUserContext = {
-    priceString,
 
     cleanUpRequests,
 

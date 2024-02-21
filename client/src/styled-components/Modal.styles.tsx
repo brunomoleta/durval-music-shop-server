@@ -2,6 +2,7 @@ import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
 
 import { colors, fontSize } from "./root.ts";
+import {QUERIES} from "../services/database.ts";
 
 
 export const Field = styled.fieldset`
@@ -65,7 +66,7 @@ export const DContent = styled(Dialog.Content)`
   & > * {
     width: 100%;
   }
-  @media (min-width: 32rem){
+  @media ${QUERIES.tabletAndUp}{
     border-radius: 8px;
     height: auto;
     width: auto;
