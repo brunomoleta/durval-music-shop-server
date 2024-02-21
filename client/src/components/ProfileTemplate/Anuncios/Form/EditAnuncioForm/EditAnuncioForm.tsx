@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {useAnuncioContext} from "../../../../../providers/UserContext/AnuncioProvider.tsx";
+import {useAnuncioContext} from "../../../../../providers/UserContext";
 import {IAnuncioContext, IProductForm} from "../../../../../types/anuncios";
 import {useUserContext} from "../../../../../providers/UserContext";
 import {IUserContext} from "../../../../../types/user";
