@@ -3,7 +3,6 @@ import { compare } from "bcryptjs";
 import { AppError } from "../errors/AppError.error";
 import { sign } from "jsonwebtoken";
 import { prisma } from "../app";
-import { loginReturn } from "../interfaces/session.interface";
 
 export const loginService = async (data: any): Promise<{token: string}> => {
   const { email, password } = data;
