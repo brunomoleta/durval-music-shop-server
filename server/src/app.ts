@@ -11,9 +11,10 @@ export const prisma = new PrismaClient();
 
 const ngrokPattern = /https:\/\/[a-zA-Z0-9-]+\.ngrok-free\.app(.*)/;
 const vercel: RegExp = /.durvalmusicshop.*\.vercel\.app.*/;
+const vercelHifen: RegExp = /.durval-music-shop.*\.vercel\.app.*/;
 const netlify: RegExp = /.durvalmusicshop.*\.netlify\.app.*/;
 const localUrl: string = "http://localhost:5173";
-const acceptedValuesArray = [netlify, localUrl, ngrokPattern, vercel]
+const acceptedValuesArray = [netlify, localUrl, ngrokPattern, vercel, vercelHifen];
 
 const corsOptions = {
     origin: acceptedValuesArray,
