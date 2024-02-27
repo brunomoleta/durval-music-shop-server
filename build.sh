@@ -4,4 +4,4 @@ set -o errexit
 
 yarn
 yarn build
-yarn  prisma migrate dev dist/data-source
+yarn  prisma migrate dev dist/src/data-source
