@@ -1,13 +1,18 @@
-import { Request, Response } from "express";
-import { createAddressService, deleteAddressService, getAllAddressesService, updateAddressService } from "../services/addresses.service";
-import { Address } from "@prisma/client";
+import {Request, Response} from "express";
+import {
+    createAddressService,
+    deleteAddressService,
+    getAllAddressesService,
+    updateAddressService
+} from "../services/addresses.service";
+import {Address} from "@prisma/client";
 
 export const createAddressController = async (req: Request, res: Response): Promise<Response> => {
     const userId = Number(res.locals.decoded.sub);
 
     const address: Address = await createAddressService(req.body, userId);
 
-    return res.status(201).json({message: "Endereço cadastrado com sucesso!", address});
+    return res.status(201).json(address);
 };
 
 export const getAllAddressesController = async (req: Request, res: Response): Promise<Response> => {
@@ -29,7 +34,7 @@ export const updateAddressController = async (req: Request, res: Response): Prom
 
     const address: Address = await updateAddressService(id, req.body);
 
-    return res.status(200).json({message: "Endereço atualizado com sucesso!", address});
+    return res.status(200).json(address);
 };
 
 export const deleteAddressController = async (req: Request, res: Response): Promise<Response> => {

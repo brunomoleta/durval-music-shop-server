@@ -27,6 +27,7 @@ import { paginationMiddleware } from "../middlewares/pagination.middleware";
 export const productRouter: Router = Router();
 
 productRouter.get("/all", paginationMiddleware, getAllProductsController)
+
 productRouter.get("/:id", verifyProductId, getProductByIdController);
 productRouter.get("/category/:categoryName", paginationMiddleware, getProductsByCategoryController);
 productRouter.get('/brand/:brandName', paginationMiddleware, getProductsByBrandController);

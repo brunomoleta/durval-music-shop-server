@@ -14,7 +14,7 @@ export const bodyValidator = (schema: ZodTypeAny) => (req: Request, res: Respons
 export const verifyToken = (req: Request, res: Response, next: NextFunction): void => {
     const { authorization } = req.headers;
 
-    if (!authorization) throw new AppError("Token não informado, faça login e tente novamente!", 401);
+    if (!authorization) throw new AppError("Token não informado, faça login e teste novamente.", 401);
 
     const token = authorization.split(" ")[1];
 

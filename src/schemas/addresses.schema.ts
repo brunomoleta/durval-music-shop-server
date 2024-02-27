@@ -5,7 +5,7 @@ export const addressSchema = z.object({
     name: z.string(),
     street: z.string().max(120),
     neihborhood: z.string().max(64),
-    number: z.number().nullish(),
+    number: z.number(),
     zip: z.string().max(10),
     state: z.string().length(2),
     city: z.string().max(64),
