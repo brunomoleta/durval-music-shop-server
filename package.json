@@ -11,8 +11,11 @@
   "engines": {
     "node": ">=18.18.0 <22.0.0"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "express",
+    "prisma orm"
+  ],
+  "author": "Bruno Moleta, Gustavo Lazarin, Filipe Otávio e João Pedro",
   "license": "ISC",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
