@@ -1,0 +1,1150 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Durval Music Shop - API 1.0",
+    "description": "API desenvolvida em Express.js e Typecript do Durval Music Shop, um e-commerce onde as pessoas podem comprar e vender equipamentos musicais.\n\n\nLinks úteis:\n- [Repositório do Backend](https://github.com/brunomoleta/durval-music-shop-server/)\n- [Repositório do Front end](https://github.com/brunomoleta/durval-music-shop-client/)",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/license/mit"
+    },
+    "version": "1.0.11"
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Aprenda sobre como documentar no Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "https://loja-do-durval.onrender.com/",
+      "description": "deployed url;"
+    },
+    {
+      "url": "http://localhost:3000/",
+      "description": "local url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "users",
+      "description": "Criação de usuário"
+    },
+    {
+      "name": "login",
+      "description": "Geração de token do usuário ao logar"
+    },
+    {
+      "name": "products",
+      "description": "Equipamentos à venda"
+    },
+    {
+      "name": "addresses",
+      "description": "Operações relacionadas aos endereços de um usuário;"
+    },
+    {
+      "name": "payments",
+      "description": "Operações relacionadas aos métodos de pagamento de um usuário;"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "login"
+        ],
+        "summary": "Login de usuário.",
+        "description": "Login colocando email e senha. É retornado o token",
+        "operationId": "userLogin",
+        "requestBody": {
+          "description": "Inicializar sessão do usuário",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "thales-roberto@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "aA!0FjE%"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário logado com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJu+85+098+090hbGVzIE1hcm90byIsImlhdCI6MTcwOTAzNjIzNywiZXhwIjoxNzQwMTQwMjM3LCJzdWIiOiIzIn0.kXBF7xZZTS7WhNgG_z1Pao1iQdb8wer5WphfjVlO-ZU"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Email ou senha inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Email ou senha inválido."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Cadastro de um novo usuário.",
+        "description": "Cadastro de usuário colocando nome, email e senha",
+        "operationId": "createUser",
+        "requestBody": {
+          "description": "Create user",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "joãozinho"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "joao_zin@mail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "!0AavVQq"
+                  }
+                },
+                "required": [
+                  "name",
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 1
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "joaozinho"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "example": "joao_zin@mail.com"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "$2a$10$cQRbwkq3H7MHkTluq0EvqORTtOpUvE7rU426.lCFQePDT054vj252"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2024-02-29T09:28:31.665Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflito. Este e-mail já existe",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "format": "string"
+                    }
+                  },
+                  "example": {
+                    "message": "Email already exists"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/addresses": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "addresses"
+        ],
+        "summary": "Cadastro de endereço",
+        "description": "Cadastro de endereço de um usuário informando o token.",
+        "operationId": "createAddress",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Dados de endereço do usuário",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "casa"
+                  },
+                  "street": {
+                    "type": "string",
+                    "example": "avenida Paulista"
+                  },
+                  "number": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 2424
+                  },
+                  "neihborhood": {
+                    "type": "string",
+                    "example": "Bela Vista"
+                  },
+                  "zip": {
+                    "type": "string",
+                    "example": 1310300
+                  },
+                  "city": {
+                    "type": "string",
+                    "example": "São Paulo"
+                  },
+                  "state": {
+                    "type": "string",
+                    "example": "SP"
+                  },
+                  "complement": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 10
+                  }
+                },
+                "required": [
+                  "name",
+                  "street",
+                  "number",
+                  "neihborhood",
+                  "zip",
+                  "city",
+                  "state"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Produto criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 2
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "casa"
+                    },
+                    "street": {
+                      "type": "string",
+                      "example": "avenida Paulista"
+                    },
+                    "number": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 2424
+                    },
+                    "neihborhood": {
+                      "type": "string",
+                      "example": "Bela Vista"
+                    },
+                    "zip": {
+                      "type": "string",
+                      "example": 1310300
+                    },
+                    "city": {
+                      "type": "string",
+                      "example": "São Paulo"
+                    },
+                    "state": {
+                      "type": "string",
+                      "example": "SP"
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 3
+                    },
+                    "complement": {
+                      "type": "number",
+                      "format": "int32",
+                      "example": 10
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição com dados errados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "state": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "Required"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Requisição não autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Token não informado, faça login e teste novamente!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "addresses"
+        ],
+        "summary": "Listagem de endereços de um usuário.",
+        "description": "Com a requisição do token o usuário poderá visualizar todos os seus endereços.",
+        "operationId": "listAddresses",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listagem efetuada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 4
+                      },
+                      "street": {
+                        "type": "string",
+                        "example": "Rua Riachuelo"
+                      },
+                      "neihborhood": {
+                        "type": "string",
+                        "example": "Centro"
+                      },
+                      "number": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 300
+                      },
+                      "zip": {
+                        "type": "string",
+                        "example": "80020-250"
+                      },
+                      "state": {
+                        "type": "string",
+                        "example": "PR"
+                      },
+                      "city": {
+                        "type": "string",
+                        "example": "Curitiba"
+                      },
+                      "complement": {
+                        "type": "string",
+                        "example": null
+                      },
+                      "userId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 2
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Casa"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Requisição não autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Token não informado, faça login e teste novamente."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/addresses/{addressId}": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Buscar endereço através do id.",
+        "description": "Usuário autenticado tem a possibilidade de ler um endereço através do id.",
+        "operationId": "retrieveAddress",
+        "tags": [
+          "addresses"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "addressId",
+            "in": "path",
+            "description": "Id do endereço",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listagem efetuada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 4
+                    },
+                    "street": {
+                      "type": "string",
+                      "example": "Rua Riachuelo"
+                    },
+                    "neihborhood": {
+                      "type": "string",
+                      "example": "Centro"
+                    },
+                    "number": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 300
+                    },
+                    "zip": {
+                      "type": "string",
+                      "example": "80020-250"
+                    },
+                    "state": {
+                      "type": "string",
+                      "example": "PR"
+                    },
+                    "city": {
+                      "type": "string",
+                      "example": "Curitiba"
+                    },
+                    "complement": {
+                      "type": "string",
+                      "example": null
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 2
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "Casa"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Requisição não autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Token não informado, faça login e teste novamente."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Requisição não permitida para usuário autenticado porém não dono do endereço.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Apenas o proprietário deste endereço pode realizar este tipo de ação"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Id não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Endereço não encontrado."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "addresses"
+        ],
+        "summary": "Atualiza o endereço",
+        "description": "atualiza o endereço do usuário",
+        "operationId": "updateAddress",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "addressId",
+            "in": "path",
+            "description": "Id do endereço",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Dados de endereço do usuário",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "trabalho"
+                  },
+                  "street": {
+                    "type": "string",
+                    "example": "avenida da Potato"
+                  },
+                  "number": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 2901
+                  },
+                  "neihborhood": {
+                    "type": "string",
+                    "example": "Centro"
+                  },
+                  "zip": {
+                    "type": "string",
+                    "example": 1310990
+                  },
+                  "city": {
+                    "type": "string",
+                    "example": "Boa Vista"
+                  },
+                  "state": {
+                    "type": "string",
+                    "example": "RO"
+                  },
+                  "complement": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 504
+                  }
+                },
+                "required": [
+                  "name",
+                  "street",
+                  "number",
+                  "neihborhood",
+                  "zip",
+                  "city",
+                  "state"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Produto criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 2
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "trabalho"
+                    },
+                    "street": {
+                      "type": "string",
+                      "example": "avenida da Potato"
+                    },
+                    "number": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 2901
+                    },
+                    "neihborhood": {
+                      "type": "string",
+                      "example": "Centro"
+                    },
+                    "zip": {
+                      "type": "string",
+                      "example": 1310990
+                    },
+                    "city": {
+                      "type": "string",
+                      "example": "Boa Vista"
+                    },
+                    "state": {
+                      "type": "string",
+                      "example": "RO"
+                    },
+                    "complement": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 504
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 3
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Requisição não autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Token não informado, faça login e teste novamente."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Requisição não permitida para usuário autenticado porém não dono do endereço.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Apenas o proprietário deste endereço pode realizar este tipo de ação"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Id não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Endereço não encontrado."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "addresses"
+        ],
+        "summary": "Deleta um endereço",
+        "description": "Deleta um endereço do usuário",
+        "operationId": "deleteAddress",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "addressId",
+            "in": "path",
+            "description": "Id do endereço",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Endereço removido com sucesso."
+          },
+          "401": {
+            "description": "Requisição não autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Token não informado, faça login e teste novamente."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Requisição não permitida para usuário autenticado porém não dono do endereço.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Apenas o proprietário deste endereço pode realizar este tipo de ação"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Id não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Endereço não encontrado."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "products"
+        ],
+        "summary": "Cadastro de um equipamento musical.",
+        "description": "Cadastro de produto com autenticação de token.",
+        "operationId": "createProduct",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Dados de equipamento musical",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "guitarra"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Desfrute com a guitarra Gretsch Electromatic da conexão com a música. Com este instrumento você vai descobrir novos acordes, cantar suas canções e curtirá da vida musical."
+                  },
+                  "price": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1990.9
+                  },
+                  "brandName": {
+                    "type": "string",
+                    "example": "fender"
+                  },
+                  "stock": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 16
+                  },
+                  "condition": {
+                    "type": "string",
+                    "enum": [
+                      "new",
+                      "used"
+                    ],
+                    "example": "used"
+                  },
+                  "image": {
+                    "type": "string",
+                    "example": "https://d1aeri3ty3izns.cloudfront.net/media/59/590980/1200/preview.jpg"
+                  },
+                  "categories": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "cordas",
+                      "madeira"
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "price",
+                  "brandName",
+                  "condition",
+                  "categories",
+                  "image"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Produto criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 49
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "guitarra"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Desfrute com a guitarra Gretsch Electromatic da conexão com a música. Com este instrumento você vai descobrir novos acordes, cantar suas canções e curtirá da vida musical."
+                    },
+                    "color": {
+                      "type": "string",
+                      "example": null
+                    },
+                    "price": {
+                      "type": "integer",
+                      "format": "int64",
+                      "example": 1990.9
+                    },
+                    "brandName": {
+                      "type": "string",
+                      "example": "fender"
+                    },
+                    "stock": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 16
+                    },
+                    "condition": {
+                      "type": "string",
+                      "enum": [
+                        "new",
+                        "used"
+                      ],
+                      "example": "used"
+                    },
+                    "image": {
+                      "type": "string",
+                      "example": "https://d1aeri3ty3izns.cloudfront.net/media/59/590980/1200/preview.jpg"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2024-02-29T09:28:31.665Z"
+                    },
+                    "deletedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": null
+                    },
+                    "ownerId": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 3
+                    },
+                    "categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer",
+                                "format": "int32",
+                                "example": 32
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "erudita"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição com dados errados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "object",
+                      "properties": {
+                        "condition": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "Invalid enum value. Expected 'new' | 'used', received 'novo'"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Requisição não autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "jwt malformed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
