@@ -25,3 +25,39 @@ export const verifyProductId = async (
 
   return next();
 };
+
+export const verifyCategoryName = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) => {
+  const productCategory = String(req.params.categoryName)
+
+  const category = await prisma.category.findUnique({
+      where: { name: productCategory },
+  });
+
+  if (!category) throw new AppError("Categoria não encontrada.", 404);
+
+  res.locals.categoryName = category;
+
+  return next();
+}
+
+export const verifyBrandName = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) => {
+  const productBrand = String(req.params.brandName)
+
+  const brand = await prisma.category.findUnique({
+    where: { name: productBrand },
+  });
+
+  if (!brand) throw new AppError("Marca não encontrada.", 404);
+
+  res.locals.brandName = brand;
+
+  return next();
+}

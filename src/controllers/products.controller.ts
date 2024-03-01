@@ -13,8 +13,7 @@ import {
     getProductsByBrandService,
     searchProductInfoService,
 } from "../services/products.service";
-import {ProductReturn} from "../interfaces/products.interface";
-import {Product} from "@prisma/client";
+import {ProductBrute, ProductReturn} from "../interfaces/products.interface";
 import {ReadProduct} from "../interfaces/products.interface";
 
 export const createProductController = async (
@@ -46,7 +45,7 @@ export const getAllProductsIdController = async (
 ): Promise<Response> => {
     const userId = Number(res.locals.decoded.sub);
 
-    const allProducts: Product[] = await getAllProductsIdService(userId);
+    const allProducts: ProductBrute[] = await getAllProductsIdService(userId);
 
     const formattedProducts: ProductReturn[] = formatProductsReturn(allProducts);
 
@@ -57,7 +56,7 @@ export const getProductByIdController = async (
     req: Request,
     res: Response,
 ): Promise<Response> => {
-    const product: Product = res.locals.product;
+    const product: ProductBrute = res.locals.product;
 
     return res.status(200).json(product);
 };
@@ -68,7 +67,7 @@ export const updateProductController = async (
 ): Promise<Response> => {
     const id = Number(req.params.id);
 
-    const product: Product = await updateProductService(id, req.body);
+    const product: ProductBrute = await updateProductService(id, req.body);
 
     const formattedProduct: ProductReturn = formatProductReturn(product);
 
@@ -101,15 +100,16 @@ export const getAllCategoriesController = async (req: Request, res: Response): P
 }
 
 export const getProductsByCategoryController = async (req: Request, res: Response): Promise<Response> => {
-    const {pagination} = res.locals;
-    const productsList = await getProductsByCategoryService(req.params.categoryName, pagination);
+
+    const {pagination, categoryName} = res.locals;
+    const productsList = await getProductsByCategoryService(categoryName, pagination);
 
     return res.status(200).json(productsList);
 }
 
 export const getProductsByBrandController = async (req: Request, res: Response): Promise<Response> => {
-    const {pagination} = res.locals;
-    const productsList = await getProductsByBrandService(req.params.brandName, pagination);
+    const {pagination, brandName} = res.locals;
+    const productsList = await getProductsByBrandService(brandName, pagination);
 
     return res.status(200).json(productsList);
 }
