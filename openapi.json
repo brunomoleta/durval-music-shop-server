@@ -529,7 +529,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "example": 4
             }
           }
         ],
@@ -909,7 +910,775 @@
         }
       }
     },
+    "/products/{productId}": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Busca produto por id",
+        "description": "Busca de produtos por id",
+        "operationId": "retrieveProduct",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "Id do produto",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Produto atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 4
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "Console Behringer X2222USB"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "A Behringer procura que, com seus produtos, você possa realizar seus sonhos musicais. Os consoles de mixagem são pensados e cuidadosamente fabricados por especialistas que procuram mudar a vida de seus clientes."
+                    },
+                    "price": {
+                      "type": "number"
+                    },
+                    "image": {
+                      "type": "string",
+                      "example": "https://images.musicstore.de/images/1600/behringer-xenyx-x2222usb_1_PAH0009512-000.jpg"
+                    },
+                    "stock": {
+                      "type": "integer",
+                      "example": 7
+                    },
+                    "color": {
+                      "type": "string",
+                      "example": null
+                    },
+                    "condition": {
+                      "type": "string",
+                      "example": "new"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2024-02-25T15:49:21.041Z"
+                    },
+                    "deletedAt": {
+                      "type": "string",
+                      "example": null
+                    },
+                    "ownerId": {
+                      "type": "integer",
+                      "example": 12
+                    },
+                    "brandName": {
+                      "type": "string",
+                      "example": "behringer"
+                    },
+                    "categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "category": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer",
+                                "example": 3
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "áudio"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "owner": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "biotônico fontoura"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Id não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Produto não encontrado."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "products"
+        ],
+        "summary": "Deleta um produto",
+        "description": "Deleta um produto que o usuário anunciou",
+        "operationId": "deleteProduct",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "Id do produto",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Produto removido com sucesso."
+          },
+          "401": {
+            "description": "Requisição não autorizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Token não informado, faça login e teste novamente."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Requisição não permitida para usuário que não é dono do endereço.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Apenas o proprietário deste produto pode realizar este tipo de ação"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Id não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Produto não encontrado."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "products"
+        ],
+        "summary": "Atualização de produto",
+        "description": "Atualiza um produto que o usuário anunciou",
+        "operationId": "updateProduct",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "Id do produto",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "example": "A Behringer procura que, com seus produtos, você possa realizar seus sonhos musicais."
+                  },
+                  "price": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 3490.9
+                  },
+                  "stock": {
+                    "type": "integer",
+                    "example": 3
+                  },
+                  "color": {
+                    "type": "string",
+                    "nullable": true,
+                    "example": "dark grey"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Atualização do produto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int32",
+                      "example": 4
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "Console Behringer X2222USB"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "A Behringer procura que, com seus produtos, você possa realizar seus sonhos musicais."
+                    },
+                    "price": {
+                      "type": "number",
+                      "format": "float",
+                      "example": 3490.9
+                    },
+                    "image": {
+                      "type": "string",
+                      "example": "https://images.musicstore.de/images/1600/behringer-xenyx-x2222usb_1_PAH0009512-000.jpg"
+                    },
+                    "stock": {
+                      "type": "integer",
+                      "example": 3
+                    },
+                    "color": {
+                      "type": "string",
+                      "nullable": true,
+                      "example": "dark grey"
+                    },
+                    "condition": {
+                      "type": "string",
+                      "example": "new"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2024-02-25T15:49:21.000Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/category/{categoryName}": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Filtragem de produtos através do nome da categoria",
+        "description": "Filtragem de produtos através do nome da categoria",
+        "operationId": "filterProductsByCategoryName",
+        "parameters": [
+          {
+            "name": "categoryName",
+            "in": "path",
+            "description": "Nome da categoria",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "audio"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listagem filtrada efetuada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "products": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 4
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Console Behringer X2222USB"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "A Behringer procura que, com seus produtos, você possa realizar seus sonhos musicais. Os consoles de mixagem são pensados e cuidadosamente fabricados por especialistas que procuram mudar a vida de seus clientes."
+                          },
+                          "price": {
+                            "type": "number",
+                            "format": "int64",
+                            "example": 4190.9
+                          },
+                          "image": {
+                            "type": "string",
+                            "example": "https://images.musicstore.de/images/1600/behringer-xenyx-x2222usb_1_PAH0009512-000.jpg"
+                          },
+                          "stock": {
+                            "type": "integer",
+                            "example": 7
+                          },
+                          "color": {
+                            "type": "string",
+                            "example": null
+                          },
+                          "condition": {
+                            "type": "string",
+                            "example": "new"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2024-02-25T15:49:21.041Z"
+                          },
+                          "deletedAt": {
+                            "type": "string",
+                            "example": null
+                          },
+                          "ownerId": {
+                            "type": "integer",
+                            "example": 12
+                          },
+                          "brandName": {
+                            "type": "string",
+                            "example": "behringer"
+                          },
+                          "categories": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "category": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer",
+                                      "example": 3
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "audio"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "owner": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "example": "biotônico fontoura"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "prevPage": {
+                      "type": "string",
+                      "example": "https://loja-do-durval.onrender.com/products/all?page=1&perPage=1"
+                    },
+                    "nextPage": {
+                      "type": "string",
+                      "example": "https://loja-do-durval.onrender.com/products/all?page=1&perPage=3"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Categoria não encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Categoria não encontrada"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/brand/{brandName}": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Filtragem de produtos através do nome da marca",
+        "description": "Filtragem de produtos através do nome da marca",
+        "operationId": "filterProductsByBrand",
+        "parameters": [
+          {
+            "name": "brandName",
+            "in": "path",
+            "description": "Nome da marca",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "behringer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listagem filtrada efetuada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "products": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 4
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Console Behringer X2222USB"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "A Behringer procura que, com seus produtos, você possa realizar seus sonhos musicais. Os consoles de mixagem são pensados e cuidadosamente fabricados por especialistas que procuram mudar a vida de seus clientes."
+                          },
+                          "price": {
+                            "type": "number",
+                            "format": "int64",
+                            "example": 4190.9
+                          },
+                          "image": {
+                            "type": "string",
+                            "example": "https://images.musicstore.de/images/1600/behringer-xenyx-x2222usb_1_PAH0009512-000.jpg"
+                          },
+                          "stock": {
+                            "type": "integer",
+                            "example": 7
+                          },
+                          "color": {
+                            "type": "string",
+                            "example": null
+                          },
+                          "condition": {
+                            "type": "string",
+                            "example": "new"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2024-02-25T15:49:21.041Z"
+                          },
+                          "deletedAt": {
+                            "type": "string",
+                            "example": null
+                          },
+                          "ownerId": {
+                            "type": "integer",
+                            "example": 12
+                          },
+                          "brandName": {
+                            "type": "string",
+                            "example": "behringer"
+                          },
+                          "categories": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "category": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer",
+                                      "example": 3
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "audio"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "owner": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "example": "biotônico fontoura"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "prevPage": {
+                      "type": "string",
+                      "example": "https://loja-do-durval.onrender.com/products/all?page=1&perPage=1"
+                    },
+                    "nextPage": {
+                      "type": "string",
+                      "example": "https://loja-do-durval.onrender.com/products/brand?page=1&perPage=3"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Marca não encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Marca não encontrada"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/products": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Listagem de produtos",
+        "description": "Listagem de produtos com paginação",
+        "operationId": "listProducts",
+        "responses": {
+          "200": {
+            "description": "Listagem efetuada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "products": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 4
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Console Behringer X2222USB"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": "A Behringer procura que, com seus produtos, você possa realizar seus sonhos musicais. Os consoles de mixagem são pensados e cuidadosamente fabricados por especialistas que procuram mudar a vida de seus clientes."
+                          },
+                          "price": {
+                            "type": "number",
+                            "format": "int64",
+                            "example": 4190.9
+                          },
+                          "image": {
+                            "type": "string",
+                            "example": "https://images.musicstore.de/images/1600/behringer-xenyx-x2222usb_1_PAH0009512-000.jpg"
+                          },
+                          "stock": {
+                            "type": "integer",
+                            "example": 7
+                          },
+                          "color": {
+                            "type": "string",
+                            "example": null
+                          },
+                          "condition": {
+                            "type": "string",
+                            "example": "new"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2024-02-25T15:49:21.041Z"
+                          },
+                          "deletedAt": {
+                            "type": "string",
+                            "example": null
+                          },
+                          "ownerId": {
+                            "type": "integer",
+                            "example": 12
+                          },
+                          "brandName": {
+                            "type": "string",
+                            "example": "behringer"
+                          },
+                          "categories": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "category": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "integer",
+                                      "example": 3
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "example": "áudio"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "owner": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "example": "biotônico fontoura"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "prevPage": {
+                      "type": "string",
+                      "example": "https://loja-do-durval.onrender.com/products/all?page=1&perPage=1"
+                    },
+                    "nextPage": {
+                      "type": "string",
+                      "example": "https://loja-do-durval.onrender.com/products/all?page=1&perPage=3"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Sem conexão com a internet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Verifique sua conexão com a internet"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "security": [
           {
@@ -1179,6 +1948,11 @@
                       "type": {
                         "type": "string",
                         "example": "debit"
+                      },
+                      "userId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 3
                       }
                     }
                   }
@@ -1296,7 +2070,7 @@
                       "type": "string",
                       "example": "debit"
                     },
-                    "ownerId": {
+                    "userId": {
                       "type": "integer",
                       "format": "int32",
                       "example": 3
@@ -1384,7 +2158,7 @@
           }
         ],
         "requestBody": {
-          "description": "Dados parciais de endereço do usuário",
+          "description": "Dados parciais de método de pagamento do usuário",
           "content": {
             "application/json": {
               "schema": {
@@ -1401,7 +2175,7 @@
         },
         "responses": {
           "200": {
-            "description": "Produto atualizado com sucesso",
+            "description": "Método de pagamento atualizado com sucesso",
             "content": {
               "application/json": {
                 "schema": {
@@ -1420,7 +2194,7 @@
                       "type": "string",
                       "example": "credit"
                     },
-                    "ownerId": {
+                    "userId": {
                       "type": "integer",
                       "format": "int32",
                       "example": 3
@@ -1455,7 +2229,7 @@
                   "properties": {
                     "message": {
                       "type": "string",
-                      "example": "Apenas o proprietário deste endereço pode realizar este tipo de ação"
+                      "example": "Apenas o proprietário deste cartão pode realizar este tipo de ação"
                     }
                   }
                 }
@@ -1471,7 +2245,7 @@
                   "properties": {
                     "message": {
                       "type": "string",
-                      "example": "Endereço não encontrado."
+                      "example": "Método de pagamento não encontrado."
                     }
                   }
                 }
