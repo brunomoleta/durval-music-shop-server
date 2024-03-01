@@ -13,8 +13,9 @@ import {
     getProductsByBrandService,
     searchProductInfoService,
 } from "../services/products.service";
-import {ProductBrute, ProductReturn} from "../interfaces/products.interface";
+import {ProductReturn} from "../interfaces/products.interface";
 import {ReadProduct} from "../interfaces/products.interface";
+import {Product} from "@prisma/client";
 
 export const createProductController = async (
     req: Request,
@@ -45,7 +46,7 @@ export const getAllProductsIdController = async (
 ): Promise<Response> => {
     const userId = Number(res.locals.decoded.sub);
 
-    const allProducts: ProductBrute[] = await getAllProductsIdService(userId);
+    const allProducts: Product[] = await getAllProductsIdService(userId);
 
     const formattedProducts: ProductReturn[] = formatProductsReturn(allProducts);
 
@@ -56,7 +57,7 @@ export const getProductByIdController = async (
     req: Request,
     res: Response,
 ): Promise<Response> => {
-    const product: ProductBrute = res.locals.product;
+    const product: Product = res.locals.product;
 
     return res.status(200).json(product);
 };
@@ -67,7 +68,7 @@ export const updateProductController = async (
 ): Promise<Response> => {
     const id = Number(req.params.id);
 
-    const product: ProductBrute = await updateProductService(id, req.body);
+    const product: Product = await updateProductService(id, req.body);
 
     const formattedProduct: ProductReturn = formatProductReturn(product);
 

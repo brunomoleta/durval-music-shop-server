@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { categorySchema } from "./categories.schema";
+import {getProductsByCategoryService} from "../services/products.service";
 
 export const productSchema = z.object({
     id: z.number(),

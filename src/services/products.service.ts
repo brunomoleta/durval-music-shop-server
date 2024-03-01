@@ -4,9 +4,9 @@ import {
     ProductReturn,
     ProductUpdate,
     ReadProduct,
-    ReadProductByCategory,
 } from "../interfaces/products.interface";
 import {prisma} from "../app";
+import {Product} from "@prisma/client";
 
 
 import {BrandList} from "../interfaces/brands.interface";
@@ -16,7 +16,7 @@ import {Pagination} from "../interfaces/pagination.interface";
 export const createProductService = async (
     data: ProductCreate,
     userId: number,
-): Promise<ProductBrute> => {
+): Promise<Product> => {
     const {categories} = data;
     return prisma.product.create({
         data: {
@@ -85,8 +85,8 @@ export const getAllProductsService = async ({
 
 export const getAllProductsIdService = async (
     userId: number,
-): Promise<ProductBrute[]> => {
-    const allProducts: ProductBrute[] = await prisma.product.findMany({
+): Promise<Product[]> => {
+    const allProducts: Product[] = await prisma.product.findMany({
         where: {ownerId: userId},
         include: {
             categories: {select: {category: true}},
@@ -100,7 +100,7 @@ export const getAllProductsIdService = async (
 export const updateProductService = async (
     id: number,
     data: ProductUpdate,
-): Promise<ProductBrute> => {
+): Promise<Product> => {
     const {categories} = data;
 
     if (categories) {
@@ -112,7 +112,7 @@ export const updateProductService = async (
         });
     }
 
-    const newProduct: ProductBrute = await prisma.product.update({
+    const newProduct: Product = await prisma.product.update({
         where: {id},
         data: {
             ...data,
@@ -180,7 +180,7 @@ export const getProductsByCategoryService = async (categoryName: string, {
     order,
     sort,
     prevPage
-}: Pagination): Promise<ReadProductByCategory> => {
+}: Pagination) => {
     const productsList = await prisma.productCategory.findMany({
         where: {category: {name: categoryName}},
         skip: page,
