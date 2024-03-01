@@ -49,15 +49,15 @@ export const verifyBrandName = async (
     res: Response,
     next: NextFunction,
 ) => {
-  const productBrand = String(req.params.brandName)
+  const brandName = String(req.params.brandName)
 
   const brand = await prisma.category.findUnique({
-    where: { name: productBrand },
+    where: { name: brandName },
   });
 
   if (!brand) throw new AppError("Marca não encontrada.", 404);
 
-  res.locals.brandName = productBrand;
+  res.locals.brandName = brandName;
 
   return next();
 }

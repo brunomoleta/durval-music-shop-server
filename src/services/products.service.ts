@@ -69,17 +69,12 @@ export const getAllProductsService = async ({
         },
     });
 
-    const productsCount = await prisma.product.findMany();
-
-    // const productsWithCategories = paginationProducts.map((product) => ({
-    //   ...product,
-    //   categories: product.categories.map((category) => category.category.name),
-    // }));
+    const productsCount = await prisma.product.count();
 
     return {
         products: paginationProducts,
         prevPage: page >= 1 ? prevPage : null,
-        nextPage: productsCount.length - page <= perPage ? null : nextPage
+        nextPage: productsCount - page <= perPage ? null : nextPage
     };
 };
 
@@ -177,8 +172,6 @@ export const getProductsByCategoryService = async (categoryName: string, {
     page,
     perPage,
     nextPage,
-    order,
-    sort,
     prevPage
 }: Pagination) => {
     const productsList = await prisma.productCategory.findMany({
@@ -187,7 +180,7 @@ export const getProductsByCategoryService = async (categoryName: string, {
         take: perPage
     });
 
-    const productsCount = await prisma.productCategory.findMany({
+    const productsCount = await prisma.productCategory.count({
         where: {
             category: {name: categoryName}
         }
@@ -196,7 +189,7 @@ export const getProductsByCategoryService = async (categoryName: string, {
     return {
         products: productsList,
         prevPage: page >= 1 ? prevPage : null,
-        nextPage: productsCount.length - page <= perPage ? null : nextPage
+        nextPage: productsCount - page <= perPage ? null : nextPage
     };
 }
 
@@ -212,17 +205,16 @@ export const getProductsByBrandService = async (brandName: string, {
         where: {brandName},
         skip: page,
         take: perPage,
-        orderBy: {[sort]: order}
     });
 
-    const productsCount = await prisma.product.findMany({
+    const productsCount = await prisma.product.count({
         where: {brandName}
     });
 
     return {
         products: productsList,
         prevPage: page >= 1 ? prevPage : null,
-        nextPage: productsCount.length - page <= perPage ? null : nextPage
+        nextPage: productsCount - page <= perPage ? null : nextPage
     };
 }
 
