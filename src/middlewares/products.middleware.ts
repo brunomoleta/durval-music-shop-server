@@ -39,7 +39,7 @@ export const verifyCategoryName = async (
 
   if (!category) throw new AppError("Categoria não encontrada.", 404);
 
-  res.locals.categoryName = category;
+  res.locals.categoryName = productCategory;
 
   return next();
 }
@@ -57,7 +57,7 @@ export const verifyBrandName = async (
 
   if (!brand) throw new AppError("Marca não encontrada.", 404);
 
-  res.locals.brandName = brand;
+  res.locals.brandName = productBrand;
 
   return next();
 }
