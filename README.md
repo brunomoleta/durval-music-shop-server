@@ -66,13 +66,13 @@ A motivação da equipe foi de desevolver uma aplicação robusta para compor o 
 
 - Criação de usuário e login com geração de token;
 - Qualquer usuário pode visualizar uma lista de produtos com paginação;
-- Qualquer usuário pode visualizar uma lista de produtos com filtragem por
+- Qualquer usuário pode visualizar uma lista de produtos com filtragem através de:
     - Marca do equipamento musical;
     - Categoria vinculada ao equipamento musical;    
 - Usuário autenticado e com permissão pode:
     - Criar, editar ou excluir produtos vinculados a ele;
     - Criar, editar ou excluir endereços vinculados a ele;
-    - Criar, editar ou excluir métodos de pagamento vinculados a ele
+    - Criar, editar ou excluir métodos de pagamento vinculados a ele;
 
 
 <hr style="border-top: 3px solid #bbb;">
