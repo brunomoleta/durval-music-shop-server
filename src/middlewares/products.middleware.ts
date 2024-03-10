@@ -51,7 +51,7 @@ export const verifyBrandName = async (
 ) => {
   const brandName = String(req.params.brandName)
 
-  const brand = await prisma.category.findUnique({
+  const brand = await prisma.brand.findUnique({
     where: { name: brandName },
   });
 
