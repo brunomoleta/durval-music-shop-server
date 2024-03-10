@@ -174,16 +174,23 @@ export const getProductsByCategoryService = async (categoryName: string, {
     nextPage,
     prevPage
 }: Pagination) => {
-    const productsList = await prisma.productCategory.findMany({
-        where: {category: {name: categoryName}},
+    const productsList = await prisma.product.findMany({
+        where: {
+            categories: {
+                some: {
+                    category: {
+                        name: categoryName
+                    }
+                }
+            },
+        },
         skip: page,
-        take: perPage
+        take: perPage,
     });
 
-    const productsCount = await prisma.productCategory.count({
-        where: {
-            category: {name: categoryName}
-        }
+    const productsCount = await prisma.category.count({
+        where:
+            {name: categoryName}
     });
 
     return {
@@ -207,8 +214,8 @@ export const getProductsByBrandService = async (brandName: string, {
         take: perPage,
     });
 
-    const productsCount = await prisma.product.count({
-        where: {brandName}
+    const productsCount = await prisma.brand.count({
+        where: {name: brandName}
     });
 
     return {

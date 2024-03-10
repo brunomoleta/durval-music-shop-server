@@ -104,7 +104,6 @@ export const getProductsByCategoryController = async (req: Request, res: Respons
 
     const {pagination, categoryName} = res.locals;
     const productsList = await getProductsByCategoryService(categoryName, pagination);
-
     return res.status(200).json(productsList);
 }
 
